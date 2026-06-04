@@ -1,0 +1,510 @@
+[
+  {
+    "id": "cultivation_spirit_root_01",
+    "title": "靈根覺醒儀式",
+    "description": "村長帶領著同齡的孩子們來到測靈台。這是決定你能否踏上修仙之路的關鍵時刻。",
+    "minAge": 5,
+    "maxAge": 8,
+    "probability": 1.0,
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "咬牙放血，強行激發變異靈根",
+        "condition": "",
+        "successResultText": "鮮血滴入測靈石，爆發出耀眼雷光！你覺醒了罕見的雷系天靈根，震驚全場。",
+        "failResultText": "測靈石毫無反應，你因為失血過多昏死過去，差點傷了本源。",
+        "statChanges": { "intelligence": 20, "luck": 10, "charisma": 15 },
+        "addFlag": "heavenly_root",
+        "failStatChanges": { "health": -20, "luck": -5 },
+        "failAddFlag": "mortal_root"
+      },
+      {
+        "choiceText": "按部就班，將手放上去測試",
+        "condition": "",
+        "successResultText": "測靈石散發出淡淡的五彩光芒，你是最普通的五行偽靈根，勉強能修仙。",
+        "failResultText": "",
+        "statChanges": { "intelligence": 5 },
+        "addFlag": "normal_root"
+      }
+    ]
+  },
+  {
+    "id": "cultivation_injured_master",
+    "title": "山洞裡的重傷修士",
+    "description": "你在後山採藥時，發現一名渾身是血、氣息奄奄的白髮老者。他身邊散落著幾件閃閃發光的法器。",
+    "minAge": 10,
+    "maxAge": 25,
+    "probability": 0.6,
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "施以援手，耗盡隨身草藥救他",
+        "condition": "",
+        "successResultText": "老者醒來後大笑三聲，收你為記名弟子，並傳授了你一套高深心法！",
+        "failResultText": "老者傷勢過重，最終還是隕落了。你白白浪費了珍貴的草藥，只得將他草草掩埋。",
+        "statChanges": { "intelligence": 30, "morality": 20, "luck": 10 },
+        "addFlag": "has_master",
+        "failStatChanges": { "wealth": -10, "morality": 5 }
+      },
+      {
+        "choiceText": "趁火打劫，奪走法器",
+        "condition": "",
+        "successResultText": "你順利拿走了法器並賣了個好價錢，獲得了一大筆靈石，雖然心中有些愧疚。",
+        "failResultText": "老者突然睜開雙眼，拼死發出最後一擊！你雖然躲過要害，但身受重傷，法器也碎裂了。",
+        "statChanges": { "wealth": 50, "morality": -30 },
+        "failStatChanges": { "health": -40, "morality": -30 }
+      }
+    ]
+  },
+  {
+    "id": "cultivation_demonic_invite",
+    "title": "魔宗的深夜招攬",
+    "description": "夜深人靜時，一名黑衣人潛入你的房間，承諾只要你加入合歡宗，便能享有享之不盡的榮華富貴與修煉資源。",
+    "minAge": 16,
+    "maxAge": 30,
+    "probability": 0.8,
+    "requiredStats": { "charisma": 30 },
+    "forbiddenFlags": ["firm_heart"],
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "義正辭嚴地拒絕",
+        "condition": "",
+        "successResultText": "黑衣人冷哼一聲離開了。你堅守正道，心志更加堅定。",
+        "failResultText": "黑衣人惱羞成怒，對你拍出一掌後離去，你受了不輕的內傷。",
+        "statChanges": { "morality": 15, "intelligence": 5 },
+        "addFlag": "firm_heart",
+        "failStatChanges": { "health": -30, "morality": 10 }
+      },
+      {
+        "choiceText": "欣然同意，墮入魔道",
+        "condition": "",
+        "successResultText": "你跟隨黑衣人連夜離開，成為了魔宗弟子，修為突飛猛進，但也變得冷酷無情。",
+        "failResultText": "",
+        "statChanges": { "wealth": 40, "intelligence": 20, "charisma": 20, "morality": -50 },
+        "addFlag": "demonic_sect_member"
+      }
+    ]
+  },
+  {
+    "id": "cultivation_secret_realm_entrance",
+    "title": "上古秘境開啟",
+    "description": "天地異象頻發，傳說中的『虛天秘境』在不遠處的山谷中現世。各大宗門的弟子都蜂擁而至，入口結界即將開啟。",
+    "minAge": 20,
+    "maxAge": 40,
+    "probability": 0.7,
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "強行突破結界，搶佔先機",
+        "condition": "",
+        "successResultText": "你憑藉強悍的真氣硬生生撕開結界，第一個衝入秘境！",
+        "failResultText": "結界反噬之力極強，你被震飛出百米遠，吐血不止，只能勉強進入。",
+        "statChanges": { "health": -10, "luck": 10 },
+        "nextEventId": "cultivation_secret_realm_inner",
+        "failStatChanges": { "health": -40 },
+        "nextEventId": "cultivation_secret_realm_inner"
+      },
+      {
+        "choiceText": "偽裝成大宗門弟子混進去",
+        "condition": "",
+        "successResultText": "你利用精妙的易容術，成功混在玄天宗的隊伍中安穩進入秘境。",
+        "failResultText": "守門長老一眼看穿了你的偽裝，將你一腳踢飛。你花了好大一番功夫才從偏門溜進去。",
+        "statChanges": { "intelligence": 5 },
+        "nextEventId": "cultivation_secret_realm_inner",
+        "failStatChanges": { "health": -20, "luck": -10 },
+        "nextEventId": "cultivation_secret_realm_inner"
+      }
+    ]
+  },
+  {
+    "id": "cultivation_secret_realm_inner",
+    "title": "秘境奪寶 (連續事件)",
+    "description": "進入秘境深處後，你發現一株散發著奇香的『萬年九死還魂草』，但旁邊有一頭三階妖獸死死守護著。",
+    "minAge": 20,
+    "maxAge": 40,
+    "probability": 0.0,
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "施展渾身解數，與妖獸搏殺！",
+        "condition": "",
+        "successResultText": "經過三天三夜的血戰，你斬殺了妖獸，成功奪得仙草，並將妖丹賣了個好價錢！",
+        "failResultText": "妖獸實力遠超預期，你被咬斷了一條手臂，拼盡底牌才僥倖逃脫，錯失仙草。",
+        "statChanges": { "wealth": 80, "health": 20, "luck": 15 },
+        "addFlag": "slayer_of_beasts",
+        "failStatChanges": { "health": -60, "wealth": -20 }
+      },
+      {
+        "choiceText": "聲東擊西，利用符籙引開妖獸後偷草",
+        "condition": "",
+        "successResultText": "妖獸被你的爆裂符吸引走，你趁機採下仙草，溜之大吉。",
+        "failResultText": "妖獸靈智極高，看破了你的計謀，一尾巴將你掃飛，你只能倉皇逃竄。",
+        "statChanges": { "wealth": 50, "intelligence": 15 },
+        "failStatChanges": { "health": -30, "wealth": -10 }
+      }
+    ]
+  },
+  {
+    "id": "cultivation_dao_companion",
+    "title": "道侶之約",
+    "description": "在一次宗門大比中，你救了冰山同門一命。對方紅著臉，拿出一塊玉珮詢問你是否願意結為道侶，共探長生大道。",
+    "minAge": 18,
+    "maxAge": 100,
+    "probability": 0.4,
+    "requiredStats": { "charisma": 40 },
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "接下玉珮，許下長生之約",
+        "condition": "",
+        "successResultText": "兩人情投意合，舉辦了雙修大典。從此修仙路上多了一個知冷知熱的伴侶，修為進境一日千里。",
+        "failResultText": "玉珮剛入手，對方長輩突然降臨，嫌棄你修為低微，將玉珮強行奪走並打傷了你。",
+        "statChanges": { "health": 20, "luck": 20, "charisma": 10 },
+        "addFlag": "has_dao_companion",
+        "failStatChanges": { "health": -20, "charisma": -10, "morality": -5 }
+      },
+      {
+        "choiceText": "婉言拒絕：『心中無情愛，拔劍自然神！』",
+        "condition": "",
+        "successResultText": "對方含淚離去。你斬斷情絲，劍道境界突破，領悟了無上劍意！",
+        "failResultText": "",
+        "statChanges": { "intelligence": 30, "charisma": -10 },
+        "addFlag": "sword_heart"
+      }
+    ]
+  },
+  {
+    "id": "cultivation_golden_core_tribulation",
+    "title": "結丹天劫",
+    "description": "你體內靈力液化，金丹雛形已現。天空烏雲密佈，九天玄雷正在醞釀，這正是修仙者九死一生的結丹天劫！",
+    "minAge": 30,
+    "maxAge": 80,
+    "probability": 0.5,
+    "requiredStats": { "health": 50, "intelligence": 50 },
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "祭出所有防禦法寶，硬抗雷劫",
+        "condition": "",
+        "successResultText": "法寶盡碎，但你憑藉驚人的意志挺過了雷劫，丹田內金丹滴溜溜旋轉，壽元大增！",
+        "failResultText": "雷劫威力太過恐怖，你的防禦法寶如同紙糊，你在天威之下身受重傷，修為大跌。",
+        "statChanges": { "health": 50, "intelligence": 30, "charisma": 20 },
+        "addFlag": "golden_core",
+        "failStatChanges": { "health": -60, "intelligence": -20, "luck": -20 },
+        "failAddFlag": "damaged_foundation"
+      },
+      {
+        "choiceText": "運轉魔功，吞噬雷劫之力",
+        "condition": "",
+        "successResultText": "你瘋狂吞噬天雷，不僅成功結丹，還練就了萬劫不滅體，實力同階無敵！",
+        "failResultText": "雷劫浩然正氣克制魔功，你遭到嚴重反噬，經脈寸斷，幾乎淪為廢人。",
+        "statChanges": { "health": 80, "wealth": 20, "morality": -20 },
+        "addFlag": "golden_core_demonic",
+        "failStatChanges": { "health": -90, "intelligence": -50, "wealth": -50 }
+      }
+    ]
+  },
+  {
+    "id": "cultivation_auction_01",
+    "title": "萬寶樓地下拍賣會",
+    "description": "百年一次的地下拍賣會悄然開啟。壓軸物品是一張殘缺的羊皮卷，據說記載著上古仙人洞府的精確位置。",
+    "minAge": 25,
+    "maxAge": 60,
+    "probability": 0.6,
+    "requiredStats": { "wealth": 50 },
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "一擲千金，強勢拍下神秘殘圖",
+        "condition": "",
+        "successResultText": "你以驚人的財力碾壓群雄，成功拍下殘圖，並根據上面的指引找到了洞府的入口！",
+        "failResultText": "你雖然拍下殘圖，卻在離開時遭到多名蒙面劫修圍攻。你拼死突圍，財物損失慘重，但死死護住了殘圖。",
+        "statChanges": { "wealth": -40, "luck": 10 },
+        "addFlag": "has_ancient_map",
+        "failStatChanges": { "health": -30, "wealth": -60 },
+        "nextEventId": "cultivation_ancient_tomb"
+      },
+      {
+        "choiceText": "放棄殘圖，低調購買延壽丹藥",
+        "condition": "",
+        "successResultText": "你避開了風口浪尖，買下一爐極品延壽丹，不僅增加了壽元，還悄悄結交了一位煉丹宗師。",
+        "failResultText": "",
+        "statChanges": { "health": 30, "wealth": -20, "charisma": 10 },
+        "addFlag": "alchemist_friend"
+      }
+    ]
+  },
+  {
+    "id": "cultivation_ancient_tomb",
+    "title": "上古仙人洞府 (連續事件)",
+    "description": "根據殘圖的指引，你來到了一處位於萬丈深淵下的上古洞府。大門緊閉，門前矗立著兩尊散發著恐怖氣息的石像傀儡。",
+    "minAge": 25,
+    "maxAge": 60,
+    "probability": 0.0,
+    "requiredFlags": ["has_ancient_map"],
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "尋找機關，嘗試破解陣法",
+        "condition": "",
+        "successResultText": "你運用豐富的陣法知識，找到了石像的陣眼並將其關閉。在洞府內，你獲得了一柄靈光四溢的極品飛劍！",
+        "failResultText": "你不慎觸發了絕殺大陣，無數劍氣將你洞穿。你靠著替死符才撿回一條命，倉皇逃離，洞府也就此沉沒。",
+        "statChanges": { "intelligence": 20, "wealth": 80 },
+        "addFlag": "ancient_sword",
+        "failStatChanges": { "health": -50, "luck": -15 }
+      },
+      {
+        "choiceText": "暴力破局，與石像傀儡硬碰硬",
+        "condition": "",
+        "successResultText": "你戰力全開，生生將兩尊傀儡砸成碎石！雖然受了點輕傷，但你獨吞了洞府內所有的天材地寶。",
+        "failResultText": "傀儡防禦力太過變態，你久攻不下反被重創。眼看其他修士尋跡而來，你只能咬牙撤退。",
+        "statChanges": { "health": -10, "wealth": 100, "luck": 15 },
+        "failStatChanges": { "health": -40, "wealth": -10 }
+      }
+    ]
+  },
+  {
+    "id": "cultivation_heart_demon",
+    "title": "心魔劫至",
+    "description": "你正在洞府內閉關打坐，突然一陣幽香襲來。你睜開眼，發現自己回到了凡俗時期的故鄉，父母正含笑呼喚你過去吃飯...",
+    "minAge": 40,
+    "maxAge": 90,
+    "probability": 0.5,
+    "requiredFlags": ["golden_core"],
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "明心見性：『一切有為法，如夢幻泡影！』",
+        "condition": "",
+        "successResultText": "你慧劍斬情絲，勘破了虛妄！幻境寸寸碎裂，你的神識大幅度增長，心境圓滿。",
+        "failResultText": "你雖然知道是幻境，但內心深處的執念太重，遲遲無法下手破局。心魔趁虛而入，讓你神魂受損。",
+        "statChanges": { "intelligence": 30, "morality": 15 },
+        "addFlag": "flawless_state",
+        "failStatChanges": { "health": -20, "intelligence": -20 }
+      },
+      {
+        "choiceText": "沉淪其中，與『家人』共享天倫",
+        "condition": "",
+        "successResultText": "你大夢一場，雖然修為倒退，但你解開了多年的心結，念頭通達，反而意外領悟了紅塵大道！",
+        "failResultText": "你徹底迷失在幻境中，走火入魔。當你被同門發現時，已是經脈逆流，瘋瘋癲癲。",
+        "statChanges": { "health": 10, "luck": 30, "intelligence": -10, "morality": 20 },
+        "failStatChanges": { "health": -70, "intelligence": -40 },
+        "failAddFlag": "qi_deviation"
+      }
+    ]
+  },
+  {
+    "id": "cultivation_sect_war",
+    "title": "正魔大戰爆發",
+    "description": "天際被血色染紅，魔道六宗聯手攻打你的宗門。護宗大陣搖搖欲墜，宗主發佈了血色追殺令，號召所有弟子死戰不退。",
+    "minAge": 50,
+    "maxAge": 120,
+    "probability": 0.4,
+    "forbiddenFlags": ["demonic_sect_member"],
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "誓死守衛宗門，與魔修血戰",
+        "condition": "",
+        "successResultText": "你在戰場上大放異彩，斬殺數名魔修長老！戰後宗門論功行賞，你被破格提拔為核心長老，掌管一座靈峰。",
+        "failResultText": "你被多名高階魔修圍攻，慘遭重創。雖然宗門最終慘勝，但你的根基大損，前途黯淡。",
+        "statChanges": { "wealth": 60, "charisma": 40, "morality": 30 },
+        "addFlag": "sect_elder",
+        "failStatChanges": { "health": -60, "wealth": -20, "luck": -10 }
+      },
+      {
+        "choiceText": "趁亂席捲藏經閣，遠走高飛",
+        "condition": "",
+        "successResultText": "宗門死活與你何干？你成功偷走了兩門鎮派功法，隱姓埋名做了一名逍遙散修。",
+        "failResultText": "你剛碰到功法玉簡，就被守閣長老發現。他怒斥你為叛徒，一掌將你打下懸崖！",
+        "statChanges": { "intelligence": 40, "wealth": 50, "morality": -40 },
+        "addFlag": "rogue_cultivator",
+        "failStatChanges": { "health": -80, "morality": -50 }
+      }
+    ]
+  },
+  {
+    "id": "cultivation_nascent_soul_tribulation",
+    "title": "碎丹成嬰",
+    "description": "百年苦修，只為今朝。你體內的金丹佈滿裂紋，一個與你面貌相同的金色小人正欲破丹而出。若能成功，便可元嬰出竅，壽達千載！",
+    "minAge": 80,
+    "maxAge": 200,
+    "probability": 0.2,
+    "requiredStats": { "intelligence": 80, "health": 60 },
+    "requiredFlags": ["golden_core"],
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "引導天地靈氣，穩紮穩打孕育元嬰",
+        "condition": "",
+        "successResultText": "金光沖天！小人發出一聲清嘯，你成功突破至元嬰期，成為威震一方的老祖級人物！",
+        "failResultText": "靈氣後繼無力，金丹碎裂後元嬰未能成型。你遭逢反噬，修為跌落至築基期，一夜白頭。",
+        "statChanges": { "health": 100, "intelligence": 50, "charisma": 50, "wealth": 100 },
+        "addFlag": "nascent_soul",
+        "failStatChanges": { "health": -80, "intelligence": -40, "luck": -50 }
+      },
+      {
+        "choiceText": "吞噬萬年仙草，強行拔高修為突破",
+        "condition": "",
+        "successResultText": "狂暴的藥力撕裂了你的經脈，但也強行催生了元嬰。你雖然晉升元嬰期，但此生恐怕無望化神。",
+        "failResultText": "藥力太過霸道，你爆體而亡，身死道消，結束了你波瀾壯闊的修仙一生。",
+        "statChanges": { "health": 50, "intelligence": 20, "luck": -20 },
+        "addFlag": "nascent_soul_flawed",
+        "failStatChanges": { "health": -100 },
+        "failAddFlag": "dead"
+      }
+    ]
+  },
+  {
+    "id": "cultivation_natal_weapon",
+    "title": "煉製本命法寶",
+    "description": "步入高階境界後，你急需一件與自身性命交修的本命法寶。你在一座地火旺盛的火山深處，準備開爐煉器。",
+    "minAge": 40,
+    "maxAge": 150,
+    "probability": 0.8,
+    "requiredFlags": ["golden_core"],
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "投入全部身家，煉製傳說中的『庚金虛空劍』",
+        "condition": "",
+        "successResultText": "九九八十一天後，神劍出爐，劍鳴響徹雲霄！你將其收入丹田，戰鬥力產生了質的飛躍。",
+        "failResultText": "地火突然失控，不僅將你收集的珍稀靈材付之一炬，炸爐的威力還讓你本源受損。",
+        "statChanges": { "wealth": -60, "intelligence": 20, "luck": 15 },
+        "addFlag": "natal_sword_master",
+        "failStatChanges": { "health": -30, "wealth": -80, "luck": -10 }
+      },
+      {
+        "choiceText": "保守起見，用普通的玄鐵煉製一面防禦玄龜盾",
+        "condition": "",
+        "successResultText": "雖然法寶品階不高，但勝在堅固實用。從此鬥法時你多了一分保命的底氣。",
+        "failResultText": "",
+        "statChanges": { "health": 20, "wealth": -10, "intelligence": 5 },
+        "addFlag": "turtle_shield"
+      }
+    ]
+  },
+  {
+    "id": "cultivation_sect_rebellion",
+    "title": "宗門驚變",
+    "description": "宗主閉關衝擊大境界失敗，大長老趁機發動叛亂，意圖奪取宗主之位。宗門上下頓時陷入一片混戰與火海。",
+    "minAge": 30,
+    "maxAge": 100,
+    "probability": 0.5,
+    "forbiddenFlags": ["rogue_cultivator", "demonic_sect_member"],
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "雪中送炭，拚死掩護重傷的宗主突圍",
+        "condition": "",
+        "successResultText": "你帶著宗主殺出重圍。三年後宗主傷癒歸來平定叛亂，將你收為關門弟子，並傳授了鎮派秘法！",
+        "failResultText": "大長老的黨羽太多，你雖然拼死護住了宗主，但自己卻被打落絕地，修為盡廢。",
+        "statChanges": { "morality": 40, "intelligence": 20, "luck": 30 },
+        "addFlag": "sect_heir",
+        "failStatChanges": { "health": -80, "wealth": -50, "morality": 20 },
+        "failAddFlag": "crippled"
+      },
+      {
+        "choiceText": "良禽擇木而棲，臨陣倒戈投靠大長老",
+        "condition": "",
+        "successResultText": "大長老成功篡位，你因為站隊及時，被分發了大量的修煉資源，成為新貴。",
+        "failResultText": "叛亂最終被宗門底蘊的太上長老鎮壓。你作為叛徒，被廢去修為，逐出師門。",
+        "statChanges": { "wealth": 50, "morality": -30 },
+        "failStatChanges": { "health": -50, "wealth": -100, "morality": -50 },
+        "failAddFlag": "rogue_cultivator"
+      }
+    ]
+  },
+  {
+    "id": "cultivation_mortal_realm",
+    "title": "紅塵化凡",
+    "description": "你的修為遇到了瓶頸，心境遲遲無法圓滿。為求突破，你封印了全身法力，來到凡人城鎮，準備體驗生老病死。",
+    "minAge": 80,
+    "maxAge": 250,
+    "probability": 0.6,
+    "requiredFlags": ["nascent_soul"],
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "化身遊醫，懸壺濟世三十載",
+        "condition": "",
+        "successResultText": "你在凡間救人無數，看透了生死輪迴。三十年後法力解封，你的靈魂境界發生了蛻變！",
+        "failResultText": "凡人的生離死別讓你陷入深深的自我懷疑，你不僅未能勘破紅塵，反而積累了極深的心結。",
+        "statChanges": { "morality": 50, "intelligence": 40, "luck": 20 },
+        "addFlag": "mortal_saint",
+        "failStatChanges": { "health": -10, "intelligence": -30 }
+      },
+      {
+        "choiceText": "投身朝堂，攪動凡人帝國的風雲",
+        "condition": "",
+        "successResultText": "你以權謀登頂權力巔峰，享受了無邊富貴後灑脫離去，體驗了『拿起再放下』的王道心境。",
+        "failResultText": "你沉迷於凡俗的權力與酒色之中，甚至忘記了自己是個修仙者，壽命白白蹉跎了數十年。",
+        "statChanges": { "wealth": 30, "intelligence": 20, "charisma": 30, "morality": -10 },
+        "failStatChanges": { "health": -20, "intelligence": -40, "luck": -20 }
+      }
+    ]
+  },
+  {
+    "id": "cultivation_void_rift",
+    "title": "虛空裂縫",
+    "description": "你在九天之上採集九天清氣時，意外遭遇空間亂流，一道幽黑的虛空裂縫在你面前緩緩展開，散發著古老而危險的氣息。",
+    "minAge": 100,
+    "maxAge": 300,
+    "probability": 0.3,
+    "requiredFlags": ["nascent_soul"],
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "富貴險中求，隻身闖入裂縫探秘",
+        "condition": "",
+        "successResultText": "裂縫背後竟然是一處上古洪荒碎片！你在裡面採集到了早已絕跡的仙品靈草，滿載而歸。",
+        "failResultText": "你被捲入恐怖的虛空風暴中，迷失了坐標。雖然僥倖保住性命，但被困在虛空中整整上百年才逃出。",
+        "statChanges": { "wealth": 100, "luck": 40, "intelligence": 20 },
+        "addFlag": "ancient_explorer",
+        "failStatChanges": { "health": -50, "luck": -20 }
+      },
+      {
+        "choiceText": "穩妥為上，耗費法力將裂縫封印",
+        "condition": "",
+        "successResultText": "你成功封印了裂縫，阻止了可能發生的異界妖物入侵，獲得了天道降下的一絲功德金光。",
+        "failResultText": "",
+        "statChanges": { "health": -10, "morality": 30, "luck": 20 },
+        "addFlag": "heaven_merit"
+      }
+    ]
+  },
+  {
+    "id": "cultivation_ascension",
+    "title": "化神飛升",
+    "description": "你已達人間界巔峰。今日天生異象，仙音縹緲，傳說中的『接引仙光』與『九死滅世雷劫』同時降臨，此乃修仙者的最終考驗！",
+    "minAge": 200,
+    "maxAge": 500,
+    "probability": 0.1,
+    "requiredStats": { "health": 90, "intelligence": 90 },
+    "requiredFlags": ["nascent_soul"],
+    "worldview": ["cultivation"],
+    "choices": [
+      {
+        "choiceText": "燃燒壽元與神魂，逆天而上直衝仙門！",
+        "condition": "",
+        "successResultText": "你斬破了重重雷劫，沐浴在接引仙光中，褪去凡胎，白日飛升！你的名字成為了人間界永遠的神話！",
+        "failResultText": "滅世雷劫不容褻瀆，你終究未能扛過最後一波九彩神雷，在雷光中灰飛煙滅，身死道消。",
+        "statChanges": { "health": 100, "wealth": 100, "intelligence": 100, "charisma": 100, "luck": 100, "morality": 100 },
+        "addFlag": "ascended_immortal",
+        "failStatChanges": { "health": -999 },
+        "failAddFlag": "dead"
+      },
+      {
+        "choiceText": "自斬修為，躲避天劫，留在人間做地仙",
+        "condition": "",
+        "successResultText": "你放棄了飛升的機會，雖然修為倒退，但憑藉無可匹敵的實力，你成為了人間界無敵的幕後主宰。",
+        "failResultText": "天道無情，你雖自斬修為，但雷劫依然將你鎖定。你身受無法逆轉的道傷，苟延殘喘。",
+        "statChanges": { "health": -30, "wealth": 80, "intelligence": 20 },
+        "addFlag": "earthly_immortal",
+        "failStatChanges": { "health": -80, "luck": -50, "intelligence": -30 },
+        "failAddFlag": "dao_injury"
+      }
+    ]
+  }
+]
