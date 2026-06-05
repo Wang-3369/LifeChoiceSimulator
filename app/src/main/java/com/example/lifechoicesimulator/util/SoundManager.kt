@@ -72,6 +72,14 @@ class SoundManager(private val context: Context) {
         }
     }
 
+    fun stopBgm() {
+        mediaPlayer?.run {
+            if (isPlaying) stop()
+            release()
+        }
+        mediaPlayer = null
+    }
+
     // ===== 遊戲音效 (SFX) 區塊 =====
     fun playClickSound() {
         if (!isSfxEnabled) return
@@ -93,7 +101,6 @@ class SoundManager(private val context: Context) {
     }
 
     fun release() {
-        mediaPlayer?.release()
-        mediaPlayer = null
+        stopBgm()
     }
 }

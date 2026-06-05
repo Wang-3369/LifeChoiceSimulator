@@ -95,12 +95,36 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             bgmVolume.collect { soundManager.bgmVolume = it }
         }
         viewModelScope.launch {
+            bgmEnabled.collect { soundManager.isBgmEnabled = it }
+        }
+        viewModelScope.launch {
             sfxVolume.collect { soundManager.sfxVolume = it }
         }
+        viewModelScope.launch {
+            sfxEnabled.collect { soundManager.isSfxEnabled = it }
+        }
+        viewModelScope.launch {
+            vibrationEnabled.collect { soundManager.isVibrationEnabled = it }
+        }
     }
+
+    fun startAppBgm() {
+        soundManager.playBgm()
+    }
+
+    fun stopAppBgm() {
+        soundManager.stopBgm()
+    }
+
     fun playMenuBgm() {
         soundManager.playBgm("main_menu")
     }
+
+    override fun onCleared() {
+        soundManager.release()
+        super.onCleared()
+    }
+
     fun setBgmVolume(volume: Float) = viewModelScope.launch { achievementPrefs.setSetting(AchievementPreferences.BGM_VOLUME, volume) }
     fun setSfxVolume(volume: Float) = viewModelScope.launch { achievementPrefs.setSetting(AchievementPreferences.SFX_VOLUME, volume) }
 
