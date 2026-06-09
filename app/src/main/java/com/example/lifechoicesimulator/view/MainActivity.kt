@@ -33,6 +33,8 @@ import com.example.lifechoicesimulator.model.AchievementRegistry
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.res.painterResource
 import kotlinx.coroutines.delay
 import android.app.Activity
@@ -118,6 +120,10 @@ fun LifeChoiceApp(viewModel: GameViewModel) {
             SummaryScreen(viewModel, onRestart = {
                 viewModel.prepareNewGame()
                 navController.navigate("allocation") {
+                    popUpTo("summary") { inclusive = true }
+                }
+            }, onMainMenu = {
+                navController.navigate("main_menu") {
                     popUpTo("summary") { inclusive = true }
                 }
             })
@@ -212,7 +218,7 @@ fun MainMenuScreen(
                         ) {
                             if (slotState != null) {
                                 val char = slotState!!.character
-                                Text("進度 $slotId：${char.age}歲 | 體力:${char.health} | 世界:${char.worldview}")
+                                Text("進度 $slotId：${viewModel.formatAge(char.age)} | 體力:${char.health} | 世界:${char.worldview}")
                             } else {
                                 Text("進度 $slotId：無存檔資料")
                             }
@@ -425,6 +431,8 @@ fun GameScreen(viewModel: GameViewModel, navController: NavController, modifier:
     val currentEvent by viewModel.currentEvent.collectAsState()
     val resultText by viewModel.eventResultText.collectAsState()
     val isGameOver by viewModel.isGameOver.collectAsState()
+    val lastDiceRoll by viewModel.lastDiceRoll.collectAsState()
+    val miniGameState by viewModel.miniGameState.collectAsState()
 
     LaunchedEffect(isGameOver) {
         if (isGameOver) {
@@ -434,10 +442,10 @@ fun GameScreen(viewModel: GameViewModel, navController: NavController, modifier:
         }
     }
 
-    Column(modifier = modifier.fillMaxSize().padding(16.dp)) {
+    Column(modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp)) {
         Text(
             text = """
-                年齡: ${character.age} | 體力: ${character.health} | 財富: ${character.wealth}
+                時間: ${viewModel.formatAge(character.age)} | 體力: ${character.health} | 財富: ${character.wealth}
                 智力: ${character.intelligence} | 魅力: ${character.charisma}
                 道德: ${character.morality} | 運氣: ${character.luck}
             """.trimIndent(),
@@ -452,18 +460,81 @@ fun GameScreen(viewModel: GameViewModel, navController: NavController, modifier:
             Spacer(modifier = Modifier.height(16.dp))
         }
 
+        lastDiceRoll?.let { roll ->
+            Card(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)) {
+                Column(modifier = Modifier.padding(12.dp)) {
+                    Text("投骰判定", fontWeight = FontWeight.Bold)
+                    Text("d100: ${roll.roll} / 目標: ${roll.target} / 幸運修正: ${roll.luckModifier}")
+                    LinearProgressIndicator(
+                        progress = { (roll.roll / 100f).coerceIn(0f, 1f) },
+                        modifier = Modifier.fillMaxWidth().padding(top = 8.dp)
+                    )
+                    Text(
+                        if (roll.success) "判定成功" else "判定失敗",
+                        color = if (roll.success) Color(0xFF006600) else Color(0xFFAA0000)
+                    )
+                }
+            }
+        }
+
+        if (currentEvent == null) {
+            Text(text = "選擇接下來三個月的行動", fontSize = 22.sp, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(8.dp))
+            viewModel.getAvailableActions().forEach { action ->
+                OutlinedButton(
+                    onClick = { viewModel.performAction(action.key) },
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)
+                ) {
+                    Column(modifier = Modifier.fillMaxWidth()) {
+                        Text(action.label, fontWeight = FontWeight.Bold)
+                        Text(action.description, fontSize = 12.sp)
+                    }
+                }
+            }
+        }
+
         currentEvent?.let { event ->
+            if (event.eventType == "mini_game") {
+                AssistChip(onClick = {}, label = { Text("小遊戲事件") }, modifier = Modifier.padding(bottom = 8.dp))
+            } else if (event.eventType == "chain") {
+                AssistChip(onClick = {}, label = { Text("連續事件") }, modifier = Modifier.padding(bottom = 8.dp))
+            } else if (event.eventType == "special") {
+                AssistChip(onClick = {}, label = { Text("特殊事件") }, modifier = Modifier.padding(bottom = 8.dp))
+            }
             Text(text = event.title, fontSize = 24.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = event.description, fontSize = 18.sp)
             Spacer(modifier = Modifier.height(24.dp))
 
-            event.choices?.forEachIndexed { index, choice ->
-                Button(
-                    onClick = { viewModel.makeChoice(index) },
-                    modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)
-                ) {
-                    Text(choice.choiceText)
+            if (event.eventType == "mini_game" && miniGameState != null) {
+                Card(modifier = Modifier.fillMaxWidth()) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Text("猜數字小遊戲", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                        Text(miniGameState!!.message)
+                        Spacer(modifier = Modifier.height(12.dp))
+                        (1..10).chunked(5).forEach { rowNumbers ->
+                            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                rowNumbers.forEach { number ->
+                                    OutlinedButton(
+                                        onClick = { viewModel.submitMiniGameGuess(number) },
+                                        modifier = Modifier.weight(1f)
+                                    ) {
+                                        Text(number.toString())
+                                    }
+                                }
+                            }
+                            Spacer(modifier = Modifier.height(8.dp))
+                        }
+                    }
+                }
+            } else {
+                event.choices?.forEachIndexed { index, choice ->
+                    Button(
+                        onClick = { viewModel.makeChoice(index) },
+                        modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)
+                    ) {
+                        Text(choice.choiceText)
+                    }
                 }
             }
         }
@@ -472,8 +543,9 @@ fun GameScreen(viewModel: GameViewModel, navController: NavController, modifier:
 
 // ===== 人生總結畫面 =====
 @Composable
-fun SummaryScreen(viewModel: GameViewModel, onRestart: () -> Unit) {
+fun SummaryScreen(viewModel: GameViewModel, onRestart: () -> Unit, onMainMenu: () -> Unit) {
     val character by viewModel.characterState.collectAsState()
+    val finalLifeStory by viewModel.finalLifeStory.collectAsState()
 
     val title = when {
         character.wealth > 80 -> "華爾街巨擘"
@@ -483,9 +555,9 @@ fun SummaryScreen(viewModel: GameViewModel, onRestart: () -> Unit) {
     }
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(24.dp),
+        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Top
     ) {
         Text("人生落幕", fontSize = 36.sp, fontWeight = FontWeight.Bold, color = Color.DarkGray)
         Spacer(modifier = Modifier.height(16.dp))
@@ -494,10 +566,10 @@ fun SummaryScreen(viewModel: GameViewModel, onRestart: () -> Unit) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text("【終局結算報告】", fontWeight = FontWeight.Bold, fontSize = 20.sp)
                 Spacer(modifier = Modifier.height(8.dp))
-                Text("最終年齡: ${character.age} 歲")
+                Text("最終時間: ${viewModel.formatAge(character.age)}")
                 Text("獲得稱號: $title", color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
                 Spacer(modifier = Modifier.height(8.dp))
-                Text("AI 墓碑點評：\n「他在這個世界上走了一遭，留下了屬於自己的獨特印記。」", fontStyle = FontStyle.Italic)
+                Text(finalLifeStory.ifBlank { "人生回顧生成中..." }, fontStyle = FontStyle.Italic)
             }
         }
 
@@ -505,6 +577,10 @@ fun SummaryScreen(viewModel: GameViewModel, onRestart: () -> Unit) {
 
         Button(onClick = onRestart, modifier = Modifier.fillMaxWidth()) {
             Text("轉生重啟")
+        }
+        Spacer(modifier = Modifier.height(12.dp))
+        OutlinedButton(onClick = onMainMenu, modifier = Modifier.fillMaxWidth()) {
+            Text("返回主畫面")
         }
     }
 }
@@ -595,6 +671,10 @@ fun SettingsScreen(viewModel: GameViewModel, onBack: () -> Unit) {
     val bgmEnabled by viewModel.bgmEnabled.collectAsState()
     val sfxEnabled by viewModel.sfxEnabled.collectAsState()
     val vibrationEnabled by viewModel.vibrationEnabled.collectAsState()
+    val apiEnabled by viewModel.apiEnabled.collectAsState()
+    val apiKey by viewModel.apiKey.collectAsState()
+    val apiEndpoint by viewModel.apiEndpoint.collectAsState()
+    val apiModel by viewModel.apiModel.collectAsState()
 
     // 👉 取得目前的音量狀態
     val bgmVolume by viewModel.bgmVolume.collectAsState()
@@ -641,6 +721,40 @@ fun SettingsScreen(viewModel: GameViewModel, onBack: () -> Unit) {
 
             // 震動設定
             SettingsSwitchRow("震動回饋", vibrationEnabled) { viewModel.toggleVibration(it) }
+            Divider(modifier = Modifier.padding(vertical = 12.dp))
+
+            SettingsSwitchRow("API 敘事生成", apiEnabled) { viewModel.toggleApi(it) }
+            if (apiEnabled) {
+                OutlinedTextField(
+                    value = apiKey,
+                    onValueChange = { viewModel.setApiKey(it) },
+                    label = { Text("API Key") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                OutlinedTextField(
+                    value = apiEndpoint,
+                    onValueChange = { viewModel.setApiEndpoint(it) },
+                    label = { Text("Endpoint") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                OutlinedTextField(
+                    value = apiModel,
+                    onValueChange = { viewModel.setApiModel(it) },
+                    label = { Text("Model") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
+                Text(
+                    text = "死亡或結局時會優先使用 API 生成回顧；失敗時自動使用本地日誌敘事。",
+                    fontSize = 12.sp,
+                    color = Color.Gray,
+                    modifier = Modifier.padding(top = 8.dp)
+                )
+            }
         }
     }
 }

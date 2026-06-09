@@ -7,10 +7,14 @@
     "maxAge": 8,
     "requiredStats": {},
     "requiredFlags": [],
-    "forbiddenFlags": ["ability_awakened"],
+    "forbiddenFlags": [
+      "ability_awakened"
+    ],
     "weightModifiers": {},
-    "probability": 1.0,
-    "worldview": ["superpower"],
+    "probability": 1,
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "chain",
     "choices": [
       {
@@ -18,9 +22,15 @@
         "condition": "",
         "successResultText": "檢測儀器顯示你擁有罕見的能量操控潛質。醫生提醒你：天賦不是禮物，是一份很重的責任。",
         "failResultText": "你太緊張，能力反噬身體，留下短暫的神經痛。",
-        "statChanges": { "intelligence": 15, "luck": 10 },
+        "statChanges": {
+          "intelligence": 15,
+          "luck": 10
+        },
         "addFlag": "ability_awakened",
-        "failStatChanges": { "health": -15, "luck": -5 },
+        "failStatChanges": {
+          "health": -15,
+          "luck": -5
+        },
         "failAddFlag": "unstable_power",
         "nextEventId": null
       },
@@ -29,7 +39,11 @@
         "condition": "",
         "successResultText": "你學會在恐懼中偽裝平凡。沒有人知道你的秘密，但你開始對世界保持距離。",
         "failResultText": "",
-        "statChanges": { "charisma": -5, "intelligence": 10, "luck": 5 },
+        "statChanges": {
+          "charisma": -5,
+          "intelligence": 10,
+          "luck": 5
+        },
         "addFlag": "hidden_power",
         "nextEventId": null
       }
@@ -43,9 +57,14 @@
     "maxAge": 15,
     "requiredStats": {},
     "requiredFlags": [],
-    "weightModifiers": { "hidden_power": 0.6, "unstable_power": 1.5 },
+    "weightModifiers": {
+      "hidden_power": 0.6,
+      "unstable_power": 1.5
+    },
     "probability": 0.45,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "daily",
     "choices": [
       {
@@ -53,9 +72,15 @@
         "condition": "",
         "successResultText": "同學們半信半疑，卻開始覺得你很神秘。你保住了秘密，也多了一點人氣。",
         "failResultText": "有人拍下影片傳上網，你的名字開始在奇怪的論壇出現。",
-        "statChanges": { "charisma": 8, "luck": 3 },
+        "statChanges": {
+          "charisma": 8,
+          "luck": 3
+        },
         "addFlag": null,
-        "failStatChanges": { "luck": -10, "charisma": -5 },
+        "failStatChanges": {
+          "luck": -10,
+          "charisma": -5
+        },
         "failAddFlag": "online_exposed",
         "nextEventId": null
       },
@@ -64,7 +89,11 @@
         "condition": "",
         "successResultText": "你坦白後反而鬆了一口氣。幾個同學把你當成英雄，也有人開始害怕你。",
         "failResultText": "",
-        "statChanges": { "morality": 8, "charisma": 5, "luck": -5 },
+        "statChanges": {
+          "morality": 8,
+          "charisma": 5,
+          "luck": -5
+        },
         "addFlag": "public_minor_power",
         "nextEventId": null
       }
@@ -77,10 +106,14 @@
     "minAge": 12,
     "maxAge": 30,
     "requiredStats": {},
-    "requiredFlags": ["ability_awakened"],
+    "requiredFlags": [
+      "ability_awakened"
+    ],
     "weightModifiers": {},
     "probability": 0.55,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "daily",
     "choices": [
       {
@@ -88,9 +121,17 @@
         "condition": "",
         "successResultText": "訓練很痛苦，但你第一次感覺力量聽得懂你的命令。",
         "failResultText": "教練只是騙子，你被帶去做危險測試，勉強才脫身。",
-        "statChanges": { "intelligence": 12, "health": 8, "wealth": -20 },
+        "statChanges": {
+          "intelligence": 12,
+          "health": 8,
+          "wealth": -20
+        },
         "addFlag": "trained_control",
-        "failStatChanges": { "health": -25, "wealth": -30, "luck": -8 },
+        "failStatChanges": {
+          "health": -25,
+          "wealth": -30,
+          "luck": -8
+        },
         "failAddFlag": "lab_scar",
         "nextEventId": null
       },
@@ -99,7 +140,10 @@
         "condition": "",
         "successResultText": "你選擇自己摸索，進展很慢，但至少沒把命交給陌生人。",
         "failResultText": "",
-        "statChanges": { "morality": 5, "intelligence": 4 },
+        "statChanges": {
+          "morality": 5,
+          "intelligence": 4
+        },
         "addFlag": null,
         "nextEventId": null
       }
@@ -113,9 +157,13 @@
     "maxAge": 45,
     "requiredStats": {},
     "requiredFlags": [],
-    "weightModifiers": { "trained_control": 1.4 },
+    "weightModifiers": {
+      "trained_control": 1.4
+    },
     "probability": 0.35,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "daily",
     "choices": [
       {
@@ -123,9 +171,17 @@
         "condition": "",
         "successResultText": "你用力量穩住車身，救下所有孩子。城市新聞稱你為匿名英雄。",
         "failResultText": "你救下大部分人，卻因力量透支倒下。鏡頭拍到了你的臉。",
-        "statChanges": { "morality": 20, "charisma": 10, "health": -8 },
+        "statChanges": {
+          "morality": 20,
+          "charisma": 10,
+          "health": -8
+        },
         "addFlag": "street_hero",
-        "failStatChanges": { "health": -35, "morality": 10, "luck": -15 },
+        "failStatChanges": {
+          "health": -35,
+          "morality": 10,
+          "luck": -15
+        },
         "failAddFlag": "identity_leaked",
         "nextEventId": null
       },
@@ -134,7 +190,10 @@
         "condition": "",
         "successResultText": "救援隊很快抵達，但你一直記得自己明明可以更早出手。",
         "failResultText": "",
-        "statChanges": { "intelligence": 5, "morality": -8 },
+        "statChanges": {
+          "intelligence": 5,
+          "morality": -8
+        },
         "addFlag": null,
         "nextEventId": null
       }
@@ -148,9 +207,14 @@
     "maxAge": 35,
     "requiredStats": {},
     "requiredFlags": [],
-    "weightModifiers": { "identity_leaked": 2.0, "street_hero": 1.5 },
+    "weightModifiers": {
+      "identity_leaked": 2,
+      "street_hero": 1.5
+    },
     "probability": 0.4,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "chain",
     "choices": [
       {
@@ -158,9 +222,16 @@
         "condition": "",
         "successResultText": "你獲得合法身分、訓練資源與一份保密合約。從今天起，你的人生被列入機密檔案。",
         "failResultText": "面試中的精神掃描讓你極度不適，你懷疑他們並不只是在招募。",
-        "statChanges": { "wealth": 30, "intelligence": 15, "morality": 5 },
+        "statChanges": {
+          "wealth": 30,
+          "intelligence": 15,
+          "morality": 5
+        },
         "addFlag": "agency_member",
-        "failStatChanges": { "health": -20, "luck": -10 },
+        "failStatChanges": {
+          "health": -20,
+          "luck": -10
+        },
         "failAddFlag": "agency_watchlist",
         "nextEventId": "superpower_agency_02"
       },
@@ -169,7 +240,10 @@
         "condition": "",
         "successResultText": "你拒絕被收編。接下來幾週，你總覺得街角的監視器在追著你轉。",
         "failResultText": "",
-        "statChanges": { "morality": 8, "luck": -8 },
+        "statChanges": {
+          "morality": 8,
+          "luck": -8
+        },
         "addFlag": "agency_watchlist",
         "nextEventId": null
       }
@@ -182,10 +256,14 @@
     "minAge": 16,
     "maxAge": 50,
     "requiredStats": {},
-    "requiredFlags": ["agency_member"],
+    "requiredFlags": [
+      "agency_member"
+    ],
     "weightModifiers": {},
-    "probability": 0.0,
-    "worldview": ["superpower"],
+    "probability": 0,
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "chain",
     "choices": [
       {
@@ -193,9 +271,16 @@
         "condition": "",
         "successResultText": "你用身體擋下碎石，讓群眾撤離。管理局記了一次功，民眾也記住了你。",
         "failResultText": "你保住人群，卻被失控能力擊傷，任務報告只寫了冷冰冰的三行。",
-        "statChanges": { "morality": 20, "charisma": 12, "health": -10 },
+        "statChanges": {
+          "morality": 20,
+          "charisma": 12,
+          "health": -10
+        },
         "addFlag": "trusted_agent",
-        "failStatChanges": { "health": -40, "morality": 10 },
+        "failStatChanges": {
+          "health": -40,
+          "morality": 10
+        },
         "failAddFlag": "field_trauma",
         "nextEventId": null
       },
@@ -204,9 +289,16 @@
         "condition": "",
         "successResultText": "你快速結束事件，現場傷亡很少。上級欣賞你的效率，但同事看你的眼神變得複雜。",
         "failResultText": "你出手太重，目標永久失去能力。管理局壓下新聞，你卻壓不下自己的記憶。",
-        "statChanges": { "intelligence": 12, "wealth": 15, "morality": -10 },
+        "statChanges": {
+          "intelligence": 12,
+          "wealth": 15,
+          "morality": -10
+        },
         "addFlag": "hardline_agent",
-        "failStatChanges": { "morality": -30, "charisma": -10 },
+        "failStatChanges": {
+          "morality": -30,
+          "charisma": -10
+        },
         "failAddFlag": "collateral_guilt",
         "nextEventId": null
       }
@@ -220,10 +312,16 @@
     "maxAge": 60,
     "requiredStats": {},
     "requiredFlags": [],
-    "forbiddenFlags": ["agency_member"],
-    "weightModifiers": { "street_hero": 1.6 },
+    "forbiddenFlags": [
+      "agency_member"
+    ],
+    "weightModifiers": {
+      "street_hero": 1.6
+    },
     "probability": 0.38,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "daily",
     "choices": [
       {
@@ -231,9 +329,16 @@
         "condition": "",
         "successResultText": "你阻止了幾起搶案，網路開始流傳你的代號。恐懼與崇拜同時靠近。",
         "failResultText": "你遇到持有異能抑制器的犯罪團伙，差點被活捉。",
-        "statChanges": { "morality": 12, "charisma": 8, "health": -5 },
+        "statChanges": {
+          "morality": 12,
+          "charisma": 8,
+          "health": -5
+        },
         "addFlag": "masked_vigilante",
-        "failStatChanges": { "health": -35, "luck": -12 },
+        "failStatChanges": {
+          "health": -35,
+          "luck": -12
+        },
         "failAddFlag": "criminal_target",
         "nextEventId": null
       },
@@ -242,7 +347,10 @@
         "condition": "",
         "successResultText": "警方破了案，你沒有登上新聞，但城市少了一點黑暗。",
         "failResultText": "",
-        "statChanges": { "morality": 8, "intelligence": 5 },
+        "statChanges": {
+          "morality": 8,
+          "intelligence": 5
+        },
         "addFlag": null,
         "nextEventId": null
       }
@@ -254,11 +362,18 @@
     "description": "知名節目邀請你展示能力，報酬高得離譜。製作人保證會把你包裝成新世代偶像。",
     "minAge": 18,
     "maxAge": 45,
-    "requiredStats": { "charisma": 20 },
+    "requiredStats": {
+      "charisma": 20
+    },
     "requiredFlags": [],
-    "weightModifiers": { "online_exposed": 1.8, "street_hero": 1.5 },
+    "weightModifiers": {
+      "online_exposed": 1.8,
+      "street_hero": 1.5
+    },
     "probability": 0.35,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "daily",
     "choices": [
       {
@@ -266,9 +381,16 @@
         "condition": "",
         "successResultText": "你的能力展示造成轟動，代言和訪談接踵而來。掌聲很響，隱私也碎得很快。",
         "failResultText": "直播中設備干擾了你的能力，現場一片混亂，你成了輿論箭靶。",
-        "statChanges": { "wealth": 80, "charisma": 20, "luck": -5 },
+        "statChanges": {
+          "wealth": 80,
+          "charisma": 20,
+          "luck": -5
+        },
         "addFlag": "super_celebrity",
-        "failStatChanges": { "charisma": -25, "luck": -20 },
+        "failStatChanges": {
+          "charisma": -25,
+          "luck": -20
+        },
         "failAddFlag": "public_backlash",
         "nextEventId": null
       },
@@ -277,7 +399,10 @@
         "condition": "",
         "successResultText": "你保住了界線，也讓一些年輕能力者把你視為榜樣。",
         "failResultText": "",
-        "statChanges": { "morality": 12, "charisma": 5 },
+        "statChanges": {
+          "morality": 12,
+          "charisma": 5
+        },
         "addFlag": null,
         "nextEventId": null
       }
@@ -291,9 +416,14 @@
     "maxAge": 50,
     "requiredStats": {},
     "requiredFlags": [],
-    "weightModifiers": { "unstable_power": 1.7, "criminal_target": 1.4 },
+    "weightModifiers": {
+      "unstable_power": 1.7,
+      "criminal_target": 1.4
+    },
     "probability": 0.3,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "daily",
     "choices": [
       {
@@ -301,9 +431,16 @@
         "condition": "",
         "successResultText": "力量像雷暴一樣穿過血管。你變強了，也知道自己越過了一條線。",
         "failResultText": "藥劑灼傷你的神經，能力開始不定時暴走。",
-        "statChanges": { "intelligence": 25, "health": -10, "morality": -10 },
+        "statChanges": {
+          "intelligence": 25,
+          "health": -10,
+          "morality": -10
+        },
         "addFlag": "boosted_power",
-        "failStatChanges": { "health": -45, "luck": -20 },
+        "failStatChanges": {
+          "health": -45,
+          "luck": -20
+        },
         "failAddFlag": "power_poisoned",
         "nextEventId": null
       },
@@ -312,9 +449,15 @@
         "condition": "",
         "successResultText": "你協助端掉一條非法藥物流通線，救下許多被誘惑的能力者。",
         "failResultText": "黑市提前收到風聲，你的名字被掛上懸賞。",
-        "statChanges": { "morality": 18, "luck": 5 },
+        "statChanges": {
+          "morality": 18,
+          "luck": 5
+        },
         "addFlag": "blackmarket_enemy",
-        "failStatChanges": { "luck": -20, "wealth": -20 },
+        "failStatChanges": {
+          "luck": -20,
+          "wealth": -20
+        },
         "failAddFlag": "criminal_target",
         "nextEventId": null
       }
@@ -326,11 +469,15 @@
     "description": "你在睡夢中聽見一個孩子求救。醒來後，紙上自動浮現一串地址。",
     "minAge": 10,
     "maxAge": 70,
-    "requiredStats": { "luck": 10 },
+    "requiredStats": {
+      "luck": 10
+    },
     "requiredFlags": [],
     "weightModifiers": {},
     "probability": 0.28,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "chain",
     "choices": [
       {
@@ -338,9 +485,15 @@
         "condition": "",
         "successResultText": "你找到被困在地下室的孩子。對方說，是你的能力先找到他的恐懼。",
         "failResultText": "那是陷阱。你走進一間專門捕捉能力者的空屋。",
-        "statChanges": { "morality": 18, "luck": 8 },
+        "statChanges": {
+          "morality": 18,
+          "luck": 8
+        },
         "addFlag": "rescued_mindlink_child",
-        "failStatChanges": { "health": -30, "luck": -15 },
+        "failStatChanges": {
+          "health": -30,
+          "luck": -15
+        },
         "failAddFlag": "psi_trap_mark",
         "nextEventId": "superpower_mindlink_02"
       },
@@ -349,7 +502,10 @@
         "condition": "",
         "successResultText": "警方救出了孩子。你沒有親自涉險，但那個聲音在你夢裡道謝。",
         "failResultText": "",
-        "statChanges": { "morality": 10, "intelligence": 5 },
+        "statChanges": {
+          "morality": 10,
+          "intelligence": 5
+        },
         "addFlag": null,
         "nextEventId": null
       }
@@ -362,10 +518,14 @@
     "minAge": 18,
     "maxAge": 80,
     "requiredStats": {},
-    "requiredFlags": ["rescued_mindlink_child"],
+    "requiredFlags": [
+      "rescued_mindlink_child"
+    ],
     "weightModifiers": {},
-    "probability": 0.0,
-    "worldview": ["superpower"],
+    "probability": 0,
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "chain",
     "choices": [
       {
@@ -373,9 +533,16 @@
         "condition": "",
         "successResultText": "你多了一位可靠盟友。兩人的心靈訓練讓你更懂得控制情緒與力量。",
         "failResultText": "心靈迴路過於強烈，你一度分不清自己的記憶與對方的恐懼。",
-        "statChanges": { "intelligence": 15, "charisma": 10, "luck": 10 },
+        "statChanges": {
+          "intelligence": 15,
+          "charisma": 10,
+          "luck": 10
+        },
         "addFlag": "mindlink_ally",
-        "failStatChanges": { "health": -15, "intelligence": -10 },
+        "failStatChanges": {
+          "health": -15,
+          "intelligence": -10
+        },
         "failAddFlag": "echo_headache",
         "nextEventId": null
       }
@@ -389,9 +556,14 @@
     "maxAge": 55,
     "requiredStats": {},
     "requiredFlags": [],
-    "weightModifiers": { "super_celebrity": 1.8, "masked_vigilante": 1.5 },
+    "weightModifiers": {
+      "super_celebrity": 1.8,
+      "masked_vigilante": 1.5
+    },
     "probability": 0.32,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "daily",
     "choices": [
       {
@@ -399,9 +571,16 @@
         "condition": "",
         "successResultText": "你在雷雨中擊敗對手，卻沒有羞辱他。這場戰鬥讓你獲得尊重。",
         "failResultText": "你被擊敗並摔下天台，幸好在最後一刻穩住了身體。",
-        "statChanges": { "charisma": 15, "health": -10, "luck": 5 },
+        "statChanges": {
+          "charisma": 15,
+          "health": -10,
+          "luck": 5
+        },
         "addFlag": "rival_respects_you",
-        "failStatChanges": { "health": -45, "charisma": -10 },
+        "failStatChanges": {
+          "health": -45,
+          "charisma": -10
+        },
         "failAddFlag": "rival_humiliation",
         "nextEventId": null
       },
@@ -410,9 +589,15 @@
         "condition": "",
         "successResultText": "你問出他的憤怒來源，原來他曾被管理局拋棄。你們沒有成為朋友，但也沒有成為仇人。",
         "failResultText": "他把你的善意當成嘲諷，偷襲讓你吃了大虧。",
-        "statChanges": { "morality": 12, "intelligence": 8 },
+        "statChanges": {
+          "morality": 12,
+          "intelligence": 8
+        },
         "addFlag": "rival_dialogue",
-        "failStatChanges": { "health": -25, "luck": -8 },
+        "failStatChanges": {
+          "health": -25,
+          "luck": -8
+        },
         "failAddFlag": null,
         "nextEventId": null
       }
@@ -426,9 +611,14 @@
     "maxAge": 65,
     "requiredStats": {},
     "requiredFlags": [],
-    "weightModifiers": { "trained_control": 1.4, "boosted_power": 1.3 },
+    "weightModifiers": {
+      "trained_control": 1.4,
+      "boosted_power": 1.3
+    },
     "probability": 0.22,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "crisis",
     "choices": [
       {
@@ -436,9 +626,16 @@
         "condition": "",
         "successResultText": "你的力量撐住整段隧道，讓救援隊完成撤離。那一天，整座城市都知道有人在黑暗裡扛住了天花板。",
         "failResultText": "你撐住了大部分區域，卻被二次坍塌重創。倖存者記得你，身體也記得代價。",
-        "statChanges": { "morality": 35, "charisma": 25, "health": -20 },
+        "statChanges": {
+          "morality": 35,
+          "charisma": 25,
+          "health": -20
+        },
         "addFlag": "metro_savior",
-        "failStatChanges": { "health": -70, "morality": 20 },
+        "failStatChanges": {
+          "health": -70,
+          "morality": 20
+        },
         "failAddFlag": "permanent_injury",
         "nextEventId": null
       },
@@ -447,9 +644,15 @@
         "condition": "",
         "successResultText": "你冷靜判斷風險，帶領人群避開最危險的區域。不是最華麗的方法，卻救了最多人。",
         "failResultText": "資訊不足造成誤判，你背負了一些無法挽回的名字。",
-        "statChanges": { "intelligence": 25, "morality": 18 },
+        "statChanges": {
+          "intelligence": 25,
+          "morality": 18
+        },
         "addFlag": "crisis_commander",
-        "failStatChanges": { "morality": -25, "luck": -15 },
+        "failStatChanges": {
+          "morality": -25,
+          "luck": -15
+        },
         "failAddFlag": "survivor_guilt",
         "nextEventId": null
       }
@@ -465,7 +668,9 @@
     "requiredFlags": [],
     "weightModifiers": {},
     "probability": 0.4,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "daily",
     "choices": [
       {
@@ -473,9 +678,16 @@
         "condition": "",
         "successResultText": "你接下高風險委託，家裡的帳單暫時被清空。你也更常接到不該接的電話。",
         "failResultText": "委託其實是犯罪試探，你差點被拖下水。",
-        "statChanges": { "wealth": 60, "morality": -12 },
+        "statChanges": {
+          "wealth": 60,
+          "morality": -12
+        },
         "addFlag": "gray_jobs",
-        "failStatChanges": { "wealth": -20, "morality": -25, "luck": -12 },
+        "failStatChanges": {
+          "wealth": -20,
+          "morality": -25,
+          "luck": -12
+        },
         "failAddFlag": "criminal_target",
         "nextEventId": null
       },
@@ -484,7 +696,11 @@
         "condition": "",
         "successResultText": "你沒有讓能力變成提款機。家人一開始失望，後來終於明白你也需要活下去。",
         "failResultText": "",
-        "statChanges": { "morality": 15, "charisma": 6, "wealth": -10 },
+        "statChanges": {
+          "morality": 15,
+          "charisma": 6,
+          "wealth": -10
+        },
         "addFlag": "family_boundary",
         "nextEventId": null
       }
@@ -496,11 +712,15 @@
     "description": "一所大學邀請你合作研究能力機制。公開成果可能幫助無數能力者，也可能讓武器商更懂得獵捕你們。",
     "minAge": 20,
     "maxAge": 70,
-    "requiredStats": { "intelligence": 30 },
+    "requiredStats": {
+      "intelligence": 30
+    },
     "requiredFlags": [],
     "weightModifiers": {},
     "probability": 0.3,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "daily",
     "choices": [
       {
@@ -508,9 +728,16 @@
         "condition": "",
         "successResultText": "研究改善了能力者醫療與訓練方式。你成了少數願意站在科學與倫理交界的人。",
         "failResultText": "資料遭竊，黑市開始販售針對你能力頻率的抑制器。",
-        "statChanges": { "intelligence": 30, "morality": 15, "charisma": 8 },
+        "statChanges": {
+          "intelligence": 30,
+          "morality": 15,
+          "charisma": 8
+        },
         "addFlag": "ability_researcher",
-        "failStatChanges": { "luck": -25, "health": -10 },
+        "failStatChanges": {
+          "luck": -25,
+          "health": -10
+        },
         "failAddFlag": "countermeasure_leaked",
         "nextEventId": null
       },
@@ -519,7 +746,10 @@
         "condition": "",
         "successResultText": "你保留了安全距離。研究進展慢了些，但沒有讓你的弱點流入市場。",
         "failResultText": "",
-        "statChanges": { "intelligence": 12, "luck": 5 },
+        "statChanges": {
+          "intelligence": 12,
+          "luck": 5
+        },
         "addFlag": null,
         "nextEventId": null
       }
@@ -531,11 +761,19 @@
     "description": "多名能力者秘密召開會議，討論是否建立自治組織，避免被政府、企業與黑市各自切割。",
     "minAge": 25,
     "maxAge": 80,
-    "requiredStats": { "charisma": 40 },
+    "requiredStats": {
+      "charisma": 40
+    },
     "requiredFlags": [],
-    "weightModifiers": { "street_hero": 1.5, "trusted_agent": 1.3, "super_celebrity": 1.4 },
+    "weightModifiers": {
+      "street_hero": 1.5,
+      "trusted_agent": 1.3,
+      "super_celebrity": 1.4
+    },
     "probability": 0.25,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "chain",
     "choices": [
       {
@@ -543,9 +781,15 @@
         "condition": "",
         "successResultText": "你提出透明章程與平民保護條款，讓自治會獲得初步信任。",
         "failResultText": "各派利益太深，你的溫和方案被嘲笑成天真。",
-        "statChanges": { "charisma": 25, "morality": 20 },
+        "statChanges": {
+          "charisma": 25,
+          "morality": 20
+        },
         "addFlag": "council_mediator",
-        "failStatChanges": { "charisma": -15, "luck": -10 },
+        "failStatChanges": {
+          "charisma": -15,
+          "luck": -10
+        },
         "failAddFlag": "council_fracture",
         "nextEventId": "superpower_council_02"
       },
@@ -554,9 +798,16 @@
         "condition": "",
         "successResultText": "自治會快速集結力量，政府不敢輕易壓制你們。但普通人開始擔心新的權力中心。",
         "failResultText": "強硬派利用你的名聲奪權，自治會變成另一種壓迫機器。",
-        "statChanges": { "wealth": 40, "charisma": 18, "morality": -20 },
+        "statChanges": {
+          "wealth": 40,
+          "charisma": 18,
+          "morality": -20
+        },
         "addFlag": "council_hardliner",
-        "failStatChanges": { "morality": -45, "charisma": -10 },
+        "failStatChanges": {
+          "morality": -45,
+          "charisma": -10
+        },
         "failAddFlag": "council_fracture",
         "nextEventId": "superpower_council_02"
       }
@@ -571,8 +822,10 @@
     "requiredStats": {},
     "requiredFlags": [],
     "weightModifiers": {},
-    "probability": 0.0,
-    "worldview": ["superpower"],
+    "probability": 0,
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "chain",
     "choices": [
       {
@@ -580,9 +833,16 @@
         "condition": "",
         "successResultText": "你揭開企業滲透自治會的證據，保住了組織的可信度。",
         "failResultText": "證據鏈被切斷，你反而成了替罪羊。",
-        "statChanges": { "intelligence": 25, "morality": 18, "charisma": 10 },
+        "statChanges": {
+          "intelligence": 25,
+          "morality": 18,
+          "charisma": 10
+        },
         "addFlag": "council_reformer",
-        "failStatChanges": { "charisma": -30, "luck": -20 },
+        "failStatChanges": {
+          "charisma": -30,
+          "luck": -20
+        },
         "failAddFlag": "exiled_from_council",
         "nextEventId": null
       },
@@ -591,7 +851,11 @@
         "condition": "",
         "successResultText": "你拒絕在混亂裡互相拖拽。失去政治影響力後，你重新把注意力放回街道與人。",
         "failResultText": "",
-        "statChanges": { "morality": 10, "charisma": -8, "luck": 5 },
+        "statChanges": {
+          "morality": 10,
+          "charisma": -8,
+          "luck": 5
+        },
         "addFlag": "independent_operator",
         "nextEventId": null
       }
@@ -603,11 +867,18 @@
     "description": "某夜，所有能力者同時聽見一段無法翻譯的低語。你的能力像被遠方的星光牽動。",
     "minAge": 30,
     "maxAge": 90,
-    "requiredStats": { "intelligence": 40 },
+    "requiredStats": {
+      "intelligence": 40
+    },
     "requiredFlags": [],
-    "weightModifiers": { "ability_researcher": 1.6, "mindlink_ally": 1.4 },
+    "weightModifiers": {
+      "ability_researcher": 1.6,
+      "mindlink_ally": 1.4
+    },
     "probability": 0.18,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "chain",
     "choices": [
       {
@@ -615,9 +886,15 @@
         "condition": "",
         "successResultText": "你發現能力並非突變，而像是某種古老訊號在人體中的回聲。",
         "failResultText": "訊號灼傷你的意識，你連續數週分不清白天與星空。",
-        "statChanges": { "intelligence": 35, "luck": 15 },
+        "statChanges": {
+          "intelligence": 35,
+          "luck": 15
+        },
         "addFlag": "cosmic_signal_decoded",
-        "failStatChanges": { "health": -30, "intelligence": -15 },
+        "failStatChanges": {
+          "health": -30,
+          "intelligence": -15
+        },
         "failAddFlag": "cosmic_nightmares",
         "nextEventId": "superpower_cosmic_02"
       },
@@ -626,7 +903,10 @@
         "condition": "",
         "successResultText": "你穩住心神，避免被未知存在牽引。你失去一個答案，也避開一場深淵。",
         "failResultText": "",
-        "statChanges": { "health": 10, "morality": 8 },
+        "statChanges": {
+          "health": 10,
+          "morality": 8
+        },
         "addFlag": null,
         "nextEventId": null
       }
@@ -639,10 +919,14 @@
     "minAge": 30,
     "maxAge": 95,
     "requiredStats": {},
-    "requiredFlags": ["cosmic_signal_decoded"],
+    "requiredFlags": [
+      "cosmic_signal_decoded"
+    ],
     "weightModifiers": {},
-    "probability": 0.0,
-    "worldview": ["superpower"],
+    "probability": 0,
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "crisis",
     "choices": [
       {
@@ -650,9 +934,16 @@
         "condition": "",
         "successResultText": "你把訊號導入自身再反向封鎖裂縫。天空恢復安靜，你的名字被寫進所有能力者的歷史。",
         "failResultText": "你封住裂縫，卻被意識潮汐撕裂精神。世界得救，你再也不能完全回到從前。",
-        "statChanges": { "morality": 80, "charisma": 60, "health": -30 },
+        "statChanges": {
+          "morality": 80,
+          "charisma": 60,
+          "health": -30
+        },
         "addFlag": "rift_sealer",
-        "failStatChanges": { "health": -90, "intelligence": -50 },
+        "failStatChanges": {
+          "health": -90,
+          "intelligence": -50
+        },
         "failAddFlag": "fractured_mind",
         "nextEventId": null
       },
@@ -661,9 +952,16 @@
         "condition": "",
         "successResultText": "你沒有獨自承擔，而是讓全城能力者同步出力。那一刻，人們第一次看見群體的奇蹟。",
         "failResultText": "共鳴失控，部分能力者被裂縫反噬，你背負了共同決策的代價。",
-        "statChanges": { "charisma": 80, "morality": 40, "luck": 25 },
+        "statChanges": {
+          "charisma": 80,
+          "morality": 40,
+          "luck": 25
+        },
         "addFlag": "unity_resonance",
-        "failStatChanges": { "morality": -40, "luck": -35 },
+        "failStatChanges": {
+          "morality": -40,
+          "luck": -35
+        },
         "failAddFlag": "resonance_tragedy",
         "nextEventId": null
       }
@@ -675,11 +973,19 @@
     "description": "一個年輕能力者在你面前讓整條街的玻璃震出裂紋。你看見當年的自己，也看見可能的災難。",
     "minAge": 30,
     "maxAge": 85,
-    "requiredStats": { "morality": 20 },
+    "requiredStats": {
+      "morality": 20
+    },
     "requiredFlags": [],
-    "weightModifiers": { "trained_control": 1.4, "trusted_agent": 1.3, "street_hero": 1.3 },
+    "weightModifiers": {
+      "trained_control": 1.4,
+      "trusted_agent": 1.3,
+      "street_hero": 1.3
+    },
     "probability": 0.26,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "daily",
     "choices": [
       {
@@ -687,9 +993,17 @@
         "condition": "",
         "successResultText": "你把經驗傳給下一代。對方不只學會控制能力，也學會在擁有力量時保持柔軟。",
         "failResultText": "學生在訓練中受傷，你第一次理解老師承擔的恐懼。",
-        "statChanges": { "charisma": 20, "morality": 20, "intelligence": 10 },
+        "statChanges": {
+          "charisma": 20,
+          "morality": 20,
+          "intelligence": 10
+        },
         "addFlag": "has_protege",
-        "failStatChanges": { "morality": -10, "health": -10, "luck": -8 },
+        "failStatChanges": {
+          "morality": -10,
+          "health": -10,
+          "luck": -8
+        },
         "failAddFlag": "mentor_guilt",
         "nextEventId": null
       },
@@ -698,7 +1012,10 @@
         "condition": "",
         "successResultText": "你沒有承擔超出能力的責任。年輕人得到制度化訓練，也保留了對你的感激。",
         "failResultText": "",
-        "statChanges": { "morality": 8, "intelligence": 8 },
+        "statChanges": {
+          "morality": 8,
+          "intelligence": 8
+        },
         "addFlag": null,
         "nextEventId": null
       }
@@ -710,11 +1027,19 @@
     "description": "多年爭議後，國會終於審議能力者權利法案。支持者希望你出席聽證，反對者也準備好了所有攻擊。",
     "minAge": 40,
     "maxAge": 100,
-    "requiredStats": { "charisma": 50 },
+    "requiredStats": {
+      "charisma": 50
+    },
     "requiredFlags": [],
-    "weightModifiers": { "council_mediator": 1.8, "metro_savior": 1.6, "rift_sealer": 2.0 },
+    "weightModifiers": {
+      "council_mediator": 1.8,
+      "metro_savior": 1.6,
+      "rift_sealer": 2
+    },
     "probability": 0.18,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "daily",
     "choices": [
       {
@@ -722,9 +1047,16 @@
         "condition": "",
         "successResultText": "你的證詞讓法案跨過最艱難的一關。世界沒有立刻變好，但門被你推開了。",
         "failResultText": "聽證會被惡意剪輯，你的話成了恐懼宣傳的一部分。",
-        "statChanges": { "morality": 35, "charisma": 30, "intelligence": 10 },
+        "statChanges": {
+          "morality": 35,
+          "charisma": 30,
+          "intelligence": 10
+        },
         "addFlag": "rights_advocate",
-        "failStatChanges": { "charisma": -30, "luck": -20 },
+        "failStatChanges": {
+          "charisma": -30,
+          "luck": -20
+        },
         "failAddFlag": "political_scapegoat",
         "nextEventId": null
       },
@@ -733,7 +1065,10 @@
         "condition": "",
         "successResultText": "你把多年案例整理成完整報告。沒有聚光燈，但每一頁都很有重量。",
         "failResultText": "",
-        "statChanges": { "intelligence": 25, "morality": 15 },
+        "statChanges": {
+          "intelligence": 25,
+          "morality": 15
+        },
         "addFlag": "policy_architect",
         "nextEventId": null
       }
@@ -746,10 +1081,14 @@
     "minAge": 20,
     "maxAge": 80,
     "requiredStats": {},
-    "requiredFlags": ["power_poisoned"],
+    "requiredFlags": [
+      "power_poisoned"
+    ],
     "weightModifiers": {},
     "probability": 0.08,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "death",
     "choices": [
       {
@@ -757,7 +1096,9 @@
         "condition": "",
         "successResultText": "",
         "failResultText": "你把最後的力量鎖進體內，避免波及旁人。你的生命在一陣無聲白光中結束。",
-        "statChanges": { "health": -999 },
+        "statChanges": {
+          "health": -999
+        },
         "addFlag": null,
         "nextEventId": null
       }
@@ -770,10 +1111,14 @@
     "minAge": 16,
     "maxAge": 70,
     "requiredStats": {},
-    "requiredFlags": ["countermeasure_leaked"],
+    "requiredFlags": [
+      "countermeasure_leaked"
+    ],
     "weightModifiers": {},
     "probability": 0.07,
-    "worldview": ["superpower"],
+    "worldview": [
+      "superpower"
+    ],
     "eventType": "death",
     "choices": [
       {
@@ -781,8 +1126,1391 @@
         "condition": "",
         "successResultText": "",
         "failResultText": "你擊倒了大半敵人，卻沒能走出最後一道門。你的檔案被黑市標註為已回收。",
-        "statChanges": { "health": -999 },
+        "statChanges": {
+          "health": -999
+        },
         "addFlag": null,
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_midlife_control",
+    "title": "能力穩定訓練",
+    "description": "多年使用能力後，你開始感覺力量像一把磨損的鑰匙。若不重新訓練，總有一天會卡死在鎖孔裡。",
+    "minAge": 45,
+    "maxAge": 75,
+    "probability": 0.65,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "midlife_control_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study",
+      "exercise"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "mini_game",
+    "choices": [
+      {
+        "choiceText": "重建能力節奏",
+        "condition": "控制小遊戲",
+        "successResultText": "你重新掌握能力節奏，失控的刺痛感慢慢退去。",
+        "failResultText": "訓練過程中能力反噬，你不得不休養很久。",
+        "statChanges": {
+          "intelligence": 15,
+          "health": 10,
+          "luck": 5
+        },
+        "addFlag": "midlife_control_done",
+        "failStatChanges": {
+          "health": -45,
+          "luck": -10
+        },
+        "failAddFlag": "midlife_control_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_public_hearing",
+    "title": "異能公聽會",
+    "description": "政府召開異能者公聽會。有人害怕你們，有人需要你們，也有人只想利用你們。",
+    "minAge": 50,
+    "maxAge": 90,
+    "probability": 0.55,
+    "requiredStats": {
+      "charisma": 10
+    },
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "public_hearing_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "online",
+      "rest"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "公開發言",
+        "condition": "",
+        "successResultText": "你的發言冷靜而有力，讓許多人第一次真正聽見異能者的處境。",
+        "failResultText": "媒體截取了你最激烈的一句話，輿論變得更複雜。",
+        "statChanges": {
+          "charisma": 18,
+          "morality": 10
+        },
+        "addFlag": "public_hearing_done",
+        "failStatChanges": {
+          "charisma": -12,
+          "luck": -5
+        },
+        "failAddFlag": "public_hearing_done",
+        "nextEventId": "superpower_policy_aftermath"
+      }
+    ]
+  },
+  {
+    "id": "superpower_policy_aftermath",
+    "title": "政策後續",
+    "description": "公聽會後，新的能力登記制度開始試行。你被邀請加入民間監督小組。",
+    "minAge": 50,
+    "maxAge": 90,
+    "probability": 0,
+    "requiredFlags": [
+      "public_hearing_done"
+    ],
+    "forbiddenFlags": [
+      "policy_aftermath_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "online"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "加入監督",
+        "condition": "",
+        "successResultText": "你讓制度少了幾條粗暴的漏洞，許多異能者因此免於被濫權對待。",
+        "failResultText": "制度推進得比你想像更僵硬，你只能守住一小部分底線。",
+        "statChanges": {
+          "morality": 18,
+          "charisma": 8
+        },
+        "addFlag": "policy_aftermath_done",
+        "failStatChanges": {
+          "health": -8,
+          "morality": 5
+        },
+        "failAddFlag": "policy_aftermath_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_old_enemy_return",
+    "title": "舊敵歸來",
+    "description": "你以為那個代號早已消失，直到監視器拍到熟悉的身影。對方老了，你也是。",
+    "minAge": 55,
+    "maxAge": 100,
+    "probability": 0.45,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "old_enemy_resolved"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "travel",
+      "exercise"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "special",
+    "choices": [
+      {
+        "choiceText": "親自追查",
+        "condition": "",
+        "successResultText": "你們在廢棄車站對峙。最後不是勝利結束一切，而是彼此都放下了某部分仇恨。",
+        "failResultText": "舊敵設下陷阱，你雖逃出生天，卻留下嚴重傷勢。",
+        "statChanges": {
+          "morality": 15,
+          "charisma": 15,
+          "luck": 8
+        },
+        "addFlag": "old_enemy_resolved",
+        "failStatChanges": {
+          "health": -75,
+          "luck": -15
+        },
+        "failAddFlag": "old_enemy_resolved",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_legacy_school",
+    "title": "異能訓練所",
+    "description": "一群年輕異能者找到你，希望你教他們如何不被力量吞沒。",
+    "minAge": 60,
+    "maxAge": 120,
+    "probability": 0.5,
+    "requiredStats": {
+      "intelligence": 20
+    },
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "legacy_school_done"
+    ],
+    "weightModifiers": {
+      "midlife_control_done": 1.4
+    },
+    "actionTags": [
+      "study",
+      "rest"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "special",
+    "choices": [
+      {
+        "choiceText": "建立訓練所",
+        "condition": "",
+        "successResultText": "你把一生的失誤寫進教材，年輕人因此少付了很多代價。",
+        "failResultText": "訓練所經營艱難，但仍留下了幾名真正受益的學生。",
+        "statChanges": {
+          "charisma": 25,
+          "morality": 20,
+          "wealth": -50
+        },
+        "addFlag": "legacy_school_done",
+        "failStatChanges": {
+          "wealth": -80,
+          "health": -10
+        },
+        "failAddFlag": "legacy_school_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_overload_death",
+    "title": "晚年能力過載",
+    "description": "你的能力在一次救援中被迫開到極限。年輕時能承受的負荷，如今成了危險的裂縫。",
+    "minAge": 60,
+    "maxAge": 130,
+    "probability": 0.12,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "dead"
+    ],
+    "weightModifiers": {
+      "midlife_control_done": 0.5
+    },
+    "actionTags": [
+      "exercise",
+      "travel"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "death",
+    "choices": [
+      {
+        "choiceText": "強行撐住能力",
+        "condition": "",
+        "successResultText": "你撐過了最危險的幾秒，救下了現場所有人。",
+        "failResultText": "能力反噬撕裂身體，你的故事在那道光裡結束。",
+        "statChanges": {
+          "health": -45,
+          "morality": 25,
+          "charisma": 15
+        },
+        "failStatChanges": {
+          "health": -999
+        },
+        "failAddFlag": "dead",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_kindergarten_static",
+    "title": "幼兒園靜電",
+    "description": "你午睡醒來時，所有塑膠玩具都吸在牆上。老師以為是惡作劇，只有你知道不是。",
+    "minAge": 3,
+    "maxAge": 6,
+    "probability": 0.65,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_kindergarten_static_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "假裝不知道",
+        "condition": "",
+        "successResultText": "你第一次學會把異常藏在表情後面。",
+        "failResultText": "你太緊張，讓更多玩具飄了起來。",
+        "statChanges": {
+          "intelligence": 5,
+          "luck": 2
+        },
+        "addFlag": "superpower_kindergarten_static_done",
+        "failStatChanges": {
+          "luck": -4
+        },
+        "failAddFlag": "superpower_kindergarten_static_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_child_noise_game",
+    "title": "噪音中的集中",
+    "description": "隔壁施工聲刺進腦袋，你的能力跟著震動。只要一失控，窗戶就會碎。",
+    "minAge": 7,
+    "maxAge": 13,
+    "probability": 0.6,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_child_noise_game_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest",
+      "study"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "mini_game",
+    "choices": [
+      {
+        "choiceText": "數呼吸穩定能力",
+        "condition": "集中小遊戲",
+        "successResultText": "你撐過了噪音，力量第一次安靜下來。",
+        "failResultText": "窗戶裂了一角，你被嚇得整晚睡不好。",
+        "statChanges": {
+          "intelligence": 8,
+          "health": 3
+        },
+        "addFlag": "superpower_child_noise_game_done",
+        "failStatChanges": {
+          "health": -8,
+          "luck": -5
+        },
+        "failAddFlag": "superpower_child_noise_game_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_exam_cheat",
+    "title": "考場誘惑",
+    "description": "你發現自己能短暫聽見前排同學的答案。監考老師正背對著你。",
+    "minAge": 12,
+    "maxAge": 18,
+    "probability": 0.45,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_exam_cheat_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "不用能力作弊",
+        "condition": "",
+        "successResultText": "你答得不完美，但保住了對自己的信任。",
+        "failResultText": "你忍得很辛苦，分數也不漂亮。",
+        "statChanges": {
+          "morality": 12,
+          "intelligence": 4
+        },
+        "addFlag": "superpower_exam_cheat_done",
+        "failStatChanges": {
+          "luck": -2,
+          "intelligence": 2
+        },
+        "failAddFlag": "superpower_exam_cheat_done",
+        "nextEventId": null
+      },
+      {
+        "choiceText": "偷聽答案",
+        "condition": "",
+        "successResultText": "你拿到高分，卻開始習慣走捷徑。",
+        "failResultText": "你能力波動，被老師盯上。",
+        "statChanges": {
+          "intelligence": 8,
+          "morality": -15
+        },
+        "addFlag": "superpower_exam_cheat_done",
+        "failStatChanges": {
+          "charisma": -8,
+          "morality": -10
+        },
+        "failAddFlag": "superpower_exam_cheat_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_first_mask",
+    "title": "第一副面罩",
+    "description": "你在夜市攤位看見一副廉價面罩。它不堅固，卻像是在問你想成為誰。",
+    "minAge": 15,
+    "maxAge": 25,
+    "probability": 0.55,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_first_mask_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "travel"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "買下面罩",
+        "condition": "",
+        "successResultText": "戴上它時，你感覺自己多了一個可以承擔風險的名字。",
+        "failResultText": "面罩很快壞了，但念頭留了下來。",
+        "statChanges": {
+          "charisma": 6,
+          "luck": 5
+        },
+        "addFlag": "superpower_first_mask_done",
+        "failStatChanges": {
+          "wealth": -5,
+          "luck": 1
+        },
+        "failAddFlag": "superpower_first_mask_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_forum_contact",
+    "title": "異常論壇私訊",
+    "description": "有人在匿名論壇私訊你，精準說出你上週失控的細節。",
+    "minAge": 14,
+    "maxAge": 35,
+    "probability": 0.55,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_forum_contact_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "online"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "回覆對方",
+        "condition": "",
+        "successResultText": "你接觸到一個能力者互助圈，知道自己不是唯一。",
+        "failResultText": "對方來路不明，你暴露了太多資訊。",
+        "statChanges": {
+          "charisma": 8,
+          "intelligence": 8
+        },
+        "addFlag": "superpower_forum_contact_done",
+        "failStatChanges": {
+          "luck": -12
+        },
+        "failAddFlag": "superpower_forum_contact_done",
+        "nextEventId": "superpower_forum_meeting"
+      }
+    ]
+  },
+  {
+    "id": "superpower_forum_meeting",
+    "title": "地下聚會",
+    "description": "論壇成員約在廢棄電影院見面。銀幕上沒有電影，只有一群不敢開燈的人。",
+    "minAge": 15,
+    "maxAge": 40,
+    "probability": 0,
+    "requiredStats": {},
+    "requiredFlags": [
+      "superpower_forum_contact_done"
+    ],
+    "forbiddenFlags": [
+      "superpower_forum_meeting_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "travel"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "交換控制技巧",
+        "condition": "",
+        "successResultText": "你學到幾個實用技巧，也交到真正懂你的人。",
+        "failResultText": "聚會被人跟蹤，你只能倉促離開。",
+        "statChanges": {
+          "intelligence": 12,
+          "charisma": 8
+        },
+        "addFlag": "superpower_forum_meeting_done",
+        "failStatChanges": {
+          "luck": -10,
+          "health": -5
+        },
+        "failAddFlag": "superpower_forum_meeting_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_power_license",
+    "title": "能力執照考試",
+    "description": "城市開始試辦能力使用執照。通過者能合法接案，失敗者會被列入觀察。",
+    "minAge": 18,
+    "maxAge": 45,
+    "probability": 0.5,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_power_license_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study",
+      "exercise"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "mini_game",
+    "choices": [
+      {
+        "choiceText": "參加考試",
+        "condition": "執照小遊戲",
+        "successResultText": "你通過測驗，獲得合法使用能力的最低保障。",
+        "failResultText": "你在壓力下失控，被要求重新訓練。",
+        "statChanges": {
+          "intelligence": 12,
+          "wealth": 20,
+          "luck": 6
+        },
+        "addFlag": "superpower_power_license_done",
+        "failStatChanges": {
+          "health": -20,
+          "luck": -8
+        },
+        "failAddFlag": "superpower_power_license_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_blackout_rescue",
+    "title": "全城停電",
+    "description": "全城停電，醫院備用電力撐不了太久。有人想起你能短暫轉換能量。",
+    "minAge": 18,
+    "maxAge": 60,
+    "probability": 0.35,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_blackout_rescue_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "exercise",
+      "travel"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "支援醫院供電",
+        "condition": "",
+        "successResultText": "你撐到備援系統恢復，救下許多病患。",
+        "failResultText": "你能量透支，倒在急診室走廊。",
+        "statChanges": {
+          "morality": 22,
+          "charisma": 12,
+          "health": -10
+        },
+        "addFlag": "superpower_blackout_rescue_done",
+        "failStatChanges": {
+          "health": -55,
+          "morality": 10
+        },
+        "failAddFlag": "superpower_blackout_rescue_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_corporate_offer",
+    "title": "企業研究合約",
+    "description": "科技公司提出高額合約，要求你配合能力測試。他們說這能推動人類進步。",
+    "minAge": 22,
+    "maxAge": 55,
+    "probability": 0.4,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_corporate_offer_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "online",
+      "study"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "要求倫理條款",
+        "condition": "",
+        "successResultText": "你拿到資源，也迫使公司接受透明監督。",
+        "failResultText": "公司表面同意，暗地仍保留灰色資料。",
+        "statChanges": {
+          "wealth": 90,
+          "intelligence": 15,
+          "morality": 8
+        },
+        "addFlag": "superpower_corporate_offer_done",
+        "failStatChanges": {
+          "luck": -15,
+          "wealth": 30
+        },
+        "failAddFlag": "superpower_corporate_offer_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_low_luck_capture",
+    "title": "抑制器包圍",
+    "description": "你在巷口感覺能力忽然變得沉重。牆面上的抑制器一盞盞亮起。",
+    "minAge": 18,
+    "maxAge": 80,
+    "probability": 0.28,
+    "requiredStats": {
+      "luck": -35
+    },
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "dead",
+      "superpower_low_luck_capture_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "travel"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "death",
+    "choices": [
+      {
+        "choiceText": "破壞最近的抑制器",
+        "condition": "",
+        "successResultText": "你炸開一道缺口逃生，但身體被反震重創。",
+        "failResultText": "抑制場完全閉合，你沒能走出巷子。",
+        "statChanges": {
+          "health": -60,
+          "luck": -15
+        },
+        "addFlag": "superpower_low_luck_capture_done",
+        "failStatChanges": {
+          "health": -999
+        },
+        "failAddFlag": "dead",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_midlife_identity",
+    "title": "中年的雙重身分",
+    "description": "白天的你處理帳單，夜裡的你處理危機。兩種人生開始互相拉扯。",
+    "minAge": 35,
+    "maxAge": 65,
+    "probability": 0.5,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_midlife_identity_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "重新劃定界線",
+        "condition": "",
+        "successResultText": "你減少無謂風險，讓普通生活也有位置。",
+        "failResultText": "界線並不容易，疲憊仍常常追上你。",
+        "statChanges": {
+          "health": 8,
+          "morality": 8
+        },
+        "addFlag": "superpower_midlife_identity_done",
+        "failStatChanges": {
+          "health": -12,
+          "luck": -4
+        },
+        "failAddFlag": "superpower_midlife_identity_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_memorial_wall",
+    "title": "紀念牆",
+    "description": "你站在災難紀念牆前，看見許多你救過或沒能救下的名字。",
+    "minAge": 45,
+    "maxAge": 90,
+    "probability": 0.4,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_memorial_wall_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest",
+      "travel"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "留下花束",
+        "condition": "",
+        "successResultText": "你沒有逃開記憶，而是學會帶著它走。",
+        "failResultText": "名字太重，你好幾天無法入睡。",
+        "statChanges": {
+          "morality": 15,
+          "charisma": 5
+        },
+        "addFlag": "superpower_memorial_wall_done",
+        "failStatChanges": {
+          "health": -10,
+          "morality": 4
+        },
+        "failAddFlag": "superpower_memorial_wall_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_old_power_fade",
+    "title": "能力衰退",
+    "description": "你發現自己舉不起以前能輕易移動的重量。力量沒有消失，只是變慢了。",
+    "minAge": 60,
+    "maxAge": 110,
+    "probability": 0.55,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_old_power_fade_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "exercise",
+      "rest"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "改練精準控制",
+        "condition": "",
+        "successResultText": "你不再追求力量大小，而是把每一分能力用得更準。",
+        "failResultText": "你一時難以接受，訓練反而受傷。",
+        "statChanges": {
+          "intelligence": 15,
+          "health": 5
+        },
+        "addFlag": "superpower_old_power_fade_done",
+        "failStatChanges": {
+          "health": -18,
+          "luck": -3
+        },
+        "failAddFlag": "superpower_old_power_fade_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_final_broadcast",
+    "title": "最後一次廣播",
+    "description": "城市防災系統故障，只有你的能力能把警報送到每一個角落。",
+    "minAge": 70,
+    "maxAge": 130,
+    "probability": 0.3,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "dead",
+      "superpower_final_broadcast_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "online",
+      "travel"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "death",
+    "choices": [
+      {
+        "choiceText": "接入全城訊號",
+        "condition": "",
+        "successResultText": "你完成廣播後昏迷數日，醒來時窗外放著市民送來的花。",
+        "failResultText": "訊號穿過你的神經，你用生命換來全城撤離。",
+        "statChanges": {
+          "health": -50,
+          "morality": 35,
+          "charisma": 25
+        },
+        "addFlag": "superpower_final_broadcast_done",
+        "failStatChanges": {
+          "health": -999
+        },
+        "failAddFlag": "dead",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_elder_archive",
+    "title": "異能者口述史",
+    "description": "年輕研究員請你錄下這一代能力者的口述史。她說歷史不該只剩機密檔。",
+    "minAge": 65,
+    "maxAge": 140,
+    "probability": 0.45,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_elder_archive_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study",
+      "rest"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "special",
+    "choices": [
+      {
+        "choiceText": "完整錄製",
+        "condition": "",
+        "successResultText": "你把真相留給後人，也替許多無名者留下位置。",
+        "failResultText": "你說到一半太累，但錄音已經足夠重要。",
+        "statChanges": {
+          "intelligence": 18,
+          "morality": 22,
+          "charisma": 10
+        },
+        "addFlag": "superpower_elder_archive_done",
+        "failStatChanges": {
+          "health": -6,
+          "intelligence": 8
+        },
+        "failAddFlag": "superpower_elder_archive_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_baby_monitor",
+    "title": "嬰兒監視器雜訊",
+    "description": "你還在嬰兒床裡時，監視器傳出不屬於房間的電流聲。畫面裡的小手正微微發光。",
+    "minAge": 0,
+    "maxAge": 2,
+    "probability": 0.5,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_baby_monitor_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "在安撫中平靜",
+        "condition": "",
+        "successResultText": "光芒慢慢退去，家人只以為那是設備故障。",
+        "failResultText": "雜訊持續一整夜，家人開始害怕。",
+        "statChanges": {
+          "health": 3,
+          "luck": 4
+        },
+        "addFlag": "superpower_baby_monitor_done",
+        "failStatChanges": {
+          "luck": -2
+        },
+        "failAddFlag": "superpower_baby_monitor_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_playground_magnet",
+    "title": "操場磁力",
+    "description": "你生氣時，操場上的鐵製欄杆同時發出輕響。沒有人知道聲音從哪來。",
+    "minAge": 5,
+    "maxAge": 10,
+    "probability": 0.55,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_playground_magnet_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "exercise"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "把手藏進口袋",
+        "condition": "",
+        "successResultText": "你壓下情緒，欄杆停止震動。",
+        "failResultText": "欄杆彎了一點，老師開始追問。",
+        "statChanges": {
+          "intelligence": 5,
+          "health": 2
+        },
+        "addFlag": "superpower_playground_magnet_done",
+        "failStatChanges": {
+          "luck": -5
+        },
+        "failAddFlag": "superpower_playground_magnet_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_child_rescue_cat",
+    "title": "樹上的貓",
+    "description": "一隻貓困在高樹上，圍觀的人越來越多。你知道自己可以讓樹枝彎下來。",
+    "minAge": 8,
+    "maxAge": 14,
+    "probability": 0.5,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_child_rescue_cat_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "travel"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "mini_game",
+    "choices": [
+      {
+        "choiceText": "悄悄使用能力",
+        "condition": "控制小遊戲",
+        "successResultText": "貓安全落地，沒有人看出樹枝為何剛好低下。",
+        "failResultText": "樹枝彎得太誇張，有人開始懷疑。",
+        "statChanges": {
+          "morality": 8,
+          "luck": 5
+        },
+        "addFlag": "superpower_child_rescue_cat_done",
+        "failStatChanges": {
+          "luck": -8,
+          "charisma": -3
+        },
+        "failAddFlag": "superpower_child_rescue_cat_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_school_bully",
+    "title": "走廊霸凌",
+    "description": "你看見有人被堵在走廊角落。你的能力在指尖發熱，像在催促你出手。",
+    "minAge": 10,
+    "maxAge": 18,
+    "probability": 0.45,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_school_bully_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest",
+      "exercise"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "不用能力也站出來",
+        "condition": "",
+        "successResultText": "你叫來老師，也讓被欺負的人知道有人看見了。",
+        "failResultText": "你被推了一把，但事情沒有繼續惡化。",
+        "statChanges": {
+          "morality": 12,
+          "charisma": 5
+        },
+        "addFlag": "superpower_school_bully_done",
+        "failStatChanges": {
+          "health": -5,
+          "morality": 4
+        },
+        "failAddFlag": "superpower_school_bully_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_college_lab",
+    "title": "大學實驗室",
+    "description": "教授邀你加入一個能力安全研究小組。設備很新，保密協議也很厚。",
+    "minAge": 18,
+    "maxAge": 28,
+    "probability": 0.45,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_college_lab_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "加入研究",
+        "condition": "",
+        "successResultText": "你學會用科學語言描述自己的力量。",
+        "failResultText": "實驗流程繁瑣，你一度覺得自己像樣本。",
+        "statChanges": {
+          "intelligence": 16,
+          "wealth": 20
+        },
+        "addFlag": "superpower_college_lab_done",
+        "failStatChanges": {
+          "health": -6,
+          "intelligence": 5
+        },
+        "failAddFlag": "superpower_college_lab_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_disaster_drill",
+    "title": "災害演練",
+    "description": "城市舉辦大型災害演練。你被安排在關鍵節點，測試能力是否能納入正式救援。",
+    "minAge": 20,
+    "maxAge": 50,
+    "probability": 0.4,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_disaster_drill_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "exercise",
+      "study"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "mini_game",
+    "choices": [
+      {
+        "choiceText": "精準配合救援隊",
+        "condition": "協調小遊戲",
+        "successResultText": "演練結果亮眼，你證明能力者也能成為制度的一部分。",
+        "failResultText": "你一時搶快，流程被迫重來。",
+        "statChanges": {
+          "charisma": 12,
+          "intelligence": 10
+        },
+        "addFlag": "superpower_disaster_drill_done",
+        "failStatChanges": {
+          "charisma": -5,
+          "luck": -5
+        },
+        "failAddFlag": "superpower_disaster_drill_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_romance_secret",
+    "title": "不能說的約會",
+    "description": "你在約會途中聽見遠處警報。若離開，就很難解釋。若不離開，你又無法安心。",
+    "minAge": 18,
+    "maxAge": 45,
+    "probability": 0.35,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_romance_secret_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "travel",
+      "rest"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "坦白需要離開",
+        "condition": "",
+        "successResultText": "對方沒有完全理解，但看見了你的誠實。",
+        "failResultText": "你說得太急，留下誤會。",
+        "statChanges": {
+          "morality": 8,
+          "charisma": 6
+        },
+        "addFlag": "superpower_romance_secret_done",
+        "failStatChanges": {
+          "charisma": -8,
+          "morality": 2
+        },
+        "failAddFlag": "superpower_romance_secret_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_power_insurance",
+    "title": "能力保險",
+    "description": "保險公司推出能力者專案，條款裡每一行都像在替未來的災難定價。",
+    "minAge": 25,
+    "maxAge": 65,
+    "probability": 0.35,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_power_insurance_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "online",
+      "study"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "仔細審約",
+        "condition": "",
+        "successResultText": "你避開高風險陷阱，替自己留下一層保障。",
+        "failResultText": "你看漏除外條款，保障比想像少。",
+        "statChanges": {
+          "intelligence": 10,
+          "wealth": -20,
+          "luck": 5
+        },
+        "addFlag": "superpower_power_insurance_done",
+        "failStatChanges": {
+          "wealth": -50,
+          "luck": -4
+        },
+        "failAddFlag": "superpower_power_insurance_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_mentor_failure",
+    "title": "訓練事故",
+    "description": "你指導年輕能力者時，對方突然失控。你必須在幾秒內決定是保護他，還是保護旁人。",
+    "minAge": 35,
+    "maxAge": 80,
+    "probability": 0.35,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_mentor_failure_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "exercise",
+      "rest"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "先穩住學生",
+        "condition": "",
+        "successResultText": "你冒險接住失控能量，學生沒有留下陰影。",
+        "failResultText": "能量擦過人群，你背負了事故責任。",
+        "statChanges": {
+          "morality": 18,
+          "health": -15
+        },
+        "addFlag": "superpower_mentor_failure_done",
+        "failStatChanges": {
+          "morality": -20,
+          "health": -35
+        },
+        "failAddFlag": "superpower_mentor_failure_done",
+        "nextEventId": "superpower_mentor_repair"
+      }
+    ]
+  },
+  {
+    "id": "superpower_mentor_repair",
+    "title": "事故後的修補",
+    "description": "訓練事故後，學生不敢再使用能力。你知道責任不是一句抱歉就結束。",
+    "minAge": 35,
+    "maxAge": 85,
+    "probability": 0,
+    "requiredStats": {},
+    "requiredFlags": [
+      "superpower_mentor_failure_done"
+    ],
+    "forbiddenFlags": [
+      "superpower_mentor_repair_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest",
+      "study"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "陪他重新訓練",
+        "condition": "",
+        "successResultText": "你們從最簡單的呼吸開始，慢慢把恐懼拆小。",
+        "failResultText": "進展很慢，但信任回來了一點。",
+        "statChanges": {
+          "charisma": 12,
+          "morality": 12
+        },
+        "addFlag": "superpower_mentor_repair_done",
+        "failStatChanges": {
+          "health": -5,
+          "morality": 4
+        },
+        "failAddFlag": "superpower_mentor_repair_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_senate_attack",
+    "title": "聽證會襲擊",
+    "description": "能力者聽證會遭到襲擊。聚光燈、尖叫與抑制器同時爆開。",
+    "minAge": 40,
+    "maxAge": 90,
+    "probability": 0.25,
+    "requiredStats": {
+      "luck": -15
+    },
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "dead",
+      "superpower_senate_attack_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "travel",
+      "exercise"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "death",
+    "choices": [
+      {
+        "choiceText": "護住出口",
+        "condition": "",
+        "successResultText": "你撐開通道讓人群撤離，自己也勉強活下來。",
+        "failResultText": "你擋住了襲擊，卻沒能承受最後一次衝擊。",
+        "statChanges": {
+          "health": -55,
+          "morality": 30,
+          "charisma": 15
+        },
+        "addFlag": "superpower_senate_attack_done",
+        "failStatChanges": {
+          "health": -999
+        },
+        "failAddFlag": "dead",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "superpower_elder_power_teacher",
+    "title": "晚年能力教師",
+    "description": "孩子們坐在安全室裡看著你。他們想知道，有力量的人要怎麼不被力量帶走。",
+    "minAge": 65,
+    "maxAge": 130,
+    "probability": 0.45,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "superpower_elder_power_teacher_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study",
+      "rest"
+    ],
+    "worldview": [
+      "superpower"
+    ],
+    "eventType": "special",
+    "choices": [
+      {
+        "choiceText": "教第一堂課",
+        "condition": "",
+        "successResultText": "你沒有教他們勝利，而是教他們停手。",
+        "failResultText": "你講到一半氣力不足，但孩子們仍聽得很認真。",
+        "statChanges": {
+          "morality": 22,
+          "charisma": 16,
+          "intelligence": 8
+        },
+        "addFlag": "superpower_elder_power_teacher_done",
+        "failStatChanges": {
+          "health": -8,
+          "charisma": 5
+        },
+        "failAddFlag": "superpower_elder_power_teacher_done",
         "nextEventId": null
       }
     ]

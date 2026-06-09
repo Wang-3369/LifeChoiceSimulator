@@ -1,1920 +1,2192 @@
 [
   {
-    "id": "urban_daily_01",
-    "title": "早晨咖啡",
-    "description": "上班前買了一杯黑咖啡。",
-    "minAge": 18,
-    "maxAge": 99,
+    "id": "urban_child_library_card",
+    "title": "第一張借書證",
+    "description": "你在巷口圖書館辦了人生第一張借書證。書架高得像城市裡另一座森林。",
+    "minAge": 6,
+    "maxAge": 12,
+    "probability": 0.55,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "library_card"
+    ],
     "weightModifiers": {},
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "借一本偵探小說",
+        "condition": "",
+        "successResultText": "你跟著主角推理到深夜，開始喜歡拆解問題。",
+        "failResultText": "",
+        "statChanges": {
+          "intelligence": 8,
+          "luck": 2
+        },
+        "addFlag": "library_card",
+        "nextEventId": null
+      },
+      {
+        "choiceText": "借一本漫畫",
+        "condition": "",
+        "successResultText": "你把故事畫在作業本角落，同學都圍過來看。",
+        "failResultText": "",
+        "statChanges": {
+          "charisma": 6,
+          "intelligence": 3
+        },
+        "addFlag": "library_card",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_exam_guess_game",
+    "title": "段考猜題",
+    "description": "考前十分鐘，班上流傳三個可能會考的大題。你只能押一個方向複習。",
+    "minAge": 12,
+    "maxAge": 18,
+    "probability": 0.45,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "exam_guess_done"
+    ],
+    "weightModifiers": {
+      "library_card": 1.3
+    },
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "mini_game",
+    "choices": [
+      {
+        "choiceText": "押老師畫星號的題型",
+        "condition": "猜題小遊戲",
+        "successResultText": "你押中了，考卷翻開時差點笑出來。",
+        "failResultText": "老師這次反其道而行，你只好硬著頭皮算。",
+        "statChanges": {
+          "intelligence": 12,
+          "luck": 6
+        },
+        "addFlag": "exam_guess_done",
+        "failStatChanges": {
+          "luck": -8,
+          "intelligence": 2
+        },
+        "failAddFlag": "exam_guess_done",
+        "nextEventId": null
+      },
+      {
+        "choiceText": "押補習班最後一頁",
+        "condition": "猜題小遊戲",
+        "successResultText": "最後一頁竟然真的出成大題，補習班傳說又添一筆。",
+        "failResultText": "你背到最後一頁，考卷卻問第一章。",
+        "statChanges": {
+          "luck": 10,
+          "charisma": 3
+        },
+        "addFlag": "exam_guess_done",
+        "failStatChanges": {
+          "luck": -6,
+          "health": -3
+        },
+        "failAddFlag": "exam_guess_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_bus_timing_game",
+    "title": "末班車衝刺",
+    "description": "雨越下越大，末班車正在站牌前閃著方向燈。你離站牌還有一段距離。",
+    "minAge": 14,
+    "maxAge": 70,
+    "probability": 0.4,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "caught_last_bus"
+    ],
+    "weightModifiers": {},
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "mini_game",
+    "choices": [
+      {
+        "choiceText": "看準紅燈全力衝刺",
+        "condition": "反應小遊戲",
+        "successResultText": "你在門關上前一秒跳上車，司機嘆氣但還是等了你。",
+        "failResultText": "你踩到水坑，眼睜睜看著尾燈消失在雨裡。",
+        "statChanges": {
+          "health": 4,
+          "luck": 6
+        },
+        "addFlag": "caught_last_bus",
+        "failStatChanges": {
+          "health": -8,
+          "wealth": -10
+        },
+        "nextEventId": null
+      },
+      {
+        "choiceText": "改叫計程車",
+        "condition": "",
+        "successResultText": "你花了點錢，但平安到家，還避開一場大雨。",
+        "failResultText": "",
+        "statChanges": {
+          "wealth": -20,
+          "health": 3
+        },
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_part_time_offer",
+    "title": "打工邀約",
+    "description": "咖啡店門口貼著徵人啟事。店長說可以排彈性班，但尖峰時段很累。",
+    "minAge": 16,
+    "maxAge": 28,
+    "probability": 0.45,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "coffee_part_timer"
+    ],
+    "weightModifiers": {
+      "caught_last_bus": 1.1
+    },
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "接下早班打工",
+        "condition": "",
+        "successResultText": "你學會在忙亂中保持微笑，也多了一筆穩定收入。",
+        "failResultText": "早班比想像中辛苦，你連續幾天精神不濟。",
+        "statChanges": {
+          "wealth": 40,
+          "charisma": 6
+        },
+        "addFlag": "coffee_part_timer",
+        "failStatChanges": {
+          "health": -12,
+          "wealth": 15
+        },
+        "failAddFlag": "coffee_part_timer",
+        "nextEventId": null
+      },
+      {
+        "choiceText": "婉拒，專心準備未來",
+        "condition": "",
+        "successResultText": "你把時間拿去整理作品集，方向慢慢清楚起來。",
+        "failResultText": "",
+        "statChanges": {
+          "intelligence": 8,
+          "wealth": -5
+        },
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_startup_pitch",
+    "title": "創業簡報夜",
+    "description": "朋友拉你參加創業簡報比賽。台下坐著投資人，台上只有三分鐘。",
+    "minAge": 20,
+    "maxAge": 45,
+    "probability": 0.35,
+    "requiredStats": {
+      "intelligence": 20
+    },
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "startup_pitched"
+    ],
+    "weightModifiers": {
+      "coffee_part_timer": 1.2,
+      "library_card": 1.1
+    },
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "主講商業模式",
+        "condition": "",
+        "successResultText": "你的簡報清楚有力，獲得一筆小額種子資金。",
+        "failResultText": "投資人問到成本結構，你答得支離破碎。",
+        "statChanges": {
+          "wealth": 80,
+          "charisma": 15,
+          "intelligence": 8
+        },
+        "addFlag": "startup_pitched",
+        "failStatChanges": {
+          "charisma": -8,
+          "wealth": -10
+        },
+        "failAddFlag": "startup_pitched",
+        "nextEventId": null
+      },
+      {
+        "choiceText": "展示產品原型",
+        "condition": "",
+        "successResultText": "產品雖粗糙但能跑，台下有人留下名片。",
+        "failResultText": "原型在投影上當機，現場安靜得令人難受。",
+        "statChanges": {
+          "intelligence": 18,
+          "luck": 8
+        },
+        "addFlag": "startup_pitched",
+        "failStatChanges": {
+          "luck": -10,
+          "charisma": -5
+        },
+        "failAddFlag": "startup_pitched",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_neon_crosswalk",
+    "title": "霓虹路口",
+    "description": "深夜路口沒什麼車，一名老人站在斑馬線旁猶豫。遠處引擎聲忽遠忽近。",
+    "minAge": 18,
+    "maxAge": 80,
+    "probability": 0.35,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "crosswalk_helped"
+    ],
+    "weightModifiers": {},
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "陪老人過馬路",
+        "condition": "",
+        "successResultText": "你們平安抵達對面。老人道謝時，手心塞給你一枚舊平安符。",
+        "failResultText": "你判斷錯車速，雖然避開了車，手臂還是擦傷。",
+        "statChanges": {
+          "morality": 12,
+          "luck": 8
+        },
+        "addFlag": "crosswalk_helped",
+        "failStatChanges": {
+          "health": -15,
+          "morality": 5
+        },
+        "failAddFlag": "crosswalk_helped",
+        "nextEventId": null
+      },
+      {
+        "choiceText": "提醒後先離開",
+        "condition": "",
+        "successResultText": "你提醒他等下一個綠燈，心裡仍有些不安。",
+        "failResultText": "",
+        "statChanges": {
+          "morality": 3
+        },
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_stock_app",
+    "title": "股票 App 跳出通知",
+    "description": "手機推播顯示某檔股票暴漲。群組裡每個人都說這次不一樣。",
+    "minAge": 20,
+    "maxAge": 65,
+    "probability": 0.35,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "stock_fomo_done"
+    ],
+    "weightModifiers": {
+      "startup_pitched": 1.2
+    },
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "mini_game",
+    "choices": [
+      {
+        "choiceText": "小額進場試水溫",
+        "condition": "風險小遊戲",
+        "successResultText": "你設好停利停損，剛好吃到一小段行情。",
+        "failResultText": "你買在短線高點，只能學著認賠。",
+        "statChanges": {
+          "wealth": 45,
+          "intelligence": 5
+        },
+        "addFlag": "stock_fomo_done",
+        "failStatChanges": {
+          "wealth": -45,
+          "luck": -6
+        },
+        "failAddFlag": "stock_fomo_done",
+        "nextEventId": null
+      },
+      {
+        "choiceText": "關掉通知去睡覺",
+        "condition": "",
+        "successResultText": "隔天股價大跌，你慶幸自己保住了睡眠和本金。",
+        "failResultText": "",
+        "statChanges": {
+          "health": 6,
+          "intelligence": 5
+        },
+        "addFlag": "stock_fomo_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_hospital_checkup",
+    "title": "健康檢查報告",
+    "description": "報告上幾個數字偏紅。醫師推了推眼鏡，說現在調整還來得及。",
+    "minAge": 25,
+    "maxAge": 75,
+    "probability": 0.4,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "health_plan_started"
+    ],
+    "weightModifiers": {
+      "coffee_part_timer": 1.1
+    },
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "開始規律運動",
+        "condition": "",
+        "successResultText": "前兩週很痛苦，但你的體力明顯回來了。",
+        "failResultText": "你買了會員卡，卻只去了一次。",
+        "statChanges": {
+          "health": 18,
+          "luck": 4
+        },
+        "addFlag": "health_plan_started",
+        "failStatChanges": {
+          "wealth": -25,
+          "health": -3
+        },
+        "failAddFlag": "health_plan_started",
+        "nextEventId": null
+      },
+      {
+        "choiceText": "先調整飲食",
+        "condition": "",
+        "successResultText": "你學會看營養標示，外食也能挑得更穩。",
+        "failResultText": "",
+        "statChanges": {
+          "health": 10,
+          "intelligence": 4
+        },
+        "addFlag": "health_plan_started",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_community_mediation",
+    "title": "社區調解會",
+    "description": "樓上漏水、樓下怒氣沖天，管委會臨時請你當中間人。",
+    "minAge": 25,
+    "maxAge": 80,
+    "probability": 0.3,
+    "requiredStats": {
+      "charisma": 10
+    },
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "community_mediator"
+    ],
+    "weightModifiers": {
+      "crosswalk_helped": 1.2
+    },
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "先讓雙方各說三分鐘",
+        "condition": "",
+        "successResultText": "你抓住雙方真正的需求，事情順利談成。",
+        "failResultText": "場面失控，兩邊都覺得你偏袒對方。",
+        "statChanges": {
+          "charisma": 14,
+          "morality": 8
+        },
+        "addFlag": "community_mediator",
+        "failStatChanges": {
+          "charisma": -10,
+          "health": -5
+        },
+        "failAddFlag": "community_mediator",
+        "nextEventId": null
+      },
+      {
+        "choiceText": "直接提出賠償方案",
+        "condition": "",
+        "successResultText": "你的方案務實，雙方雖不滿意但都能接受。",
+        "failResultText": "金額一出口，氣氛比剛才更僵。",
+        "statChanges": {
+          "intelligence": 8,
+          "charisma": 6
+        },
+        "failStatChanges": {
+          "charisma": -8
+        },
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_late_career_switch",
+    "title": "轉職面試",
+    "description": "你坐在會議室裡，對面主管問：為什麼現在想換跑道？",
+    "minAge": 28,
+    "maxAge": 55,
+    "probability": 0.32,
+    "requiredStats": {
+      "intelligence": 15
+    },
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "career_switched"
+    ],
+    "weightModifiers": {
+      "startup_pitched": 1.3,
+      "community_mediator": 1.1
+    },
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "坦白說明學習曲線",
+        "condition": "",
+        "successResultText": "你的誠懇和準備打動主管，拿到試用機會。",
+        "failResultText": "主管欣賞你，但職缺需要即戰力。",
+        "statChanges": {
+          "wealth": 70,
+          "intelligence": 12,
+          "charisma": 8
+        },
+        "addFlag": "career_switched",
+        "failStatChanges": {
+          "luck": -8,
+          "intelligence": 3
+        },
+        "nextEventId": null
+      },
+      {
+        "choiceText": "強調過去成果可轉移",
+        "condition": "",
+        "successResultText": "你把經驗包裝成清楚案例，面試官頻頻點頭。",
+        "failResultText": "你講得太滿，反而被追問細節追到破綻。",
+        "statChanges": {
+          "charisma": 15,
+          "wealth": 45
+        },
+        "addFlag": "career_switched",
+        "failStatChanges": {
+          "charisma": -12,
+          "luck": -5
+        },
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_family_call",
+    "title": "深夜家人來電",
+    "description": "手機在凌晨響起，是家人的電話。你原本已經累到快睡著。",
+    "minAge": 18,
+    "maxAge": 80,
+    "probability": 0.4,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "family_call_answered"
+    ],
+    "weightModifiers": {},
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "接起來好好聽",
+        "condition": "",
+        "successResultText": "你們聊了很久，隔天雖然疲倦，心裡卻穩了許多。",
+        "failResultText": "",
+        "statChanges": {
+          "morality": 8,
+          "health": -3,
+          "luck": 4
+        },
+        "addFlag": "family_call_answered",
+        "nextEventId": null
+      },
+      {
+        "choiceText": "傳訊息說明天回電",
+        "condition": "",
+        "successResultText": "你保住睡眠，隔天也真的回了電話。",
+        "failResultText": "",
+        "statChanges": {
+          "health": 5,
+          "morality": 2
+        },
+        "addFlag": "family_call_answered",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_death_accident",
+    "title": "失控貨車",
+    "description": "路口傳來尖銳煞車聲，一輛貨車朝人行道偏來。這一瞬間只能靠反應和運氣。",
+    "minAge": 18,
+    "maxAge": 85,
+    "probability": 0.04,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "dead"
+    ],
+    "weightModifiers": {
+      "crosswalk_helped": 0.6,
+      "health_plan_started": 0.8
+    },
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "death",
+    "choices": [
+      {
+        "choiceText": "往店門內側翻滾",
+        "condition": "",
+        "successResultText": "你撞破玻璃逃過一劫，滿身擦傷但還活著。",
+        "failResultText": "貨車撞上人行道，你沒能避開。",
+        "statChanges": {
+          "health": -35,
+          "luck": -10
+        },
+        "failStatChanges": {
+          "health": -999
+        },
+        "failAddFlag": "dead",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_retirement_choice",
+    "title": "退休後的早晨",
+    "description": "你第一次不用趕上班，在陽台看完整座城市醒來。時間突然變得很大。",
+    "minAge": 60,
+    "maxAge": 95,
+    "probability": 0.35,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "retirement_path"
+    ],
+    "weightModifiers": {
+      "career_switched": 1.1,
+      "health_plan_started": 1.2
+    },
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "去社區教年輕人技能",
+        "condition": "",
+        "successResultText": "你把多年經驗整理成課，意外找回了被需要的感覺。",
+        "failResultText": "",
+        "statChanges": {
+          "charisma": 18,
+          "morality": 18,
+          "health": 5
+        },
+        "addFlag": "retirement_path",
+        "nextEventId": null
+      },
+      {
+        "choiceText": "開始一趟慢旅行",
+        "condition": "",
+        "successResultText": "你沿著海線慢慢走，生活重新長出風景。",
+        "failResultText": "",
+        "statChanges": {
+          "luck": 18,
+          "health": 10,
+          "wealth": -30
+        },
+        "addFlag": "retirement_path",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_toddler_fever",
+    "title": "幼年高燒",
+    "description": "夜裡你突然發起高燒，家人抱著你衝進急診。白色燈光照得人心慌。",
+    "minAge": 0,
+    "maxAge": 5,
+    "probability": 0.9,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "toddler_fever_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "配合治療",
+        "condition": "",
+        "successResultText": "你熬過了那個夜晚，家人也開始更重視健康。",
+        "failResultText": "病程拖得很久，你的身體底子受到影響。",
+        "statChanges": {
+          "health": 8,
+          "luck": 3
+        },
+        "addFlag": "toddler_fever_done",
+        "failStatChanges": {
+          "health": -12
+        },
+        "failAddFlag": "toddler_fever_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_playground_balance_game",
+    "title": "公園平衡木",
+    "description": "你站在公園的平衡木前，其他孩子在旁邊起鬨。走過去，就像過一座小小的橋。",
+    "minAge": 3,
+    "maxAge": 10,
     "probability": 0.8,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "喝掉",
-        "condition": "無",
-        "successResultText": "精神百倍。",
-        "failResultText": "",
-        "statChanges": { "wealth": -5, "health": 2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_02",
-    "title": "錯過公車",
-    "description": "眼睜睜看著公車開走。",
-    "minAge": 12,
-    "maxAge": 80,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "playground_balance_done"
+    ],
     "weightModifiers": {},
-    "probability": 0.5,
-    "worldview": ["urban"],
-    "eventType": "daily",
+    "actionTags": [
+      "exercise"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "mini_game",
     "choices": [
       {
-        "choiceText": "跑步追車",
-        "condition": "無",
-        "successResultText": "流了一身汗。",
-        "failResultText": "",
-        "statChanges": { "health": 5, "luck": -2 },
-        "addFlag": null,
+        "choiceText": "慢慢張手保持平衡",
+        "condition": "平衡小遊戲",
+        "successResultText": "你穩穩走到另一端，第一次感覺身體也能替你贏得掌聲。",
+        "failResultText": "你半路踩空，膝蓋擦破皮，但也知道了害怕不會讓橋變短。",
+        "statChanges": {
+          "health": 6,
+          "charisma": 3
+        },
+        "addFlag": "playground_balance_done",
+        "failStatChanges": {
+          "health": -5,
+          "luck": -2
+        },
+        "failAddFlag": "playground_balance_done",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_daily_03",
-    "title": "路邊發票",
-    "description": "地上有一張無人認領的發票。",
+    "id": "urban_lost_wallet_a",
+    "title": "撿到皮夾",
+    "description": "你在便利商店門口撿到一只皮夾，裡面有證件、現金，還有一張小孩的照片。",
     "minAge": 10,
     "maxAge": 80,
+    "probability": 0.65,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "lost_wallet_returned",
+      "lost_wallet_taken"
+    ],
     "weightModifiers": {},
-    "probability": 0.3,
-    "worldview": ["urban"],
-    "eventType": "daily",
+    "actionTags": [
+      "travel",
+      "rest"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "chain",
     "choices": [
       {
-        "choiceText": "撿起來",
-        "condition": "無",
-        "successResultText": "希望會中獎。",
+        "choiceText": "交給警察",
+        "condition": "",
+        "successResultText": "警察記下你的資料，說失主應該很快會找來。",
         "failResultText": "",
-        "statChanges": { "luck": 2 },
-        "addFlag": null,
+        "statChanges": {
+          "morality": 8,
+          "luck": 2
+        },
+        "addFlag": "lost_wallet_returned",
+        "nextEventId": "urban_lost_wallet_b"
+      },
+      {
+        "choiceText": "拿走現金",
+        "condition": "",
+        "successResultText": "你短暫變得寬裕，卻總覺得那張照片在看著你。",
+        "failResultText": "",
+        "statChanges": {
+          "wealth": 50,
+          "morality": -20
+        },
+        "addFlag": "lost_wallet_taken",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_daily_04",
-    "title": "迷路遊客",
-    "description": "遇到外國遊客問路。",
-    "minAge": 15,
-    "maxAge": 70,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.4,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "熱心指路",
-        "condition": "無",
-        "successResultText": "對方笑著道謝。",
-        "failResultText": "",
-        "statChanges": { "morality": 5, "charisma": 2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_05",
-    "title": "午餐地雷",
-    "description": "吃到一家超難吃的便當店。",
-    "minAge": 12,
-    "maxAge": 80,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.6,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "勉強吃完",
-        "condition": "無",
-        "successResultText": "肚子有點痛。",
-        "failResultText": "",
-        "statChanges": { "health": -5, "luck": -3 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_06",
-    "title": "加班請求",
-    "description": "老闆笑著問你能不能留下來幫忙。",
-    "minAge": 22,
-    "maxAge": 60,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.5,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "答應加班",
-        "condition": "無",
-        "successResultText": "獲得了微薄的加班費。",
-        "failResultText": "",
-        "statChanges": { "wealth": 10, "health": -10 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_07",
-    "title": "辦公室八卦",
-    "description": "同事拉著你講其他部門的壞話。",
-    "minAge": 22,
-    "maxAge": 60,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.6,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "跟著附和",
-        "condition": "無",
-        "successResultText": "你們關係變好了，但有些罪惡感。",
-        "failResultText": "",
-        "statChanges": { "charisma": 3, "morality": -3 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_08",
-    "title": "突如其來的大雨",
-    "description": "下班時下起了暴雨，你沒帶傘。",
+    "id": "urban_lost_wallet_b",
+    "title": "失主的謝意",
+    "description": "幾天後，失主聯絡上你。她說皮夾裡的照片比錢更重要。",
     "minAge": 10,
     "maxAge": 80,
-    "requiredStats": {},
-    "requiredFlags": [],
+    "probability": 0,
+    "requiredFlags": [
+      "lost_wallet_returned"
+    ],
+    "forbiddenFlags": [
+      "lost_wallet_rewarded"
+    ],
     "weightModifiers": {},
-    "probability": 0.4,
-    "worldview": ["urban"],
-    "eventType": "daily",
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "chain",
     "choices": [
       {
-        "choiceText": "淋雨衝回家",
-        "condition": "無",
-        "successResultText": "你感冒了。",
+        "choiceText": "收下謝禮",
+        "condition": "",
+        "successResultText": "你收下一份不算昂貴的謝禮，心裡卻暖了很久。",
         "failResultText": "",
-        "statChanges": { "health": -10, "luck": -2 },
-        "addFlag": null,
+        "statChanges": {
+          "wealth": 20,
+          "charisma": 5,
+          "luck": 5
+        },
+        "addFlag": "lost_wallet_rewarded",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_daily_09",
-    "title": "健身房推銷",
-    "description": "路邊有人發健身房傳單。",
-    "minAge": 18,
-    "maxAge": 50,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.5,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "拿一張",
-        "condition": "無",
-        "successResultText": "考慮運動一下。",
-        "failResultText": "",
-        "statChanges": { "health": 2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_10",
-    "title": "書店閒逛",
-    "description": "打發時間走進了一家獨立書店。",
-    "minAge": 15,
-    "maxAge": 70,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.3,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "買本書",
-        "condition": "無",
-        "successResultText": "覺得自己變聰明了。",
-        "failResultText": "",
-        "statChanges": { "wealth": -10, "intelligence": 5 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_11",
-    "title": "深夜電影",
-    "description": "一個人在家看恐怖片。",
-    "minAge": 15,
-    "maxAge": 60,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.4,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "看到天亮",
-        "condition": "無",
-        "successResultText": "睡眠不足，但很過癮。",
-        "failResultText": "",
-        "statChanges": { "health": -5, "intelligence": 2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_12",
-    "title": "手機摔落",
-    "description": "手滑讓手機掉在柏油路上。",
+    "id": "urban_lucky_draw_minigame",
+    "title": "商場抽獎輪盤",
+    "description": "商場週年慶，你拿到一次轉輪盤的機會。指針晃啊晃，停在哪裡全靠手氣。",
     "minAge": 12,
-    "maxAge": 70,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.3,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "撿起來檢查",
-        "condition": "無",
-        "successResultText": "螢幕裂了，心也碎了。",
-        "failResultText": "",
-        "statChanges": { "wealth": -20, "luck": -5 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_13",
-    "title": "街貓",
-    "description": "路邊一隻橘貓對你喵喵叫。",
-    "minAge": 10,
-    "maxAge": 80,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.6,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "摸摸牠",
-        "condition": "無",
-        "successResultText": "心情大好。",
-        "failResultText": "",
-        "statChanges": { "health": 2, "charisma": 2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_14",
-    "title": "踢到桌角",
-    "description": "小拇指狠狠地撞上桌腳。",
-    "minAge": 5,
     "maxAge": 90,
+    "probability": 0.55,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "lucky_draw_done"
+    ],
     "weightModifiers": {},
-    "probability": 0.7,
-    "worldview": ["urban"],
-    "eventType": "daily",
+    "actionTags": [
+      "online",
+      "travel"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "mini_game",
     "choices": [
       {
-        "choiceText": "強忍淚水",
-        "condition": "無",
-        "successResultText": "痛徹心扉。",
-        "failResultText": "",
-        "statChanges": { "health": -3 },
-        "addFlag": null,
+        "choiceText": "用力轉下輪盤",
+        "condition": "運氣小遊戲",
+        "successResultText": "指針停在大獎旁，你得到一張旅行券。",
+        "failResultText": "指針停在安慰獎，你拿到一包面紙。",
+        "statChanges": {
+          "wealth": 80,
+          "luck": 8
+        },
+        "addFlag": "lucky_draw_done",
+        "failStatChanges": {
+          "luck": -2
+        },
+        "failAddFlag": "lucky_draw_done",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_daily_15",
-    "title": "試吃活動",
-    "description": "超市阿姨熱情推銷新口味香腸。",
-    "minAge": 12,
-    "maxAge": 80,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.5,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "吃一塊",
-        "condition": "無",
-        "successResultText": "味道不錯，省了點錢。",
-        "failResultText": "",
-        "statChanges": { "wealth": 2, "health": 2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_16",
-    "title": "讓座",
-    "description": "捷運上看到一位孕婦。",
-    "minAge": 15,
-    "maxAge": 60,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.6,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "主動讓座",
-        "condition": "無",
-        "successResultText": "做了件好事。",
-        "failResultText": "",
-        "statChanges": { "morality": 5 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_17",
-    "title": "網路爭吵",
-    "description": "看到一篇觀點偏激的文章。",
-    "minAge": 12,
-    "maxAge": 60,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.7,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "留言反駁",
-        "condition": "無",
-        "successResultText": "被酸民圍攻，心情變差。",
-        "failResultText": "",
-        "statChanges": { "health": -5, "charisma": -2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_18",
-    "title": "大掃除",
-    "description": "房間實在太亂了。",
-    "minAge": 15,
-    "maxAge": 70,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.3,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "徹底打掃",
-        "condition": "無",
-        "successResultText": "房間變乾淨，找到遺失的零錢。",
-        "failResultText": "",
-        "statChanges": { "wealth": 5, "health": 2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_19",
-    "title": "買彩券",
-    "description": "路過彩券行，看到頭獎上看十億。",
-    "minAge": 18,
-    "maxAge": 80,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.4,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "買一張",
-        "condition": "無",
-        "successResultText": "做個發財夢。",
-        "failResultText": "",
-        "statChanges": { "wealth": -5, "luck": 2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_20",
-    "title": "聽Podcast",
-    "description": "通勤時聽了個知識型節目。",
-    "minAge": 15,
-    "maxAge": 70,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.6,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "認真聽完",
-        "condition": "無",
-        "successResultText": "吸收了新知識。",
-        "failResultText": "",
-        "statChanges": { "intelligence": 5 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_21",
-    "title": "速食誘惑",
-    "description": "深夜看到炸雞廣告。",
-    "minAge": 12,
-    "maxAge": 60,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.5,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "點外送",
-        "condition": "無",
-        "successResultText": "充滿罪惡感的滿足。",
-        "failResultText": "",
-        "statChanges": { "wealth": -10, "health": -5 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_22",
-    "title": "失眠",
-    "description": "躺在床上翻來覆去睡不著。",
-    "minAge": 15,
-    "maxAge": 80,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.4,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "滑手機",
-        "condition": "無",
-        "successResultText": "隔天精神極差。",
-        "failResultText": "",
-        "statChanges": { "health": -15 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_23",
-    "title": "一夜好眠",
-    "description": "難得沒有設鬧鐘，睡到自然醒。",
-    "minAge": 10,
-    "maxAge": 80,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.3,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "伸個懶腰",
-        "condition": "無",
-        "successResultText": "活力充沛！",
-        "failResultText": "",
-        "statChanges": { "health": 15 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_24",
-    "title": "捐血車",
-    "description": "廣場上停著一輛捐血車。",
+    "id": "urban_night_school",
+    "title": "夜校課程",
+    "description": "你在下班後報名夜校。教室燈光不亮，但每個人都像在替自己多爭一條路。",
     "minAge": 18,
     "maxAge": 65,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.3,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "挽起袖子",
-        "condition": "無",
-        "successResultText": "拿到餅乾和好心情。",
-        "failResultText": "",
-        "statChanges": { "health": -5, "morality": 15 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_25",
-    "title": "櫥窗購物",
-    "description": "在百貨公司看著名牌包發呆。",
-    "minAge": 15,
-    "maxAge": 70,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.6,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "純欣賞",
-        "condition": "無",
-        "successResultText": "什麼都沒買，保住了錢包。",
-        "failResultText": "",
-        "statChanges": { "luck": 2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_26",
-    "title": "忘帶鑰匙",
-    "description": "門關上的那一刻，你想起鑰匙在桌上。",
-    "minAge": 10,
-    "maxAge": 80,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.2,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "請鎖匠",
-        "condition": "無",
-        "successResultText": "花了冤枉錢。",
-        "failResultText": "",
-        "statChanges": { "wealth": -15, "luck": -5 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_27",
-    "title": "彩虹",
-    "description": "午後雷陣雨過後，天空出現了彩虹。",
-    "minAge": 5,
-    "maxAge": 90,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.4,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "拍張照",
-        "condition": "無",
-        "successResultText": "心情十分愉悅。",
-        "failResultText": "",
-        "statChanges": { "health": 5, "luck": 5 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_28",
-    "title": "舊照片",
-    "description": "整理抽屜時翻到了高中時的照片。",
-    "minAge": 22,
-    "maxAge": 80,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.3,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "回憶往事",
-        "condition": "無",
-        "successResultText": "感嘆歲月如梭。",
-        "failResultText": "",
-        "statChanges": { "intelligence": 2, "health": 2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_29",
-    "title": "下廚",
-    "description": "決定自己動手做晚餐。",
-    "minAge": 18,
-    "maxAge": 70,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
     "probability": 0.5,
-    "worldview": ["urban"],
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "night_school_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study"
+    ],
+    "worldview": [
+      "urban"
+    ],
     "eventType": "daily",
     "choices": [
       {
-        "choiceText": "照著食譜做",
-        "condition": "無",
-        "successResultText": "意外地美味。",
-        "failResultText": "",
-        "statChanges": { "wealth": -5, "health": 10 },
-        "addFlag": null,
+        "choiceText": "撐完整期課",
+        "condition": "",
+        "successResultText": "你拿到證書，也重新相信自己還能學會新東西。",
+        "failResultText": "你中途缺席太多，只留下半本寫滿筆記的講義。",
+        "statChanges": {
+          "intelligence": 14,
+          "charisma": 4
+        },
+        "addFlag": "night_school_done",
+        "failStatChanges": {
+          "health": -5,
+          "intelligence": 4
+        },
+        "failAddFlag": "night_school_done",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_daily_30",
-    "title": "燒焦的晚餐",
-    "description": "煮飯時滑手機，鍋子燒焦了。",
-    "minAge": 18,
-    "maxAge": 70,
-    "requiredStats": {},
+    "id": "urban_senior_consultant",
+    "title": "資深顧問邀約",
+    "description": "一間小公司找上你，希望你用多年經驗替他們看一看方向。你不再年輕，但眼光仍然銳利。",
+    "minAge": 50,
+    "maxAge": 85,
+    "probability": 0.55,
+    "requiredStats": {
+      "intelligence": 20
+    },
     "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.3,
-    "worldview": ["urban"],
+    "forbiddenFlags": [
+      "senior_consultant_done"
+    ],
+    "weightModifiers": {
+      "career_switched": 1.2
+    },
+    "actionTags": [
+      "study",
+      "online"
+    ],
+    "worldview": [
+      "urban"
+    ],
     "eventType": "daily",
     "choices": [
       {
-        "choiceText": "清理慘局",
-        "condition": "無",
-        "successResultText": "餓肚子又弄得一身灰。",
-        "failResultText": "",
-        "statChanges": { "health": -5, "wealth": -5 },
-        "addFlag": null,
+        "choiceText": "接下顧問案",
+        "condition": "",
+        "successResultText": "你指出問題核心，讓團隊少走了半年冤枉路。",
+        "failResultText": "你的建議太保守，年輕團隊只採納了一部分。",
+        "statChanges": {
+          "wealth": 70,
+          "charisma": 8,
+          "intelligence": 5
+        },
+        "addFlag": "senior_consultant_done",
+        "failStatChanges": {
+          "wealth": 20,
+          "charisma": -3
+        },
+        "failAddFlag": "senior_consultant_done",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_daily_31",
-    "title": "家人的電話",
-    "description": "媽媽打電話來關心你。",
-    "minAge": 18,
-    "maxAge": 50,
+    "id": "urban_old_house_sale",
+    "title": "老屋處分",
+    "description": "家裡那間老屋漏水、稅金、修繕全壓了上來。賣或不賣，都不只是錢的問題。",
+    "minAge": 55,
+    "maxAge": 90,
+    "probability": 0.5,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "old_house_resolved"
+    ],
     "weightModifiers": {},
-    "probability": 0.6,
-    "worldview": ["urban"],
-    "eventType": "daily",
+    "actionTags": [
+      "rest",
+      "online"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "chain",
     "choices": [
       {
-        "choiceText": "耐心聊天",
-        "condition": "無",
-        "successResultText": "感覺到了溫暖。",
-        "failResultText": "",
-        "statChanges": { "morality": 5, "health": 5 },
-        "addFlag": null,
+        "choiceText": "翻修留下",
+        "condition": "",
+        "successResultText": "老屋重新亮起燈，成了家人偶爾聚在一起的地方。",
+        "failResultText": "翻修費超支，你有一陣子為錢煩心。",
+        "statChanges": {
+          "morality": 10,
+          "charisma": 6,
+          "wealth": -60
+        },
+        "addFlag": "old_house_resolved",
+        "failStatChanges": {
+          "wealth": -100,
+          "health": -5
+        },
+        "failAddFlag": "old_house_resolved",
+        "nextEventId": null
+      },
+      {
+        "choiceText": "出售換現金",
+        "condition": "",
+        "successResultText": "交易順利完成，你獲得一筆能改變晚年品質的資金。",
+        "failResultText": "買方壓價，你賣得不算漂亮。",
+        "statChanges": {
+          "wealth": 180,
+          "luck": 5
+        },
+        "failStatChanges": {
+          "wealth": 80,
+          "morality": -5
+        },
+        "failAddFlag": "old_house_resolved",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_daily_32",
-    "title": "推銷電話",
-    "description": "接起電話，是銀行推銷信貸。",
-    "minAge": 18,
-    "maxAge": 70,
+    "id": "urban_grandchild_care",
+    "title": "照顧晚輩",
+    "description": "晚輩臨時需要你幫忙照顧孩子。小小的手抓住你時，你忽然想起很久以前的自己。",
+    "minAge": 55,
+    "maxAge": 95,
+    "probability": 0.55,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "grandchild_care_done"
+    ],
     "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "耐心陪伴",
+        "condition": "",
+        "successResultText": "你們一起度過安靜的一天，家族關係也更近了一些。",
+        "failResultText": "你累得腰痠背痛，但孩子睡前還是抱了抱你。",
+        "statChanges": {
+          "morality": 12,
+          "charisma": 10,
+          "health": -3
+        },
+        "addFlag": "grandchild_care_done",
+        "failStatChanges": {
+          "health": -12,
+          "morality": 5
+        },
+        "failAddFlag": "grandchild_care_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_senior_marathon_game",
+    "title": "銀髮路跑",
+    "description": "社區舉辦銀髮路跑。你站在起點，看著前方不算長、卻也不短的路。",
+    "minAge": 60,
+    "maxAge": 90,
+    "probability": 0.45,
+    "requiredStats": {
+      "health": 45
+    },
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "senior_marathon_done"
+    ],
+    "weightModifiers": {
+      "health_plan_started": 1.4,
+      "late_health_plan": 1.3
+    },
+    "actionTags": [
+      "exercise"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "mini_game",
+    "choices": [
+      {
+        "choiceText": "穩定配速",
+        "condition": "耐力小遊戲",
+        "successResultText": "你沒有跑第一，卻完整跑完了全程。掌聲來得比名次更真實。",
+        "failResultText": "你半路放慢腳步，但仍走到了終點。",
+        "statChanges": {
+          "health": 16,
+          "luck": 6,
+          "charisma": 4
+        },
+        "addFlag": "senior_marathon_done",
+        "failStatChanges": {
+          "health": -8,
+          "charisma": 2
+        },
+        "failAddFlag": "senior_marathon_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_kindergarten_stage",
+    "title": "幼稚園表演",
+    "description": "你被排在舞台中央，台下全是閃爍的手機和期待的眼睛。",
+    "minAge": 3,
+    "maxAge": 6,
     "probability": 0.7,
-    "worldview": ["urban"],
-    "eventType": "daily",
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_kindergarten_stage_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "mini_game",
     "choices": [
       {
-        "choiceText": "直接掛斷",
-        "condition": "無",
-        "successResultText": "浪費了幾秒鐘。",
-        "failResultText": "",
-        "statChanges": { "luck": -2 },
-        "addFlag": null,
+        "choiceText": "記住動作上台",
+        "condition": "節奏小遊戲",
+        "successResultText": "你順利完成表演，第一次享受掌聲。",
+        "failResultText": "你忘了動作，但可愛地鞠了一躬。",
+        "statChanges": {
+          "charisma": 6,
+          "luck": 3
+        },
+        "addFlag": "urban_kindergarten_stage_done",
+        "failStatChanges": {
+          "charisma": 1
+        },
+        "failAddFlag": "urban_kindergarten_stage_done",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_daily_33",
-    "title": "詐騙簡訊",
-    "description": "收到包裹未領取的詐騙連結。",
-    "minAge": 15,
-    "maxAge": 80,
+    "id": "urban_after_school_cram",
+    "title": "補習班走廊",
+    "description": "放學後的補習班走廊聞起來像便當和白板筆。你有點累，但課本已經攤開。",
+    "minAge": 8,
+    "maxAge": 16,
+    "probability": 0.65,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_after_school_cram_done"
+    ],
     "weightModifiers": {},
-    "probability": 0.8,
-    "worldview": ["urban"],
+    "actionTags": [
+      "study"
+    ],
+    "worldview": [
+      "urban"
+    ],
     "eventType": "daily",
     "choices": [
       {
-        "choiceText": "刪除並封鎖",
-        "condition": "無",
-        "successResultText": "防詐意識提高。",
-        "failResultText": "",
-        "statChanges": { "intelligence": 2 },
-        "addFlag": null,
+        "choiceText": "專心聽課",
+        "condition": "",
+        "successResultText": "你抓住了老師講的解題節奏。",
+        "failResultText": "你打了好幾次瞌睡，只記住一半。",
+        "statChanges": {
+          "intelligence": 9,
+          "health": -2
+        },
+        "addFlag": "urban_after_school_cram_done",
+        "failStatChanges": {
+          "health": -5,
+          "intelligence": 3
+        },
+        "failAddFlag": "urban_after_school_cram_done",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_daily_34",
-    "title": "冥想",
-    "description": "嘗試靜下心來打坐十分鐘。",
-    "minAge": 18,
-    "maxAge": 80,
+    "id": "urban_arcade_ticket",
+    "title": "遊樂場兌換券",
+    "description": "你在遊樂場贏到一疊票券，櫃台後面的獎品像小小的寶庫。",
+    "minAge": 8,
+    "maxAge": 18,
+    "probability": 0.55,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_arcade_ticket_done"
+    ],
     "weightModifiers": {},
-    "probability": 0.3,
-    "worldview": ["urban"],
-    "eventType": "daily",
+    "actionTags": [
+      "travel"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "mini_game",
     "choices": [
       {
-        "choiceText": "深呼吸",
-        "condition": "無",
-        "successResultText": "思緒變得清晰。",
-        "failResultText": "",
-        "statChanges": { "health": 5, "intelligence": 5 },
-        "addFlag": null,
+        "choiceText": "挑戰最後一局",
+        "condition": "猜數字小遊戲",
+        "successResultText": "你多贏了一倍票券，換到夢寐以求的獎品。",
+        "failResultText": "你輸掉一半票券，學會適可而止。",
+        "statChanges": {
+          "luck": 8,
+          "charisma": 4
+        },
+        "addFlag": "urban_arcade_ticket_done",
+        "failStatChanges": {
+          "luck": -5
+        },
+        "failAddFlag": "urban_arcade_ticket_done",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_daily_35",
-    "title": "微小地震",
-    "description": "感覺地板稍微晃了一下。",
-    "minAge": 5,
-    "maxAge": 90,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.4,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "發文報平安",
-        "condition": "無",
-        "successResultText": "虛驚一場。",
-        "failResultText": "",
-        "statChanges": { "luck": -1 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_36",
-    "title": "買一送一",
-    "description": "常去的飲料店今天大特價。",
-    "minAge": 12,
-    "maxAge": 60,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.4,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "買兩杯",
-        "condition": "無",
-        "successResultText": "喝得很撐，但覺得賺到了。",
-        "failResultText": "",
-        "statChanges": { "wealth": -5, "luck": 5 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_37",
-    "title": "取消訂閱",
-    "description": "發現每個月都在扣一筆沒用的服務費。",
-    "minAge": 18,
-    "maxAge": 60,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.3,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "立刻取消",
-        "condition": "無",
-        "successResultText": "止血成功。",
-        "failResultText": "",
-        "statChanges": { "wealth": 5, "intelligence": 2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_38",
-    "title": "買盆栽",
-    "description": "在花市買了一盆多肉植物。",
-    "minAge": 15,
-    "maxAge": 70,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.4,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "放在窗台",
-        "condition": "無",
-        "successResultText": "綠意盎然，心情變好。",
-        "failResultText": "",
-        "statChanges": { "wealth": -5, "health": 5 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_39",
-    "title": "植物枯死",
-    "description": "你買的多肉植物爛根了。",
-    "minAge": 15,
-    "maxAge": 70,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.2,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "丟進垃圾桶",
-        "condition": "無",
-        "successResultText": "覺得自己不適合種植物。",
-        "failResultText": "",
-        "statChanges": { "health": -2, "luck": -2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_40",
-    "title": "剪頭髮",
-    "description": "頭髮太長了，去理髮店修剪。",
-    "minAge": 10,
-    "maxAge": 80,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
+    "id": "urban_club_leader",
+    "title": "社團幹部選舉",
+    "description": "社團要選新幹部。有人推你上台，說你其實很適合帶大家做事。",
+    "minAge": 14,
+    "maxAge": 22,
     "probability": 0.5,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "說「稍微修一下就好」",
-        "condition": "無",
-        "successResultText": "換了個清爽的造型。",
-        "failResultText": "",
-        "statChanges": { "wealth": -10, "charisma": 5 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_41",
-    "title": "剪壞了",
-    "description": "設計師把你的瀏海剪得狗啃一樣。",
-    "minAge": 10,
-    "maxAge": 80,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_club_leader_done"
+    ],
     "weightModifiers": {},
-    "probability": 0.2,
-    "worldview": ["urban"],
+    "actionTags": [
+      "study",
+      "exercise"
+    ],
+    "worldview": [
+      "urban"
+    ],
     "eventType": "daily",
     "choices": [
       {
-        "choiceText": "強顏歡笑",
-        "condition": "無",
-        "successResultText": "未來一個月都不想出門。",
-        "failResultText": "",
-        "statChanges": { "wealth": -10, "charisma": -10 },
-        "addFlag": null,
+        "choiceText": "參選幹部",
+        "condition": "",
+        "successResultText": "你學會安排人，也學會承擔抱怨。",
+        "failResultText": "你落選了，但認識了更多人。",
+        "statChanges": {
+          "charisma": 12,
+          "morality": 4
+        },
+        "addFlag": "urban_club_leader_done",
+        "failStatChanges": {
+          "charisma": 3,
+          "luck": -2
+        },
+        "failAddFlag": "urban_club_leader_done",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_daily_42",
-    "title": "看新聞",
-    "description": "滑手機看到一堆社會案件。",
-    "minAge": 18,
-    "maxAge": 80,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.7,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "了解時事",
-        "condition": "無",
-        "successResultText": "增加見識，但也覺得心累。",
-        "failResultText": "",
-        "statChanges": { "intelligence": 2, "health": -2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_43",
-    "title": "零錢捐",
-    "description": "結帳時看到櫃檯的零錢捐款箱。",
-    "minAge": 15,
-    "maxAge": 80,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.6,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "投進零錢",
-        "condition": "無",
-        "successResultText": "積少成多，幫助他人。",
-        "failResultText": "",
-        "statChanges": { "wealth": -2, "morality": 5 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_44",
-    "title": "發現蟲子",
-    "description": "在房間角落看到一隻大蟑螂。",
-    "minAge": 5,
-    "maxAge": 90,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.5,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "拿拖鞋打",
-        "condition": "無",
-        "successResultText": "驚魂未定。",
-        "failResultText": "",
-        "statChanges": { "health": -2, "luck": -2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_45",
-    "title": "伸展身體",
-    "description": "久坐後站起來拉拉筋。",
-    "minAge": 15,
-    "maxAge": 60,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.8,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "伸懶腰",
-        "condition": "無",
-        "successResultText": "筋骨舒暢。",
-        "failResultText": "",
-        "statChanges": { "health": 3 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_46",
-    "title": "綠燈起步",
-    "description": "過馬路時剛好變綠燈。",
-    "minAge": 10,
-    "maxAge": 90,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.7,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "順暢通過",
-        "condition": "無",
-        "successResultText": "今天運氣不錯。",
-        "failResultText": "",
-        "statChanges": { "luck": 2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_47",
-    "title": "忘了帶傘",
-    "description": "出門發現是晴天，但氣象報有雨。",
-    "minAge": 15,
-    "maxAge": 80,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.6,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "賭一把",
-        "condition": "無",
-        "successResultText": "果然沒下雨，賭贏了。",
-        "failResultText": "",
-        "statChanges": { "luck": 3 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_48",
-    "title": "手搖杯",
-    "description": "天氣太熱，買了一杯全糖珍奶。",
-    "minAge": 12,
-    "maxAge": 50,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.5,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "大口喝",
-        "condition": "無",
-        "successResultText": "熱量爆表，但很爽。",
-        "failResultText": "",
-        "statChanges": { "health": -3, "wealth": -5 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_49",
-    "title": "衣服穿反",
-    "description": "出門才發現衣服穿反了。",
-    "minAge": 5,
-    "maxAge": 90,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.2,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "找廁所換",
-        "condition": "無",
-        "successResultText": "覺得很丟臉。",
-        "failResultText": "",
-        "statChanges": { "charisma": -2, "luck": -2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_daily_50",
-    "title": "路邊花香",
-    "description": "走在路上聞到了不知名的花香。",
-    "minAge": 5,
-    "maxAge": 90,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.4,
-    "worldview": ["urban"],
-    "eventType": "daily",
-    "choices": [
-      {
-        "choiceText": "深吸一口",
-        "condition": "無",
-        "successResultText": "心情放鬆了下來。",
-        "failResultText": "",
-        "statChanges": { "health": 2 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_death_01",
-    "title": "深夜的無照駕駛",
-    "description": "朋友喝了酒卻堅持要載你回家。",
+    "id": "urban_first_contract",
+    "title": "第一份合約",
+    "description": "你面前放著人生第一份正式合約。字很多，條款比想像更尖銳。",
     "minAge": 18,
     "maxAge": 30,
+    "probability": 0.5,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_first_contract_done"
+    ],
     "weightModifiers": {},
-    "probability": 0.1,
-    "worldview": ["urban"],
-    "eventType": "death",
+    "actionTags": [
+      "study",
+      "online"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
     "choices": [
       {
-        "choiceText": "相信他的技術",
-        "condition": "無",
-        "successResultText": "",
-        "failResultText": "車子失控撞上橋墩。你失去了意識...",
-        "statChanges": { "health": -999 },
-        "addFlag": null,
+        "choiceText": "逐條看完再簽",
+        "condition": "",
+        "successResultText": "你發現一項不合理條款，替自己避開麻煩。",
+        "failResultText": "你看漏了一些細節，之後多花了錢補救。",
+        "statChanges": {
+          "intelligence": 10,
+          "wealth": 15
+        },
+        "addFlag": "urban_first_contract_done",
+        "failStatChanges": {
+          "wealth": -30,
+          "intelligence": 3
+        },
+        "failAddFlag": "urban_first_contract_done",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_death_02",
-    "title": "瓦斯漏氣",
-    "description": "回到家聞到濃濃的瓦斯味，室內一片漆黑。",
-    "minAge": 18,
-    "maxAge": 80,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.05,
-    "worldview": ["urban"],
-    "eventType": "death",
-    "choices": [
-      {
-        "choiceText": "開燈查看",
-        "condition": "無",
-        "successResultText": "",
-        "failResultText": "電火花引發了氣爆，瞬間將你吞噬...",
-        "statChanges": { "health": -999 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_death_03",
-    "title": "網路偏方",
-    "description": "你得了重病，聽信網路上的「漂白水排毒法」。",
-    "minAge": 20,
-    "maxAge": 80,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.08,
-    "worldview": ["urban"],
-    "eventType": "death",
-    "choices": [
-      {
-        "choiceText": "大口喝下",
-        "condition": "無",
-        "successResultText": "",
-        "failResultText": "食道灼傷，器官衰竭，你在痛苦中死去...",
-        "statChanges": { "health": -999 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_death_04",
-    "title": "暗巷的搶劫",
-    "description": "深夜抄捷徑回家，遇到持刀歹徒要你的錢包。",
-    "minAge": 18,
-    "maxAge": 60,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.1,
-    "worldview": ["urban"],
-    "eventType": "death",
-    "choices": [
-      {
-        "choiceText": "大聲呼救並反抗",
-        "condition": "無",
-        "successResultText": "",
-        "failResultText": "歹徒慌亂中刺中你的要害，你倒在血泊中...",
-        "statChanges": { "health": -999 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_death_05",
-    "title": "極限跑酷",
-    "description": "為了拍出爆紅短影音，你站在大樓邊緣準備後空翻。",
-    "minAge": 15,
-    "maxAge": 30,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.05,
-    "worldview": ["urban"],
-    "eventType": "death",
-    "choices": [
-      {
-        "choiceText": "為了流量，拼了！",
-        "condition": "無",
-        "successResultText": "",
-        "failResultText": "腳底一滑，你從30樓墜落...",
-        "statChanges": { "health": -999 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_death_06",
-    "title": "過勞的工程師",
-    "description": "已經連續加班 72 小時，心臟傳來劇痛。",
-    "minAge": 22,
-    "maxAge": 50,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.1,
-    "worldview": ["urban"],
-    "eventType": "death",
-    "choices": [
-      {
-        "choiceText": "再撐一下就把這段程式寫完",
-        "condition": "無",
-        "successResultText": "",
-        "failResultText": "你眼前一黑，趴在鍵盤上再也沒有醒來...",
-        "statChanges": { "health": -999 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_death_07",
-    "title": "都市傳說：異世界電梯",
-    "description": "按照論壇指示在半夜搭電梯按特定樓層，門開後外面是一片紅光。",
-    "minAge": 15,
-    "maxAge": 40,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.05,
-    "worldview": ["urban"],
-    "eventType": "death",
-    "choices": [
-      {
-        "choiceText": "走出去探索",
-        "condition": "無",
-        "successResultText": "",
-        "failResultText": "電梯門在你身後關上，你永遠消失在現實世界...",
-        "statChanges": { "health": -999 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_death_08",
-    "title": "颱風天的觀浪",
-    "description": "強烈颱風來襲，你覺得在家太無聊，去海邊看瘋狗浪。",
-    "minAge": 15,
-    "maxAge": 60,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.08,
-    "worldview": ["urban"],
-    "eventType": "death",
-    "choices": [
-      {
-        "choiceText": "站近一點拍限動",
-        "condition": "無",
-        "successResultText": "",
-        "failResultText": "一道巨浪打來，將你捲入漆黑的深海...",
-        "statChanges": { "health": -999 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_death_09",
-    "title": "來路不明的膠囊",
-    "description": "在夜店有人遞給你一顆號稱「能看到神」的藥丸。",
+    "id": "urban_roommate_conflict",
+    "title": "室友的噪音",
+    "description": "凌晨兩點，室友還在講電話。你盯著天花板，理智正在慢慢掉線。",
     "minAge": 18,
     "maxAge": 35,
+    "probability": 0.55,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_roommate_conflict_done"
+    ],
     "weightModifiers": {},
-    "probability": 0.1,
-    "worldview": ["urban"],
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "冷靜溝通",
+        "condition": "",
+        "successResultText": "你們訂下共同規則，生活終於安靜一些。",
+        "failResultText": "對方敷衍答應，氣氛變僵。",
+        "statChanges": {
+          "charisma": 8,
+          "health": 4
+        },
+        "addFlag": "urban_roommate_conflict_done",
+        "failStatChanges": {
+          "charisma": -5,
+          "health": -3
+        },
+        "failAddFlag": "urban_roommate_conflict_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_side_project",
+    "title": "下班後的作品",
+    "description": "你把下班後的兩小時拿來做一個沒人要求的作品。進度慢，卻越做越像回事。",
+    "minAge": 22,
+    "maxAge": 45,
+    "probability": 0.55,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_side_project_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "online",
+      "study"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "持續三個月",
+        "condition": "",
+        "successResultText": "作品終於上線，陌生人的第一個留言讓你整晚睡不著。",
+        "failResultText": "你只完成半成品，但也證明自己能開始。",
+        "statChanges": {
+          "intelligence": 12,
+          "charisma": 6,
+          "health": -4
+        },
+        "addFlag": "urban_side_project_done",
+        "failStatChanges": {
+          "health": -8,
+          "intelligence": 5
+        },
+        "failAddFlag": "urban_side_project_done",
+        "nextEventId": "urban_side_project_offer"
+      }
+    ]
+  },
+  {
+    "id": "urban_side_project_offer",
+    "title": "作品帶來的邀約",
+    "description": "那個下班後作品被人看見。對方問你願不願意合作一個更大的案子。",
+    "minAge": 22,
+    "maxAge": 50,
+    "probability": 0,
+    "requiredStats": {},
+    "requiredFlags": [
+      "urban_side_project_done"
+    ],
+    "forbiddenFlags": [
+      "urban_side_project_offer_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "online"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "接下合作",
+        "condition": "",
+        "successResultText": "合作帶來收入，也打開新的職涯可能。",
+        "failResultText": "合作過程混亂，但你學會談條件。",
+        "statChanges": {
+          "wealth": 80,
+          "charisma": 8,
+          "intelligence": 8
+        },
+        "addFlag": "urban_side_project_offer_done",
+        "failStatChanges": {
+          "wealth": 20,
+          "health": -6
+        },
+        "failAddFlag": "urban_side_project_offer_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_parent_teacher_day",
+    "title": "家長會上的沉默",
+    "description": "你代表家人參加孩子或晚輩的家長會。老師談到的不是成績，而是陪伴。",
+    "minAge": 30,
+    "maxAge": 60,
+    "probability": 0.45,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_parent_teacher_day_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "回家好好聊聊",
+        "condition": "",
+        "successResultText": "你沒有急著說教，對方也終於願意說真話。",
+        "failResultText": "談話一開始很僵，但門沒有完全關上。",
+        "statChanges": {
+          "morality": 12,
+          "charisma": 8
+        },
+        "addFlag": "urban_parent_teacher_day_done",
+        "failStatChanges": {
+          "charisma": 2,
+          "health": -2
+        },
+        "failAddFlag": "urban_parent_teacher_day_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_tax_audit",
+    "title": "稅務通知",
+    "description": "你收到一封看起來很正式的稅務通知。每個數字都讓人想重新檢查人生。",
+    "minAge": 30,
+    "maxAge": 70,
+    "probability": 0.35,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_tax_audit_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "online",
+      "study"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "整理資料申覆",
+        "condition": "",
+        "successResultText": "你找出錯誤，成功降低補繳金額。",
+        "failResultText": "資料缺漏太多，只能認賠。",
+        "statChanges": {
+          "intelligence": 8,
+          "wealth": 35
+        },
+        "addFlag": "urban_tax_audit_done",
+        "failStatChanges": {
+          "wealth": -70,
+          "luck": -5
+        },
+        "failAddFlag": "urban_tax_audit_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_metro_pickpocket",
+    "title": "捷運扒手",
+    "description": "尖峰時刻，你感覺包包被輕輕拉了一下。人潮擠得像一面牆。",
+    "minAge": 16,
+    "maxAge": 75,
+    "probability": 0.4,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_metro_pickpocket_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "travel"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "mini_game",
+    "choices": [
+      {
+        "choiceText": "抓住可疑的手",
+        "condition": "反應小遊戲",
+        "successResultText": "你成功保住錢包，還幫旁邊的人攔下扒手。",
+        "failResultText": "你慢了一步，錢包被偷走。",
+        "statChanges": {
+          "luck": 8,
+          "morality": 6
+        },
+        "addFlag": "urban_metro_pickpocket_done",
+        "failStatChanges": {
+          "wealth": -60,
+          "luck": -8
+        },
+        "failAddFlag": "urban_metro_pickpocket_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_caregiver_burnout",
+    "title": "照護疲憊",
+    "description": "你同時顧工作與家人，手機行事曆密密麻麻，連休息都像任務。",
+    "minAge": 40,
+    "maxAge": 70,
+    "probability": 0.45,
+    "requiredStats": {
+      "luck": -20
+    },
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "dead",
+      "urban_caregiver_burnout_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "urban"
+    ],
     "eventType": "death",
     "choices": [
       {
-        "choiceText": "吞下去",
-        "condition": "無",
-        "successResultText": "",
-        "failResultText": "藥物過量引發急性心衰竭，你在幻覺中喪命...",
-        "statChanges": { "health": -999 },
-        "addFlag": null,
+        "choiceText": "尋求外部協助",
+        "condition": "",
+        "successResultText": "你終於讓壓力被分攤，身體沒有再一路下墜。",
+        "failResultText": "你撐太久，某天突然倒下。",
+        "statChanges": {
+          "health": -25,
+          "morality": 8
+        },
+        "addFlag": "urban_caregiver_burnout_done",
+        "failStatChanges": {
+          "health": -999
+        },
+        "failAddFlag": "dead",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_death_10",
-    "title": "平交道硬闖",
-    "description": "趕時間上班，平交道警鈴已經響起，柵欄正在放下。",
-    "minAge": 18,
-    "maxAge": 60,
+    "id": "urban_senior_phone_scam",
+    "title": "電話詐騙",
+    "description": "電話那頭說你的帳戶涉案，要求你立刻操作提款機。聲音很急，也很專業。",
+    "minAge": 55,
+    "maxAge": 95,
+    "probability": 0.55,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_senior_phone_scam_done"
+    ],
     "weightModifiers": {},
-    "probability": 0.1,
-    "worldview": ["urban"],
+    "actionTags": [
+      "online",
+      "rest"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "mini_game",
+    "choices": [
+      {
+        "choiceText": "冷靜查證",
+        "condition": "猜數字小遊戲",
+        "successResultText": "你掛掉電話後向銀行查證，成功避開詐騙。",
+        "failResultText": "你被話術繞暈，損失了一筆錢。",
+        "statChanges": {
+          "intelligence": 8,
+          "luck": 4
+        },
+        "addFlag": "urban_senior_phone_scam_done",
+        "failStatChanges": {
+          "wealth": -120,
+          "luck": -8
+        },
+        "failAddFlag": "urban_senior_phone_scam_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_memory_cafe",
+    "title": "記憶咖啡館",
+    "description": "街角開了一間老照片咖啡館。牆上掛著許多人年輕時的樣子。",
+    "minAge": 65,
+    "maxAge": 110,
+    "probability": 0.45,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_memory_cafe_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "travel",
+      "rest"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "留下自己的照片",
+        "condition": "",
+        "successResultText": "你的照片被掛上牆，成為某個陌生人停下腳步的理由。",
+        "failResultText": "你最後只喝了一杯咖啡，但心情柔軟許多。",
+        "statChanges": {
+          "charisma": 8,
+          "morality": 6
+        },
+        "addFlag": "urban_memory_cafe_done",
+        "failStatChanges": {
+          "luck": 2
+        },
+        "failAddFlag": "urban_memory_cafe_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_last_elevator",
+    "title": "停電的電梯",
+    "description": "你被困在電梯裡，緊急燈一閃一閃。手機只剩下微弱訊號。",
+    "minAge": 60,
+    "maxAge": 120,
+    "probability": 0.25,
+    "requiredStats": {
+      "luck": -40
+    },
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "dead",
+      "urban_last_elevator_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "travel"
+    ],
+    "worldview": [
+      "urban"
+    ],
     "eventType": "death",
     "choices": [
       {
-        "choiceText": "加速衝過去",
-        "condition": "無",
-        "successResultText": "",
-        "failResultText": "機車熄火卡在鐵軌上，疾駛而來的普悠瑪號將你撞飛...",
-        "statChanges": { "health": -999 },
-        "addFlag": null,
+        "choiceText": "保持冷靜求援",
+        "condition": "",
+        "successResultText": "你成功聯繫管理員，被救出時雖然虛弱但平安。",
+        "failResultText": "等待太久，你的身體撐不住密閉與悶熱。",
+        "statChanges": {
+          "health": -30,
+          "intelligence": 5
+        },
+        "addFlag": "urban_last_elevator_done",
+        "failStatChanges": {
+          "health": -999
+        },
+        "failAddFlag": "dead",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_chain_01_a",
-    "title": "神秘的無名包裹",
-    "description": "收到一個沒有寄件人的紙箱，裡面有一支舊手機。",
-    "minAge": 18,
-    "maxAge": 50,
+    "id": "urban_first_subway_ride",
+    "title": "第一次搭捷運",
+    "description": "你握著票卡站在閘門前，城市的聲音從地下湧上來。",
+    "minAge": 4,
+    "maxAge": 9,
+    "probability": 0.6,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_first_subway_ride_done"
+    ],
     "weightModifiers": {},
-    "probability": 0.2,
-    "worldview": ["urban"],
-    "eventType": "chain",
+    "actionTags": [
+      "travel"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
     "choices": [
       {
-        "choiceText": "將手機開機",
-        "condition": "無",
-        "successResultText": "螢幕亮起，顯示正在定位...",
-        "failResultText": "",
-        "statChanges": { "luck": -5 },
-        "addFlag": "has_mystery_phone",
-        "nextEventId": "urban_chain_01_b"
-      }
-    ]
-  },
-  {
-    "id": "urban_chain_01_b",
-    "title": "追蹤者",
-    "description": "開機後的第二天，有幾個黑衣人在你家樓下徘徊。",
-    "minAge": 18,
-    "maxAge": 50,
-    "requiredStats": {},
-    "requiredFlags": ["has_mystery_phone"],
-    "weightModifiers": {},
-    "probability": 0.0,
-    "worldview": ["urban"],
-    "eventType": "chain",
-    "choices": [
-      {
-        "choiceText": "把手機扔進河裡",
-        "condition": "無",
-        "successResultText": "黑衣人不久後消失了，但你損失了平靜。",
-        "failResultText": "",
-        "statChanges": { "health": -10, "luck": 5 },
-        "addFlag": null,
+        "choiceText": "跟緊大人進站",
+        "condition": "",
+        "successResultText": "你記住了路線顏色，覺得城市像一張會發光的地圖。",
+        "failResultText": "你差點跟丟，嚇出一身汗。",
+        "statChanges": {
+          "intelligence": 4,
+          "luck": 3
+        },
+        "addFlag": "urban_first_subway_ride_done",
+        "failStatChanges": {
+          "health": -2,
+          "luck": -2
+        },
+        "failAddFlag": "urban_first_subway_ride_done",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_chain_02_a",
-    "title": "受傷的烏鴉",
-    "description": "公園裡有一隻翅膀受傷的烏鴉。",
+    "id": "urban_school_lunch_trade",
+    "title": "午餐交換",
+    "description": "同學拿著你喜歡的點心，想跟你換掉便當裡最好的菜。",
+    "minAge": 6,
+    "maxAge": 13,
+    "probability": 0.55,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_school_lunch_trade_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "公平交換",
+        "condition": "",
+        "successResultText": "你們談成一場小小交易，還多了一個飯友。",
+        "failResultText": "你換得有點虧，但學到談判不是只靠想要。",
+        "statChanges": {
+          "charisma": 5,
+          "intelligence": 3
+        },
+        "addFlag": "urban_school_lunch_trade_done",
+        "failStatChanges": {
+          "luck": -2,
+          "charisma": 1
+        },
+        "failAddFlag": "urban_school_lunch_trade_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_online_game_rank",
+    "title": "線上遊戲排位",
+    "description": "你和朋友約好今晚衝排位。螢幕亮著，勝負心也亮著。",
     "minAge": 10,
-    "maxAge": 70,
+    "maxAge": 25,
+    "probability": 0.5,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_online_game_rank_done"
+    ],
     "weightModifiers": {},
-    "probability": 0.2,
-    "worldview": ["urban"],
-    "eventType": "chain",
+    "actionTags": [
+      "online"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "mini_game",
     "choices": [
       {
-        "choiceText": "帶去獸醫院並支付費用",
-        "condition": "無",
-        "successResultText": "烏鴉看著你，似乎記住了你的臉。",
-        "failResultText": "",
-        "statChanges": { "wealth": -15, "morality": 10 },
-        "addFlag": "helped_crow",
-        "nextEventId": "urban_chain_02_b"
-      }
-    ]
-  },
-  {
-    "id": "urban_chain_02_b",
-    "title": "烏鴉的報恩",
-    "description": "幾天後，陽台上出現了一枚閃亮的金戒指。",
-    "minAge": 10,
-    "maxAge": 70,
-    "requiredStats": {},
-    "requiredFlags": ["helped_crow"],
-    "weightModifiers": {},
-    "probability": 0.0,
-    "worldview": ["urban"],
-    "eventType": "chain",
-    "choices": [
-      {
-        "choiceText": "拿去變賣",
-        "condition": "無",
-        "successResultText": "獲得了一筆意外之財！",
-        "failResultText": "",
-        "statChanges": { "wealth": 50, "luck": 10 },
-        "addFlag": null,
+        "choiceText": "穩住節奏",
+        "condition": "猜數字小遊戲",
+        "successResultText": "你們打出漂亮配合，朋友群裡一整晚都在回放那一局。",
+        "failResultText": "你連敗到懷疑人生，隔天精神很差。",
+        "statChanges": {
+          "charisma": 6,
+          "luck": 6
+        },
+        "addFlag": "urban_online_game_rank_done",
+        "failStatChanges": {
+          "health": -6,
+          "luck": -5
+        },
+        "failAddFlag": "urban_online_game_rank_done",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_chain_03_a",
-    "title": "辦公室小人",
-    "description": "發現同事偷偷把你的企劃案改成了他的名字。",
+    "id": "urban_internship_offer",
+    "title": "實習錄取信",
+    "description": "信箱跳出實習錄取通知。薪水不高，履歷上卻會很好看。",
+    "minAge": 18,
+    "maxAge": 26,
+    "probability": 0.5,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_internship_offer_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "online",
+      "study"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "接受實習",
+        "condition": "",
+        "successResultText": "你學會職場節奏，也拿到一封有力推薦。",
+        "failResultText": "實習內容雜亂，你只能自己找東西學。",
+        "statChanges": {
+          "intelligence": 10,
+          "charisma": 5,
+          "wealth": 20
+        },
+        "addFlag": "urban_internship_offer_done",
+        "failStatChanges": {
+          "health": -6,
+          "intelligence": 3
+        },
+        "failAddFlag": "urban_internship_offer_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_shared_office",
+    "title": "共享辦公桌",
+    "description": "你租下一張共享辦公桌，旁邊每天坐著不同的創作者與創業者。",
     "minAge": 22,
-    "maxAge": 55,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.2,
-    "worldview": ["urban"],
-    "eventType": "chain",
-    "choices": [
-      {
-        "choiceText": "默不作聲，暗中蒐集證據",
-        "condition": "無",
-        "successResultText": "你把編輯紀錄拷貝下來了。",
-        "failResultText": "",
-        "statChanges": { "intelligence": 5 },
-        "addFlag": "evidence_collected",
-        "nextEventId": "urban_chain_03_b"
-      }
-    ]
-  },
-  {
-    "id": "urban_chain_03_b",
-    "title": "絕地反擊",
-    "description": "部門大會上，老闆正誇獎那位同事的企劃。",
-    "minAge": 22,
-    "maxAge": 55,
-    "requiredStats": {},
-    "requiredFlags": ["evidence_collected"],
-    "weightModifiers": {},
-    "probability": 0.0,
-    "worldview": ["urban"],
-    "eventType": "chain",
-    "choices": [
-      {
-        "choiceText": "拿出證據當眾揭發",
-        "condition": "無",
-        "successResultText": "同事被開除，你獲得了升職。",
-        "failResultText": "",
-        "statChanges": { "wealth": 30, "charisma": 10 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_chain_04_a",
-    "title": "虛擬幣內線",
-    "description": "朋友神神秘秘地推薦你買一款新出的「狗狗幣」。",
-    "minAge": 18,
-    "maxAge": 50,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.2,
-    "worldview": ["urban"],
-    "eventType": "chain",
-    "choices": [
-      {
-        "choiceText": "砸下重金投資",
-        "condition": "無",
-        "successResultText": "看著帳面數字不斷跳動...",
-        "failResultText": "",
-        "statChanges": { "wealth": -50 },
-        "addFlag": "crypto_investor",
-        "nextEventId": "urban_chain_04_b"
-      }
-    ]
-  },
-  {
-    "id": "urban_chain_04_b",
-    "title": "韭菜割起來",
-    "description": "狗狗幣開發團隊突然捲款跑路，幣值歸零。",
-    "minAge": 18,
-    "maxAge": 50,
-    "requiredStats": {},
-    "requiredFlags": ["crypto_investor"],
-    "weightModifiers": {},
-    "probability": 0.0,
-    "worldview": ["urban"],
-    "eventType": "chain",
-    "choices": [
-      {
-        "choiceText": "欲哭無淚",
-        "condition": "無",
-        "successResultText": "血本無歸，深刻體會社會險惡。",
-        "failResultText": "",
-        "statChanges": { "health": -20, "intelligence": 10 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_chain_05_a",
-    "title": "交友軟體配對",
-    "description": "配對到一個極度完美的對象，約你今晚去高檔餐廳。",
-    "minAge": 18,
     "maxAge": 40,
+    "probability": 0.4,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_shared_office_done"
+    ],
     "weightModifiers": {},
-    "probability": 0.3,
-    "worldview": ["urban"],
-    "eventType": "chain",
+    "actionTags": [
+      "online",
+      "study"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
     "choices": [
       {
-        "choiceText": "盛裝赴約",
-        "condition": "無",
-        "successResultText": "氣氛浪漫，但對方點了很多昂貴名酒。",
-        "failResultText": "",
-        "statChanges": { "charisma": 5 },
-        "addFlag": "scam_date",
-        "nextEventId": "urban_chain_05_b"
-      }
-    ]
-  },
-  {
-    "id": "urban_chain_05_b",
-    "title": "剝皮酒店",
-    "description": "結帳時，對方藉口去洗手間消失了，留下天價帳單。",
-    "minAge": 18,
-    "maxAge": 40,
-    "requiredStats": {},
-    "requiredFlags": ["scam_date"],
-    "weightModifiers": {},
-    "probability": 0.0,
-    "worldview": ["urban"],
-    "eventType": "chain",
-    "choices": [
-      {
-        "choiceText": "忍痛刷卡付錢",
-        "condition": "無",
-        "successResultText": "荷包大失血，再也不相信愛情了。",
-        "failResultText": "",
-        "statChanges": { "wealth": -60, "luck": -10 },
-        "addFlag": null,
+        "choiceText": "主動交流",
+        "condition": "",
+        "successResultText": "你換到幾張名片，也聽見一些意想不到的機會。",
+        "failResultText": "交流有點尷尬，但你開始習慣開口。",
+        "statChanges": {
+          "charisma": 10,
+          "intelligence": 4
+        },
+        "addFlag": "urban_shared_office_done",
+        "failStatChanges": {
+          "charisma": 2,
+          "health": -2
+        },
+        "failAddFlag": "urban_shared_office_done",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_chain_06_a",
-    "title": "流浪漢的預言",
-    "description": "地下道流浪漢塞給你一張寫著股票代碼的紙條。",
+    "id": "urban_credit_card_trap",
+    "title": "信用卡循環",
+    "description": "帳單金額比你預期高。最低應繳看起來很輕，利息卻藏在後面。",
     "minAge": 20,
-    "maxAge": 60,
+    "maxAge": 45,
+    "probability": 0.4,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_credit_card_trap_done"
+    ],
     "weightModifiers": {},
-    "probability": 0.2,
-    "worldview": ["urban"],
-    "eventType": "chain",
+    "actionTags": [
+      "online"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
     "choices": [
       {
-        "choiceText": "試著買進一張",
-        "condition": "無",
-        "successResultText": "隔天該股票居然漲停！",
-        "failResultText": "",
-        "statChanges": { "wealth": -10 },
-        "addFlag": "hobo_stock",
-        "nextEventId": "urban_chain_06_b"
-      }
-    ]
-  },
-  {
-    "id": "urban_chain_06_b",
-    "title": "預言成真",
-    "description": "那支股票連續漲停了一週。",
-    "minAge": 20,
-    "maxAge": 60,
-    "requiredStats": {},
-    "requiredFlags": ["hobo_stock"],
-    "weightModifiers": {},
-    "probability": 0.0,
-    "worldview": ["urban"],
-    "eventType": "chain",
-    "choices": [
-      {
-        "choiceText": "獲利了結",
-        "condition": "無",
-        "successResultText": "大賺一筆，想去感謝流浪漢卻再也找不到他。",
-        "failResultText": "",
-        "statChanges": { "wealth": 80, "luck": 10 },
-        "addFlag": null,
+        "choiceText": "咬牙一次還清",
+        "condition": "",
+        "successResultText": "你短期很痛，但避免債務滾成雪球。",
+        "failResultText": "你還不完，只能先做還款計畫。",
+        "statChanges": {
+          "wealth": -40,
+          "intelligence": 6
+        },
+        "addFlag": "urban_credit_card_trap_done",
+        "failStatChanges": {
+          "wealth": -90,
+          "luck": -4
+        },
+        "failAddFlag": "urban_credit_card_trap_done",
         "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_chain_07_a",
-    "title": "奇怪的租屋處",
-    "description": "剛搬進新公寓，總覺得通風口裡有視線。",
-    "minAge": 18,
-    "maxAge": 40,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.2,
-    "worldview": ["urban"],
-    "eventType": "chain",
-    "choices": [
-      {
-        "choiceText": "拿螺絲起子拆開檢查",
-        "condition": "無",
-        "successResultText": "發現了一台隱藏攝影機！",
-        "failResultText": "",
-        "statChanges": { "intelligence": 5, "health": -5 },
-        "addFlag": "found_camera",
-        "nextEventId": "urban_chain_07_b"
-      }
-    ]
-  },
-  {
-    "id": "urban_chain_07_b",
-    "title": "房東的真面目",
-    "description": "你報警後，警察抓走了房東。",
-    "minAge": 18,
-    "maxAge": 40,
-    "requiredStats": {},
-    "requiredFlags": ["found_camera"],
-    "weightModifiers": {},
-    "probability": 0.0,
-    "worldview": ["urban"],
-    "eventType": "chain",
-    "choices": [
-      {
-        "choiceText": "拿回押金並搬家",
-        "condition": "無",
-        "successResultText": "精神受到創傷，但獲得了賠償金。",
-        "failResultText": "",
-        "statChanges": { "wealth": 20, "health": -10 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_chain_08_a",
-    "title": "深夜廣播",
-    "description": "收音機裡傳來奇怪的求救摩斯密碼。",
-    "minAge": 15,
-    "maxAge": 60,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.1,
-    "worldview": ["urban"],
-    "eventType": "chain",
-    "choices": [
-      {
-        "choiceText": "上網查密碼並解碼",
-        "condition": "無",
-        "successResultText": "解碼結果是附近廢棄工廠的地址。",
-        "failResultText": "",
-        "statChanges": { "intelligence": 5 },
-        "addFlag": "decoded_radio",
-        "nextEventId": "urban_chain_08_b"
-      }
-    ]
-  },
-  {
-    "id": "urban_chain_08_b",
-    "title": "廢棄工廠的秘密",
-    "description": "你報警並告訴警方那個地址。",
-    "minAge": 15,
-    "maxAge": 60,
-    "requiredStats": {},
-    "requiredFlags": ["decoded_radio"],
-    "weightModifiers": {},
-    "probability": 0.0,
-    "worldview": ["urban"],
-    "eventType": "chain",
-    "choices": [
-      {
-        "choiceText": "在家等新聞",
-        "condition": "無",
-        "successResultText": "警方破獲了一個綁架集團，你成為了無名英雄。",
-        "failResultText": "",
-        "statChanges": { "morality": 20, "luck": 10 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_chain_09_a",
-    "title": "街頭問卷",
-    "description": "西裝男請你幫忙填一份心靈成長問卷。",
-    "minAge": 18,
-    "maxAge": 50,
-    "requiredStats": {},
-    "requiredFlags": [],
-    "weightModifiers": {},
-    "probability": 0.3,
-    "worldview": ["urban"],
-    "eventType": "chain",
-    "choices": [
-      {
-        "choiceText": "隨便填填留下假資料",
-        "condition": "無",
-        "successResultText": "對方熱情地送你一本小冊子。",
-        "failResultText": "",
-        "statChanges": { "luck": 2 },
-        "addFlag": "cult_target",
-        "nextEventId": "urban_chain_09_b"
-      }
-    ]
-  },
-  {
-    "id": "urban_chain_09_b",
-    "title": "邪教纏身",
-    "description": "雖然留了假資料，他們還是找上門來，在你家門口唱詩歌。",
-    "minAge": 18,
-    "maxAge": 50,
-    "requiredStats": {},
-    "requiredFlags": ["cult_target"],
-    "weightModifiers": {},
-    "probability": 0.0,
-    "worldview": ["urban"],
-    "eventType": "chain",
-    "choices": [
-      {
-        "choiceText": "報警驅離",
-        "condition": "無",
-        "successResultText": "警察趕走了他們，你鬆了一口氣。",
-        "failResultText": "",
-        "statChanges": { "health": -5 },
-        "addFlag": null,
-        "nextEventId": null
-      }
-    ]
-  },
-  {
-    "id": "urban_chain_10_a",
-    "title": "舊書攤的古籍",
-    "description": "在二手書店買到一本介紹古代風水的書。",
+    "id": "urban_pet_adoption",
+    "title": "收養流浪動物",
+    "description": "雨停後，路邊有一隻濕透的小生命看著你。你的住處不大，但牠看起來更小。",
     "minAge": 20,
     "maxAge": 70,
+    "probability": 0.45,
     "requiredStats": {},
     "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_pet_adoption_done"
+    ],
     "weightModifiers": {},
-    "probability": 0.2,
-    "worldview": ["urban"],
-    "eventType": "chain",
+    "actionTags": [
+      "travel",
+      "rest"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
     "choices": [
       {
-        "choiceText": "照著書改動房間擺設",
-        "condition": "無",
-        "successResultText": "感覺房間氣場變了。",
-        "failResultText": "",
-        "statChanges": { "intelligence": 5 },
-        "addFlag": "fengshui_changed",
-        "nextEventId": "urban_chain_10_b"
+        "choiceText": "帶去看獸醫",
+        "condition": "",
+        "successResultText": "照顧牠讓生活多了麻煩，也多了很柔軟的部分。",
+        "failResultText": "醫療費比想像高，你仍沒有丟下牠。",
+        "statChanges": {
+          "morality": 12,
+          "charisma": 4,
+          "wealth": -25
+        },
+        "addFlag": "urban_pet_adoption_done",
+        "failStatChanges": {
+          "wealth": -60,
+          "morality": 6
+        },
+        "failAddFlag": "urban_pet_adoption_done",
+        "nextEventId": null
       }
     ]
   },
   {
-    "id": "urban_chain_10_b",
-    "title": "風水輪流轉",
-    "description": "改完風水後，好運接二連三地發生。",
-    "minAge": 20,
-    "maxAge": 70,
+    "id": "urban_startup_layoff",
+    "title": "公司裁員",
+    "description": "早上的全員會議氣氛不對。主管念著準備好的稿，你忽然聽見自己的名字。",
+    "minAge": 25,
+    "maxAge": 55,
+    "probability": 0.3,
     "requiredStats": {},
-    "requiredFlags": ["fengshui_changed"],
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_startup_layoff_done"
+    ],
     "weightModifiers": {},
-    "probability": 0.0,
-    "worldview": ["urban"],
+    "actionTags": [
+      "online",
+      "study"
+    ],
+    "worldview": [
+      "urban"
+    ],
     "eventType": "chain",
     "choices": [
       {
-        "choiceText": "享受好運",
-        "condition": "無",
-        "successResultText": "事業順利，身體健康。",
-        "failResultText": "",
-        "statChanges": { "wealth": 20, "luck": 20, "health": 10 },
-        "addFlag": null,
+        "choiceText": "整理作品重新出發",
+        "condition": "",
+        "successResultText": "你把打擊變成重新定位的機會。",
+        "failResultText": "求職期拉長，存款快速縮水。",
+        "statChanges": {
+          "intelligence": 8,
+          "luck": 5,
+          "wealth": -20
+        },
+        "addFlag": "urban_startup_layoff_done",
+        "failStatChanges": {
+          "wealth": -100,
+          "health": -10
+        },
+        "failAddFlag": "urban_startup_layoff_done",
+        "nextEventId": "urban_layoff_rebound"
+      }
+    ]
+  },
+  {
+    "id": "urban_layoff_rebound",
+    "title": "裁員後的回彈",
+    "description": "幾個月後，一間更適合的公司回覆你。面試官對你如何度過低潮很感興趣。",
+    "minAge": 25,
+    "maxAge": 58,
+    "probability": 0,
+    "requiredStats": {},
+    "requiredFlags": [
+      "urban_startup_layoff_done"
+    ],
+    "forbiddenFlags": [
+      "urban_layoff_rebound_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "坦白低潮與學習",
+        "condition": "",
+        "successResultText": "你的誠實讓對方看見韌性，職涯重新接上軌道。",
+        "failResultText": "你仍有點不安，但至少已經回到路上。",
+        "statChanges": {
+          "wealth": 90,
+          "charisma": 8,
+          "intelligence": 6
+        },
+        "addFlag": "urban_layoff_rebound_done",
+        "failStatChanges": {
+          "wealth": 30,
+          "charisma": 2
+        },
+        "failAddFlag": "urban_layoff_rebound_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_midnight_er",
+    "title": "急診室長夜",
+    "description": "你陪重要的人在急診室等候。號碼跳得很慢，時間被拉成一條長線。",
+    "minAge": 30,
+    "maxAge": 75,
+    "probability": 0.35,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_midnight_er_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest",
+      "travel"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "守到天亮",
+        "condition": "",
+        "successResultText": "你的陪伴沒有治好病，卻讓對方不必獨自害怕。",
+        "failResultText": "你累到幾乎站不穩，但仍撐到最後。",
+        "statChanges": {
+          "morality": 14,
+          "health": -6
+        },
+        "addFlag": "urban_midnight_er_done",
+        "failStatChanges": {
+          "health": -15,
+          "morality": 6
+        },
+        "failAddFlag": "urban_midnight_er_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_senior_app_class",
+    "title": "銀髮手機課",
+    "description": "社區開了手機課，你坐在教室裡學怎麼辨認連結與備份照片。",
+    "minAge": 60,
+    "maxAge": 100,
+    "probability": 0.55,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "urban_senior_app_class_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "online",
+      "study"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "認真做筆記",
+        "condition": "",
+        "successResultText": "你學會避開可疑連結，也把珍貴照片存了兩份。",
+        "failResultText": "步驟太多，你學得很慢，但沒有放棄。",
+        "statChanges": {
+          "intelligence": 8,
+          "luck": 5
+        },
+        "addFlag": "urban_senior_app_class_done",
+        "failStatChanges": {
+          "intelligence": 2
+        },
+        "failAddFlag": "urban_senior_app_class_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "urban_heat_wave",
+    "title": "熱浪警報",
+    "description": "城市連續高溫，柏油路像在呼吸。你感到頭暈，新聞提醒長者避免外出。",
+    "minAge": 65,
+    "maxAge": 120,
+    "probability": 0.32,
+    "requiredStats": {
+      "luck": -25
+    },
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "dead",
+      "urban_heat_wave_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "travel",
+      "exercise"
+    ],
+    "worldview": [
+      "urban"
+    ],
+    "eventType": "death",
+    "choices": [
+      {
+        "choiceText": "立刻找陰涼處休息",
+        "condition": "",
+        "successResultText": "你補充水分後慢慢恢復，沒有硬撐。",
+        "failResultText": "熱傷害來得太快，你倒在刺眼的日光裡。",
+        "statChanges": {
+          "health": -35,
+          "luck": -6
+        },
+        "addFlag": "urban_heat_wave_done",
+        "failStatChanges": {
+          "health": -999
+        },
+        "failAddFlag": "dead",
         "nextEventId": null
       }
     ]

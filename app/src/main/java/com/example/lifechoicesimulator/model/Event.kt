@@ -18,6 +18,7 @@ data class Event(
     val requiredFlags: List<String>? = emptyList(),
     val forbiddenFlags: List<String>? = emptyList(),
     val weightModifiers: Map<String, Double>? = emptyMap(),
+    val actionTags: List<String>? = emptyList(),
     val worldview: List<String>? = listOf("common"),
     val eventType: String? = "daily"
 )

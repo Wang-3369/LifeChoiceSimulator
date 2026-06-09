@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.example.lifechoicesimulator.model.Event
 import com.example.lifechoicesimulator.model.EventConverters
 
-@Database(entities = [Event::class], version = 1, exportSchema = false)
+@Database(entities = [Event::class], version = 2, exportSchema = false)
 @TypeConverters(EventConverters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun eventDao(): EventDao
@@ -23,7 +23,7 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "life_choice_database"
-                ).build()
+                ).fallbackToDestructiveMigration(true).build()
                 INSTANCE = instance
                 instance
             }

@@ -1,0 +1,1534 @@
+[
+  {
+    "id": "common_midlife_reflection",
+    "title": "半生回望",
+    "description": "某個安靜的清晨，你忽然意識到人生已走過一大段路。過去的選擇像潮水退去後的石子，一顆顆露了出來。",
+    "minAge": 45,
+    "maxAge": 70,
+    "probability": 0.7,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "midlife_reflection_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "整理人生方向",
+        "condition": "",
+        "successResultText": "你把真正重要的事重新排了順序，心裡安定許多。",
+        "failResultText": "你越想越亂，但至少知道自己還有不甘心。",
+        "statChanges": {
+          "morality": 8,
+          "luck": 6
+        },
+        "addFlag": "midlife_reflection_done",
+        "failStatChanges": {
+          "health": -3,
+          "intelligence": 3
+        },
+        "failAddFlag": "midlife_reflection_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_old_friend_reunion",
+    "title": "故友重逢",
+    "description": "多年不見的舊友突然來訊。你們曾經走得很近，後來卻被生活推向不同方向。",
+    "minAge": 50,
+    "maxAge": 90,
+    "probability": 0.65,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "old_friend_reunion_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "travel",
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "赴約見面",
+        "condition": "",
+        "successResultText": "你們聊到天色暗下來，那些遺憾似乎也被好好安放了。",
+        "failResultText": "見面比想像中尷尬，但你至少告別了一段心結。",
+        "statChanges": {
+          "charisma": 8,
+          "morality": 6
+        },
+        "addFlag": "old_friend_reunion_done",
+        "failStatChanges": {
+          "charisma": -3,
+          "luck": 2
+        },
+        "failAddFlag": "old_friend_reunion_done",
+        "nextEventId": "common_old_friend_followup"
+      }
+    ]
+  },
+  {
+    "id": "common_old_friend_followup",
+    "title": "故友的請託",
+    "description": "重逢後不久，故友向你提出一個不算小的請託。這會花費你的時間，也可能改變彼此關係。",
+    "minAge": 50,
+    "maxAge": 90,
+    "probability": 0,
+    "requiredFlags": [
+      "old_friend_reunion_done"
+    ],
+    "forbiddenFlags": [
+      "old_friend_helped"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "伸手幫忙",
+        "condition": "",
+        "successResultText": "你的幫助解了燃眉之急，也讓這段友情重新有了重量。",
+        "failResultText": "你盡力了，事情仍不順利，但故友明白你的心意。",
+        "statChanges": {
+          "morality": 12,
+          "charisma": 8,
+          "wealth": -20
+        },
+        "addFlag": "old_friend_helped",
+        "failStatChanges": {
+          "wealth": -20,
+          "morality": 5
+        },
+        "failAddFlag": "old_friend_helped",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_health_warning_late",
+    "title": "身體警訊",
+    "description": "你開始明顯感覺身體不像從前。一次短暫暈眩，讓你不得不停下腳步。",
+    "minAge": 55,
+    "maxAge": 120,
+    "probability": 0.75,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "late_health_plan"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest",
+      "exercise"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "認真調整作息",
+        "condition": "",
+        "successResultText": "你把生活放慢，身體也用比較溫和的方式回應了你。",
+        "failResultText": "壞習慣很難改，你只撐了幾天。",
+        "statChanges": {
+          "health": 18,
+          "luck": 4
+        },
+        "addFlag": "late_health_plan",
+        "failStatChanges": {
+          "health": -12
+        },
+        "failAddFlag": "late_health_plan",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_legacy_project",
+    "title": "留給後來者的事",
+    "description": "你開始想留下些什麼，不一定宏大，但要能讓後來的人少走一點彎路。",
+    "minAge": 60,
+    "maxAge": 130,
+    "probability": 0.6,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "legacy_project_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study",
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "special",
+    "choices": [
+      {
+        "choiceText": "整理經驗與筆記",
+        "condition": "",
+        "successResultText": "你的整理幫助了許多人，也讓你的人生被溫柔地記住。",
+        "failResultText": "你只整理出一部分，但那也已經足夠珍貴。",
+        "statChanges": {
+          "intelligence": 12,
+          "charisma": 10,
+          "morality": 10
+        },
+        "addFlag": "legacy_project_done",
+        "failStatChanges": {
+          "health": -5,
+          "intelligence": 5
+        },
+        "failAddFlag": "legacy_project_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_late_luck_turn",
+    "title": "遲來的好運",
+    "description": "你以為某些機會早就錯過了，卻在意想不到的時候收到一封通知。",
+    "minAge": 65,
+    "maxAge": 120,
+    "probability": 0.45,
+    "requiredStats": {
+      "luck": 20
+    },
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "late_luck_turn_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "online",
+      "travel"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "把握機會",
+        "condition": "",
+        "successResultText": "這份遲來的好運，讓你晚年多了一段漂亮轉折。",
+        "failResultText": "機會沒有想像中完美，但仍帶來一點光。",
+        "statChanges": {
+          "wealth": 60,
+          "luck": 10
+        },
+        "addFlag": "late_luck_turn_done",
+        "failStatChanges": {
+          "wealth": 10,
+          "luck": -5
+        },
+        "failAddFlag": "late_luck_turn_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_memory_box",
+    "title": "舊物箱",
+    "description": "你整理櫃子時翻出一只舊箱子。票根、照片、泛黃的紙條，全都安靜地躺在裡面。",
+    "minAge": 55,
+    "maxAge": 120,
+    "probability": 0.55,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "memory_box_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "慢慢整理",
+        "condition": "",
+        "successResultText": "你把一些回憶留了下來，也把一些終於放下。",
+        "failResultText": "回憶湧得太急，你一整天都有些恍惚。",
+        "statChanges": {
+          "morality": 6,
+          "luck": 4
+        },
+        "addFlag": "memory_box_done",
+        "failStatChanges": {
+          "health": -4,
+          "morality": 2
+        },
+        "failAddFlag": "memory_box_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_late_apprentice",
+    "title": "晚來的學生",
+    "description": "有人慕名而來，希望向你學一點東西。對方不年輕，眼神卻像剛出發。",
+    "minAge": 60,
+    "maxAge": 130,
+    "probability": 0.5,
+    "requiredStats": {
+      "intelligence": 10
+    },
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "late_apprentice_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study",
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "收下學生",
+        "condition": "",
+        "successResultText": "教學讓你重新整理自己，也讓另一個人的人生多了一道門。",
+        "failResultText": "你們磨合得不順，但仍彼此留下了一點影響。",
+        "statChanges": {
+          "charisma": 12,
+          "intelligence": 8,
+          "morality": 6
+        },
+        "addFlag": "late_apprentice_done",
+        "failStatChanges": {
+          "health": -5,
+          "charisma": 3
+        },
+        "failAddFlag": "late_apprentice_done",
+        "nextEventId": "common_late_apprentice_letter"
+      }
+    ]
+  },
+  {
+    "id": "common_late_apprentice_letter",
+    "title": "學生的來信",
+    "description": "多年後，你收到學生寄來的信。信裡說，你當年一句話改變了他。",
+    "minAge": 62,
+    "maxAge": 140,
+    "probability": 0,
+    "requiredFlags": [
+      "late_apprentice_done"
+    ],
+    "forbiddenFlags": [
+      "late_apprentice_letter_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "回信祝福",
+        "condition": "",
+        "successResultText": "你寫了很短的一封信，但每個字都很穩。",
+        "failResultText": "",
+        "statChanges": {
+          "morality": 10,
+          "charisma": 6
+        },
+        "addFlag": "late_apprentice_letter_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_dangerous_fall",
+    "title": "意外跌倒",
+    "description": "一次不起眼的踩空，讓你突然明白晚年的危險往往不轟烈，只是很近。",
+    "minAge": 65,
+    "maxAge": 140,
+    "probability": 0.2,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "dangerous_fall_done"
+    ],
+    "weightModifiers": {
+      "late_health_plan": 0.6
+    },
+    "actionTags": [
+      "travel",
+      "exercise"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "death",
+    "choices": [
+      {
+        "choiceText": "護住要害",
+        "condition": "",
+        "successResultText": "你摔得很重，但及時護住頭部，保住了性命。",
+        "failResultText": "這次跌倒造成致命傷，你的人生停在這個午後。",
+        "statChanges": {
+          "health": -45,
+          "luck": -8
+        },
+        "addFlag": "dangerous_fall_done",
+        "failStatChanges": {
+          "health": -999
+        },
+        "failAddFlag": "dead",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_first_words",
+    "title": "第一次清楚說話",
+    "description": "你終於能把心裡想要的東西說出口。大人們因為一句不完整的話笑了很久。",
+    "minAge": 1,
+    "maxAge": 4,
+    "probability": 0.7,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_first_words_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "努力表達",
+        "condition": "",
+        "successResultText": "你學會用聲音抓住世界的注意。",
+        "failResultText": "你急得哭了起來，但家人仍耐心陪你慢慢說。",
+        "statChanges": {
+          "charisma": 4,
+          "intelligence": 3
+        },
+        "addFlag": "common_first_words_done",
+        "failStatChanges": {
+          "charisma": 1
+        },
+        "failAddFlag": "common_first_words_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_childhood_scrape",
+    "title": "膝蓋上的傷",
+    "description": "你奔跑時摔了一跤，膝蓋滲出血珠。這是你第一次認真看見疼痛。",
+    "minAge": 3,
+    "maxAge": 9,
+    "probability": 0.75,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_childhood_scrape_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "exercise",
+      "travel"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "忍著痛站起來",
+        "condition": "",
+        "successResultText": "你哭完後自己站起來，身體和心都多了一點韌性。",
+        "failResultText": "你嚇壞了，好幾天不敢奔跑。",
+        "statChanges": {
+          "health": 4,
+          "luck": 2
+        },
+        "addFlag": "common_childhood_scrape_done",
+        "failStatChanges": {
+          "health": -4,
+          "luck": -2
+        },
+        "failAddFlag": "common_childhood_scrape_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_school_friend",
+    "title": "座位旁的新朋友",
+    "description": "新學期換座位，你旁邊坐了一個安靜的人。對方把橡皮擦推到你桌上。",
+    "minAge": 6,
+    "maxAge": 15,
+    "probability": 0.65,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_school_friend_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study",
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "主動道謝聊天",
+        "condition": "",
+        "successResultText": "你們交換了秘密基地的位置，童年多了一個同盟。",
+        "failResultText": "你們都太害羞，只留下短短一句謝謝。",
+        "statChanges": {
+          "charisma": 7,
+          "luck": 2
+        },
+        "addFlag": "common_school_friend_done",
+        "failStatChanges": {
+          "charisma": 2
+        },
+        "failAddFlag": "common_school_friend_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_exam_pressure",
+    "title": "成績單前夜",
+    "description": "成績單明天就會發下來。你躺在床上，覺得天花板比平常低。",
+    "minAge": 10,
+    "maxAge": 18,
+    "probability": 0.7,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_exam_pressure_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study",
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "整理錯題",
+        "condition": "",
+        "successResultText": "你把害怕變成準備，隔天至少能坦然面對。",
+        "failResultText": "你越整理越慌，睡得很差。",
+        "statChanges": {
+          "intelligence": 8,
+          "luck": 2
+        },
+        "addFlag": "common_exam_pressure_done",
+        "failStatChanges": {
+          "health": -4,
+          "intelligence": 2
+        },
+        "failAddFlag": "common_exam_pressure_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_first_parting",
+    "title": "第一次分別",
+    "description": "熟悉的人要搬去很遠的地方。你才明白有些再見真的不是明天見。",
+    "minAge": 12,
+    "maxAge": 22,
+    "probability": 0.5,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_first_parting_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest",
+      "travel"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "好好告別",
+        "condition": "",
+        "successResultText": "你把話說完，讓分別不只剩下沉默。",
+        "failResultText": "你裝作沒事，後來很久才懂那天的遺憾。",
+        "statChanges": {
+          "morality": 6,
+          "charisma": 4
+        },
+        "addFlag": "common_first_parting_done",
+        "failStatChanges": {
+          "luck": -3,
+          "morality": 2
+        },
+        "failAddFlag": "common_first_parting_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_early_job_mistake",
+    "title": "第一份工作的失誤",
+    "description": "你在工作上犯了一個不大不小的錯。主管沒有大罵，只問你打算怎麼補救。",
+    "minAge": 18,
+    "maxAge": 28,
+    "probability": 0.65,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_early_job_mistake_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study",
+      "online"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "承認並補救",
+        "condition": "",
+        "successResultText": "你花了整晚收拾爛攤子，也學到責任不是一句道歉。",
+        "failResultText": "你補救得不漂亮，但至少沒有逃走。",
+        "statChanges": {
+          "intelligence": 7,
+          "morality": 7,
+          "wealth": 10
+        },
+        "addFlag": "common_early_job_mistake_done",
+        "failStatChanges": {
+          "health": -5,
+          "morality": 3
+        },
+        "failAddFlag": "common_early_job_mistake_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_rent_choice",
+    "title": "租屋選擇",
+    "description": "你找到兩間房。一間便宜但遠，一間方便但貴。生活開始用帳單教你取捨。",
+    "minAge": 18,
+    "maxAge": 35,
+    "probability": 0.55,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_rent_choice_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "online",
+      "travel"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "選擇方便的房間",
+        "condition": "",
+        "successResultText": "你省下通勤時間，精神狀態好了許多。",
+        "failResultText": "房租壓力讓你月底很緊。",
+        "statChanges": {
+          "health": 5,
+          "intelligence": 3,
+          "wealth": -35
+        },
+        "addFlag": "common_rent_choice_done",
+        "failStatChanges": {
+          "wealth": -60,
+          "health": -3
+        },
+        "failAddFlag": "common_rent_choice_done",
+        "nextEventId": null
+      },
+      {
+        "choiceText": "選擇便宜的房間",
+        "condition": "",
+        "successResultText": "你存下更多錢，也練成在車上讀書的本事。",
+        "failResultText": "長途通勤磨掉了不少體力。",
+        "statChanges": {
+          "wealth": 35,
+          "intelligence": 4
+        },
+        "addFlag": "common_rent_choice_done",
+        "failStatChanges": {
+          "health": -8,
+          "wealth": 10
+        },
+        "failAddFlag": "common_rent_choice_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_big_decision",
+    "title": "人生岔路",
+    "description": "某個機會擺在你面前。它不保證成功，只保證會讓你離原本的生活遠一點。",
+    "minAge": 22,
+    "maxAge": 40,
+    "probability": 0.5,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_big_decision_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study",
+      "travel"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "踏出去",
+        "condition": "",
+        "successResultText": "你沒有立刻變好，但世界確實變大了。",
+        "failResultText": "變化比想像沉重，你一度懷疑自己選錯了。",
+        "statChanges": {
+          "luck": 8,
+          "intelligence": 5,
+          "charisma": 5
+        },
+        "addFlag": "common_big_decision_done",
+        "failStatChanges": {
+          "health": -8,
+          "luck": -4
+        },
+        "failAddFlag": "common_big_decision_done",
+        "nextEventId": "common_big_decision_after"
+      }
+    ]
+  },
+  {
+    "id": "common_big_decision_after",
+    "title": "岔路之後",
+    "description": "那個選擇的後果慢慢浮現。它不像戲劇那樣立刻給出答案，而是每天改變一點點。",
+    "minAge": 23,
+    "maxAge": 45,
+    "probability": 0,
+    "requiredStats": {},
+    "requiredFlags": [
+      "common_big_decision_done"
+    ],
+    "forbiddenFlags": [
+      "common_big_decision_after_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "穩住節奏",
+        "condition": "",
+        "successResultText": "你終於把新生活過成日常。",
+        "failResultText": "你還在適應，但已經不再只想逃回去。",
+        "statChanges": {
+          "intelligence": 6,
+          "health": 4,
+          "luck": 4
+        },
+        "addFlag": "common_big_decision_after_done",
+        "failStatChanges": {
+          "health": -4,
+          "intelligence": 2
+        },
+        "failAddFlag": "common_big_decision_after_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_care_for_parent",
+    "title": "照顧家人",
+    "description": "家人的身體忽然需要你投入更多時間。你發現長大有時就是換你站在病床旁。",
+    "minAge": 28,
+    "maxAge": 60,
+    "probability": 0.5,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_care_for_parent_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest",
+      "travel"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "調整生活照顧",
+        "condition": "",
+        "successResultText": "你很累，卻也在陪伴裡重新理解家人的沉默。",
+        "failResultText": "照顧壓力讓你身心俱疲。",
+        "statChanges": {
+          "morality": 14,
+          "charisma": 4,
+          "health": -5
+        },
+        "addFlag": "common_care_for_parent_done",
+        "failStatChanges": {
+          "health": -18,
+          "morality": 6
+        },
+        "failAddFlag": "common_care_for_parent_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_midlife_skill",
+    "title": "中年學新技能",
+    "description": "你報名了一門和過去完全不同的課。教室裡有人比你年輕很多，但你沒有退縮。",
+    "minAge": 35,
+    "maxAge": 60,
+    "probability": 0.6,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_midlife_skill_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "從零開始",
+        "condition": "",
+        "successResultText": "你學得慢，卻學得扎實。年齡沒有阻止你好奇。",
+        "failResultText": "你幾次想放棄，但仍學會了基礎。",
+        "statChanges": {
+          "intelligence": 12,
+          "luck": 3
+        },
+        "addFlag": "common_midlife_skill_done",
+        "failStatChanges": {
+          "health": -3,
+          "intelligence": 5
+        },
+        "failAddFlag": "common_midlife_skill_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_low_luck_illness",
+    "title": "連日不適",
+    "description": "小病拖成了大麻煩。你發現倒楣時，連身體都像站在反方向。",
+    "minAge": 35,
+    "maxAge": 120,
+    "probability": 0.35,
+    "requiredStats": {
+      "luck": -30
+    },
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "dead",
+      "common_low_luck_illness_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "death",
+    "choices": [
+      {
+        "choiceText": "立刻就醫",
+        "condition": "",
+        "successResultText": "你及時處理，避開了最危險的惡化。",
+        "failResultText": "病情急轉直下，生命在一連串檢查聲裡熄滅。",
+        "statChanges": {
+          "health": -35,
+          "luck": -6
+        },
+        "addFlag": "common_low_luck_illness_done",
+        "failStatChanges": {
+          "health": -999
+        },
+        "failAddFlag": "dead",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_late_travel_photo",
+    "title": "晚年的旅行照片",
+    "description": "你在旅途中拍下一張照片。畫面沒有名勝，只有一段剛好灑下來的光。",
+    "minAge": 65,
+    "maxAge": 105,
+    "probability": 0.55,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_late_travel_photo_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "travel"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "把照片寄給重要的人",
+        "condition": "",
+        "successResultText": "對方回信說，那張照片像一聲問候。",
+        "failResultText": "照片寄丟了，但你仍記得那束光。",
+        "statChanges": {
+          "luck": 8,
+          "charisma": 5
+        },
+        "addFlag": "common_late_travel_photo_done",
+        "failStatChanges": {
+          "luck": 1
+        },
+        "failAddFlag": "common_late_travel_photo_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_will_and_letter",
+    "title": "遺囑與長信",
+    "description": "你開始整理身後事，也寫下一些平常說不出口的話。",
+    "minAge": 70,
+    "maxAge": 150,
+    "probability": 0.55,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_will_and_letter_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest",
+      "study"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "special",
+    "choices": [
+      {
+        "choiceText": "坦白寫完",
+        "condition": "",
+        "successResultText": "你沒有把人生寫得完美，只是寫得真實。",
+        "failResultText": "你寫到一半停下，但那幾頁仍然珍貴。",
+        "statChanges": {
+          "morality": 15,
+          "intelligence": 5
+        },
+        "addFlag": "common_will_and_letter_done",
+        "failStatChanges": {
+          "health": -3,
+          "morality": 5
+        },
+        "failAddFlag": "common_will_and_letter_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_century_birthday",
+    "title": "百歲生日",
+    "description": "蠟燭多到不適合全點上。有人問你這一生最重要的是什麼。",
+    "minAge": 95,
+    "maxAge": 150,
+    "probability": 0.4,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_century_birthday_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "special",
+    "choices": [
+      {
+        "choiceText": "說一個很短的答案",
+        "condition": "",
+        "successResultText": "你的答案很短，房間卻安靜了很久。",
+        "failResultText": "你笑著搖頭，覺得答案早已在每個人心裡。",
+        "statChanges": {
+          "charisma": 20,
+          "morality": 20,
+          "luck": 10
+        },
+        "addFlag": "common_century_birthday_done",
+        "failStatChanges": {
+          "health": -3,
+          "charisma": 5
+        },
+        "failAddFlag": "common_century_birthday_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_lullaby_memory",
+    "title": "搖籃曲的記憶",
+    "description": "你還很小，卻記得某個夜晚有人反覆哼著同一段旋律。那是世界最早給你的安全感。",
+    "minAge": 0,
+    "maxAge": 3,
+    "probability": 0.65,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_lullaby_memory_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "安穩入睡",
+        "condition": "",
+        "successResultText": "你在熟悉的聲音裡沉沉睡去，身體慢慢長出力量。",
+        "failResultText": "你哭了很久，大人們輪流抱著你。",
+        "statChanges": {
+          "health": 5,
+          "luck": 2
+        },
+        "addFlag": "common_lullaby_memory_done",
+        "failStatChanges": {
+          "health": -2
+        },
+        "failAddFlag": "common_lullaby_memory_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_child_secret_base",
+    "title": "童年的秘密基地",
+    "description": "你和幾個孩子在樹後、樓梯間或廢棄角落找到一個秘密基地。那裡小得剛好容納整個宇宙。",
+    "minAge": 5,
+    "maxAge": 11,
+    "probability": 0.6,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_child_secret_base_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "travel",
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "守住秘密基地",
+        "condition": "",
+        "successResultText": "你們訂下規則，也學會什麼叫共同擁有。",
+        "failResultText": "秘密很快被大人發現，但回憶仍留下來。",
+        "statChanges": {
+          "charisma": 6,
+          "morality": 4
+        },
+        "addFlag": "common_child_secret_base_done",
+        "failStatChanges": {
+          "luck": -2,
+          "charisma": 2
+        },
+        "failAddFlag": "common_child_secret_base_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_teen_diary",
+    "title": "被翻到的日記",
+    "description": "你藏起來的日記差點被人翻到。那些話不成熟，卻是你真正的聲音。",
+    "minAge": 11,
+    "maxAge": 18,
+    "probability": 0.5,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_teen_diary_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest",
+      "study"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "重新藏好並繼續寫",
+        "condition": "",
+        "successResultText": "你學會保護自己的內心，也學會整理混亂的念頭。",
+        "failResultText": "你一氣之下撕掉幾頁，後來有點後悔。",
+        "statChanges": {
+          "intelligence": 6,
+          "morality": 3
+        },
+        "addFlag": "common_teen_diary_done",
+        "failStatChanges": {
+          "luck": -2,
+          "intelligence": 2
+        },
+        "failAddFlag": "common_teen_diary_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_first_public_speech",
+    "title": "第一次公開發言",
+    "description": "你被推到眾人面前發言。手心很濕，紙上的字忽然變得陌生。",
+    "minAge": 12,
+    "maxAge": 24,
+    "probability": 0.55,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_first_public_speech_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "mini_game",
+    "choices": [
+      {
+        "choiceText": "穩住聲音說完",
+        "condition": "發言小遊戲",
+        "successResultText": "你說得不完美，卻清楚地說完了。掌聲比想像中溫暖。",
+        "failResultText": "你中途卡住，但還是有人替你鼓掌。",
+        "statChanges": {
+          "charisma": 10,
+          "luck": 4
+        },
+        "addFlag": "common_first_public_speech_done",
+        "failStatChanges": {
+          "charisma": 2,
+          "luck": -3
+        },
+        "failAddFlag": "common_first_public_speech_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_friend_argument",
+    "title": "朋友間的爭執",
+    "description": "一句玩笑說重了，你和朋友之間突然安靜下來。道歉或沉默，都會改變關係的走向。",
+    "minAge": 13,
+    "maxAge": 40,
+    "probability": 0.45,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_friend_argument_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "先道歉",
+        "condition": "",
+        "successResultText": "你們沒有立刻和好，但裂縫沒有繼續擴大。",
+        "failResultText": "對方還在氣頭上，你只好給彼此一點時間。",
+        "statChanges": {
+          "morality": 8,
+          "charisma": 5
+        },
+        "addFlag": "common_friend_argument_done",
+        "failStatChanges": {
+          "charisma": -3,
+          "morality": 3
+        },
+        "failAddFlag": "common_friend_argument_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_money_lesson",
+    "title": "錢包裡的教訓",
+    "description": "你第一次明顯感覺錢不夠用。不是災難，卻足以讓每個選擇都變重。",
+    "minAge": 16,
+    "maxAge": 30,
+    "probability": 0.55,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_money_lesson_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "online",
+      "study"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "記帳三個月",
+        "condition": "",
+        "successResultText": "你看清錢去了哪裡，也替未來留下一點餘地。",
+        "failResultText": "你記了幾天就放棄，但至少開始意識到問題。",
+        "statChanges": {
+          "intelligence": 6,
+          "wealth": 30
+        },
+        "addFlag": "common_money_lesson_done",
+        "failStatChanges": {
+          "wealth": -15,
+          "intelligence": 2
+        },
+        "failAddFlag": "common_money_lesson_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_sleepless_months",
+    "title": "連月失眠",
+    "description": "幾個月來你總在半夜醒來。白天還能撐，身體卻開始偷偷抗議。",
+    "minAge": 20,
+    "maxAge": 65,
+    "probability": 0.35,
+    "requiredStats": {
+      "luck": -25
+    },
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "dead",
+      "common_sleepless_months_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "death",
+    "choices": [
+      {
+        "choiceText": "認真處理壓力",
+        "condition": "",
+        "successResultText": "你求助、調整作息，終於把自己從邊緣拉回來。",
+        "failResultText": "你把警訊拖得太久，某天身體突然失控。",
+        "statChanges": {
+          "health": -25,
+          "luck": -4
+        },
+        "addFlag": "common_sleepless_months_done",
+        "failStatChanges": {
+          "health": -999
+        },
+        "failAddFlag": "dead",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_reputation_turn",
+    "title": "名聲的轉折",
+    "description": "某件小事被很多人知道了。你忽然發現名聲並不總由自己掌控。",
+    "minAge": 25,
+    "maxAge": 55,
+    "probability": 0.4,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_reputation_turn_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "online",
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "親自說清楚",
+        "condition": "",
+        "successResultText": "你沒有把所有人說服，但把該負責的部分負責了。",
+        "failResultText": "話被截成片段，誤解反而擴大。",
+        "statChanges": {
+          "charisma": 8,
+          "morality": 8
+        },
+        "addFlag": "common_reputation_turn_done",
+        "failStatChanges": {
+          "charisma": -12,
+          "luck": -6
+        },
+        "failAddFlag": "common_reputation_turn_done",
+        "nextEventId": "common_reputation_after"
+      }
+    ]
+  },
+  {
+    "id": "common_reputation_after",
+    "title": "轉折後的沉澱",
+    "description": "風波過後，留下來的人變少了，也更清楚了。",
+    "minAge": 25,
+    "maxAge": 60,
+    "probability": 0,
+    "requiredStats": {},
+    "requiredFlags": [
+      "common_reputation_turn_done"
+    ],
+    "forbiddenFlags": [
+      "common_reputation_after_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "chain",
+    "choices": [
+      {
+        "choiceText": "重新建立界線",
+        "condition": "",
+        "successResultText": "你不再急著討好每個人，反而活得更穩。",
+        "failResultText": "你仍會在意那些聲音，但已能繼續前進。",
+        "statChanges": {
+          "morality": 8,
+          "health": 4
+        },
+        "addFlag": "common_reputation_after_done",
+        "failStatChanges": {
+          "health": -3,
+          "morality": 3
+        },
+        "failAddFlag": "common_reputation_after_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_empty_nest",
+    "title": "安靜下來的家",
+    "description": "熟悉的人各自離家，房間忽然變得太安靜。你聽見時鐘聲，也聽見自己的呼吸。",
+    "minAge": 45,
+    "maxAge": 75,
+    "probability": 0.45,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_empty_nest_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "重新安排生活",
+        "condition": "",
+        "successResultText": "你替自己找回節奏，安靜不再只是空缺。",
+        "failResultText": "你花了很久才適應這份空。",
+        "statChanges": {
+          "health": 5,
+          "luck": 5
+        },
+        "addFlag": "common_empty_nest_done",
+        "failStatChanges": {
+          "health": -6,
+          "luck": -2
+        },
+        "failAddFlag": "common_empty_nest_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_old_skill_returns",
+    "title": "舊技藝回到手上",
+    "description": "你多年沒碰的技藝被人重新提起。手一開始很生，記憶卻慢慢醒來。",
+    "minAge": 50,
+    "maxAge": 95,
+    "probability": 0.5,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_old_skill_returns_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "study",
+      "rest"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "daily",
+    "choices": [
+      {
+        "choiceText": "重新練習",
+        "condition": "",
+        "successResultText": "你找回的不只是技術，還有年輕時那股專注。",
+        "failResultText": "手感回得很慢，但你不再急。",
+        "statChanges": {
+          "intelligence": 8,
+          "charisma": 5
+        },
+        "addFlag": "common_old_skill_returns_done",
+        "failStatChanges": {
+          "health": -2,
+          "intelligence": 3
+        },
+        "failAddFlag": "common_old_skill_returns_done",
+        "nextEventId": null
+      }
+    ]
+  },
+  {
+    "id": "common_final_spring",
+    "title": "最後一次春遊",
+    "description": "春天來得很輕，你被邀請去看花。路不遠，卻像是一段完整的人生縮影。",
+    "minAge": 80,
+    "maxAge": 150,
+    "probability": 0.35,
+    "requiredStats": {},
+    "requiredFlags": [],
+    "forbiddenFlags": [
+      "common_final_spring_done"
+    ],
+    "weightModifiers": {},
+    "actionTags": [
+      "travel"
+    ],
+    "worldview": [
+      "common"
+    ],
+    "eventType": "special",
+    "choices": [
+      {
+        "choiceText": "慢慢走完",
+        "condition": "",
+        "successResultText": "你走得很慢，但每一步都看得很清楚。",
+        "failResultText": "你中途坐下休息，仍覺得這趟值得。",
+        "statChanges": {
+          "luck": 12,
+          "morality": 10,
+          "health": -3
+        },
+        "addFlag": "common_final_spring_done",
+        "failStatChanges": {
+          "health": -10,
+          "luck": 3
+        },
+        "failAddFlag": "common_final_spring_done",
+        "nextEventId": null
+      }
+    ]
+  }
+]
