@@ -27,6 +27,8 @@ import com.example.lifechoicesimulator.viewmodel.GameViewModel
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Star
 import com.example.lifechoicesimulator.model.AchievementRegistry
@@ -96,7 +98,8 @@ fun LifeChoiceApp(viewModel: GameViewModel) {
                     }
                 },
                 onSettings = { navController.navigate("settings") },
-                onAchievements = { navController.navigate("achievements") }
+                onAchievements = { navController.navigate("achievements") },
+                onOnline = { navController.navigate("online") }
             )
         }
 
@@ -140,6 +143,12 @@ fun LifeChoiceApp(viewModel: GameViewModel) {
                 onBack = { navController.popBackStack() }
             )
         }
+        composable("online") {
+            OnlineScreen(
+                viewModel = viewModel,
+                onBack = { navController.popBackStack() }
+            )
+        }
     }
 }
 
@@ -150,7 +159,8 @@ fun MainMenuScreen(
     onStartGame: () -> Unit,
     onLoadGameComplete: () -> Unit,
     onSettings: () -> Unit,
-    onAchievements: () -> Unit
+    onAchievements: () -> Unit,
+    onOnline: () -> Unit
 ) {
     var showLoadDialog by remember { mutableStateOf(false) }
     val context = LocalContext.current
@@ -180,6 +190,11 @@ fun MainMenuScreen(
 
         Button(onClick = onAchievements, modifier = Modifier.fillMaxWidth().height(50.dp)) {
             Text("多周目成就與解鎖")
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(onClick = onOnline, modifier = Modifier.fillMaxWidth().height(50.dp)) {
+            Text("聯網模式")
         }
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -509,27 +524,62 @@ fun GameScreen(viewModel: GameViewModel, navController: NavController, modifier:
             if (event.eventType == "mini_game" && miniGameState != null) {
                 Card(modifier = Modifier.fillMaxWidth()) {
                     Column(modifier = Modifier.padding(16.dp)) {
-                        Text("猜數字小遊戲", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                        Text(miniGameState!!.message)
+                        val state = miniGameState!!
+                        val gameTitle = when (state.gameType) {
+                            "sequence" -> "記憶順序小遊戲"
+                            "reaction" -> "三擇反應小遊戲"
+                            else -> "猜數字小遊戲"
+                        }
+                        Text(gameTitle, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                        Text(state.message)
                         Spacer(modifier = Modifier.height(12.dp))
-                        (1..10).chunked(5).forEach { rowNumbers ->
-                            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                rowNumbers.forEach { number ->
-                                    OutlinedButton(
-                                        onClick = { viewModel.submitMiniGameGuess(number) },
-                                        modifier = Modifier.weight(1f)
-                                    ) {
-                                        Text(number.toString())
+                        when (state.gameType) {
+                            "sequence" -> {
+                                Text("可選符號", fontSize = 12.sp, color = Color.Gray)
+                                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                    (1..4).forEach { symbol ->
+                                        OutlinedButton(
+                                            onClick = { viewModel.submitMiniGameSequence(symbol) },
+                                            modifier = Modifier.weight(1f)
+                                        ) {
+                                            Text(symbol.toString())
+                                        }
                                     }
                                 }
                             }
-                            Spacer(modifier = Modifier.height(8.dp))
+                            "reaction" -> {
+                                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                    listOf(1 to "左", 2 to "中", 3 to "右").forEach { (value, label) ->
+                                        OutlinedButton(
+                                            onClick = { viewModel.submitMiniGameReaction(value) },
+                                            modifier = Modifier.weight(1f)
+                                        ) {
+                                            Text(label)
+                                        }
+                                    }
+                                }
+                            }
+                            else -> {
+                                (1..10).chunked(5).forEach { rowNumbers ->
+                                    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                        rowNumbers.forEach { number ->
+                                            OutlinedButton(
+                                                onClick = { viewModel.submitMiniGameGuess(number) },
+                                                modifier = Modifier.weight(1f)
+                                            ) {
+                                                Text(number.toString())
+                                            }
+                                        }
+                                    }
+                                    Spacer(modifier = Modifier.height(8.dp))
+                                }
+                            }
                         }
                     }
                 }
             } else {
                 event.choices?.forEachIndexed { index, choice ->
-                    Button(
+                    OutlinedButton(
                         onClick = { viewModel.makeChoice(index) },
                         modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)
                     ) {
@@ -540,12 +590,12 @@ fun GameScreen(viewModel: GameViewModel, navController: NavController, modifier:
         }
     }
 }
-
 // ===== 人生總結畫面 =====
 @Composable
 fun SummaryScreen(viewModel: GameViewModel, onRestart: () -> Unit, onMainMenu: () -> Unit) {
     val character by viewModel.characterState.collectAsState()
     val finalLifeStory by viewModel.finalLifeStory.collectAsState()
+    val apiStatus by viewModel.apiStatus.collectAsState()
 
     val title = when {
         character.wealth > 80 -> "華爾街巨擘"
@@ -570,6 +620,8 @@ fun SummaryScreen(viewModel: GameViewModel, onRestart: () -> Unit, onMainMenu: (
                 Text("獲得稱號: $title", color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(finalLifeStory.ifBlank { "人生回顧生成中..." }, fontStyle = FontStyle.Italic)
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(apiStatus, fontSize = 12.sp, color = Color.Gray)
             }
         }
 
@@ -675,6 +727,9 @@ fun SettingsScreen(viewModel: GameViewModel, onBack: () -> Unit) {
     val apiKey by viewModel.apiKey.collectAsState()
     val apiEndpoint by viewModel.apiEndpoint.collectAsState()
     val apiModel by viewModel.apiModel.collectAsState()
+    val onlineEnabled by viewModel.onlineEnabled.collectAsState()
+    val onlineBaseUrl by viewModel.onlineBaseUrl.collectAsState()
+    val onlinePlayerName by viewModel.onlinePlayerName.collectAsState()
 
     // 👉 取得目前的音量狀態
     val bgmVolume by viewModel.bgmVolume.collectAsState()
@@ -689,7 +744,7 @@ fun SettingsScreen(viewModel: GameViewModel, onBack: () -> Unit) {
         }
     ) { paddingValues ->
         Column(
-            modifier = Modifier.fillMaxSize().padding(paddingValues).padding(24.dp)
+            modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(paddingValues).padding(24.dp)
         ) {
             // BGM 設定區塊
             SettingsSwitchRow("背景音樂 (BGM)", bgmEnabled) { viewModel.toggleBgm(it) }
@@ -754,6 +809,146 @@ fun SettingsScreen(viewModel: GameViewModel, onBack: () -> Unit) {
                     color = Color.Gray,
                     modifier = Modifier.padding(top = 8.dp)
                 )
+            }
+            Divider(modifier = Modifier.padding(vertical = 12.dp))
+
+            SettingsSwitchRow("聯網模式", onlineEnabled) { viewModel.toggleOnline(it) }
+            if (onlineEnabled) {
+                OutlinedTextField(
+                    value = onlineBaseUrl,
+                    onValueChange = { viewModel.setOnlineBaseUrl(it) },
+                    label = { Text("伺服器網址，例如 https://example.com/api") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                OutlinedTextField(
+                    value = onlinePlayerName,
+                    onValueChange = { viewModel.setOnlinePlayerName(it) },
+                    label = { Text("玩家名稱") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
+                Text(
+                    text = "聊天板與人生紀錄分享會連到此伺服器。正式版的 MongoDB、帳號與審核都應放在後端。",
+                    fontSize = 12.sp,
+                    color = Color.Gray,
+                    modifier = Modifier.padding(top = 8.dp)
+                )
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun OnlineScreen(viewModel: GameViewModel, onBack: () -> Unit) {
+    val onlineEnabled by viewModel.onlineEnabled.collectAsState()
+    val onlineBaseUrl by viewModel.onlineBaseUrl.collectAsState()
+    val onlineStatus by viewModel.onlineStatus.collectAsState()
+    val messages by viewModel.onlineMessages.collectAsState()
+    val sharedStories by viewModel.onlineSharedStories.collectAsState()
+    val finalLifeStory by viewModel.finalLifeStory.collectAsState()
+    var messageText by remember { mutableStateOf("") }
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("聯網模式") },
+                navigationIcon = { TextButton(onClick = onBack) { Text("返回") } }
+            )
+        }
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier.fillMaxSize().padding(paddingValues).padding(16.dp)
+        ) {
+            Card(modifier = Modifier.fillMaxWidth()) {
+                Column(modifier = Modifier.padding(12.dp)) {
+                    Text(
+                        text = if (onlineEnabled && onlineBaseUrl.isNotBlank()) "已設定伺服器：$onlineBaseUrl" else "尚未設定聯網模式，請先到設定填入伺服器網址。",
+                        fontSize = 13.sp,
+                        color = Color.Gray
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        OutlinedButton(onClick = { viewModel.checkOnlineHealth() }, modifier = Modifier.weight(1f)) {
+                            Text("健康檢查")
+                        }
+                        OutlinedButton(onClick = { viewModel.refreshOnlineMessages() }, modifier = Modifier.weight(1f)) {
+                            Text("刷新聊天")
+                        }
+                        OutlinedButton(onClick = { viewModel.refreshOnlineSharedStories() }, modifier = Modifier.weight(1f)) {
+                            Text("刷新紀錄")
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Button(
+                        onClick = { viewModel.shareCurrentLifeStory() },
+                        modifier = Modifier.fillMaxWidth(),
+                        enabled = finalLifeStory.isNotBlank()
+                    ) {
+                        Text("分享目前人生紀錄")
+                    }
+                    Text(onlineStatus, fontSize = 12.sp, color = Color.Gray, modifier = Modifier.padding(top = 8.dp))
+                }
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Text("聊天板", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                OutlinedTextField(
+                    value = messageText,
+                    onValueChange = { messageText = it },
+                    label = { Text("輸入訊息") },
+                    modifier = Modifier.weight(1f),
+                    singleLine = true
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Button(onClick = {
+                    viewModel.sendOnlineMessage(messageText)
+                    messageText = ""
+                }) {
+                    Text("送出")
+                }
+            }
+
+            LazyColumn(
+                modifier = Modifier.weight(1f).fillMaxWidth().padding(top = 8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                item {
+                    if (messages.isEmpty()) {
+                        Text("尚無聊天訊息。", color = Color.Gray, fontSize = 13.sp)
+                    }
+                }
+                items(messages) { msg ->
+                    Card(modifier = Modifier.fillMaxWidth()) {
+                        Column(modifier = Modifier.padding(10.dp)) {
+                            Text(msg.playerName, fontWeight = FontWeight.Bold)
+                            Text(msg.message)
+                            if (msg.createdAt.isNotBlank()) Text(msg.createdAt, fontSize = 11.sp, color = Color.Gray)
+                        }
+                    }
+                }
+
+                item {
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Text("公開人生紀錄", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                    if (sharedStories.isEmpty()) {
+                        Text("尚無公開紀錄。", color = Color.Gray, fontSize = 13.sp)
+                    }
+                }
+                items(sharedStories) { story ->
+                    Card(modifier = Modifier.fillMaxWidth()) {
+                        Column(modifier = Modifier.padding(10.dp)) {
+                            Text(story.title, fontWeight = FontWeight.Bold)
+                            Text("${story.playerName} · ${story.ageText} · ${story.worldview}", fontSize = 12.sp, color = Color.Gray)
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(story.story, maxLines = 6)
+                        }
+                    }
+                }
             }
         }
     }

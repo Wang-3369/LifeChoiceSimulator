@@ -38,9 +38,29 @@ data class DiceRollResult(
 
 data class MiniGameState(
     val eventId: String,
+    val gameType: String = "guess",
     val target: Int,
     val attemptsRemaining: Int,
-    val message: String
+    val message: String,
+    val sequence: List<Int> = emptyList(),
+    val inputSequence: List<Int> = emptyList()
+)
+
+data class OnlineChatMessage(
+    val id: String = "",
+    val playerName: String = "匿名玩家",
+    val message: String = "",
+    val createdAt: String = ""
+)
+
+data class OnlineSharedStory(
+    val id: String = "",
+    val playerName: String = "匿名玩家",
+    val title: String = "人生紀錄",
+    val worldview: String = "urban",
+    val ageText: String = "",
+    val story: String = "",
+    val createdAt: String = ""
 )
 
 class GameViewModel(application: Application) : AndroidViewModel(application) {
@@ -72,6 +92,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     val apiKey = achievementPrefs.apiKeyFlow.stateIn(viewModelScope, SharingStarted.Lazily, "")
     val apiEndpoint = achievementPrefs.apiEndpointFlow.stateIn(viewModelScope, SharingStarted.Lazily, "https://api.openai.com/v1/chat/completions")
     val apiModel = achievementPrefs.apiModelFlow.stateIn(viewModelScope, SharingStarted.Lazily, "gpt-4.1-mini")
+    val onlineEnabled = achievementPrefs.onlineEnabledFlow.stateIn(viewModelScope, SharingStarted.Lazily, false)
+    val onlineBaseUrl = achievementPrefs.onlineBaseUrlFlow.stateIn(viewModelScope, SharingStarted.Lazily, "")
+    val onlinePlayerName = achievementPrefs.onlinePlayerNameFlow.stateIn(viewModelScope, SharingStarted.Lazily, "匿名玩家")
     private val gson = Gson()
     private val _characterState = MutableStateFlow(Character())
     val characterState: StateFlow<Character> = _characterState.asStateFlow()
@@ -95,10 +118,18 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     val lifeLog: StateFlow<List<String>> = _lifeLog.asStateFlow()
     private val _finalLifeStory = MutableStateFlow("")
     val finalLifeStory: StateFlow<String> = _finalLifeStory.asStateFlow()
+    private val _apiStatus = MutableStateFlow("API 未啟用，使用本地總結。")
+    val apiStatus: StateFlow<String> = _apiStatus.asStateFlow()
     private val _lastDiceRoll = MutableStateFlow<DiceRollResult?>(null)
     val lastDiceRoll: StateFlow<DiceRollResult?> = _lastDiceRoll.asStateFlow()
     private val _miniGameState = MutableStateFlow<MiniGameState?>(null)
     val miniGameState: StateFlow<MiniGameState?> = _miniGameState.asStateFlow()
+    private val _onlineStatus = MutableStateFlow("尚未連線。")
+    val onlineStatus: StateFlow<String> = _onlineStatus.asStateFlow()
+    private val _onlineMessages = MutableStateFlow<List<OnlineChatMessage>>(emptyList())
+    val onlineMessages: StateFlow<List<OnlineChatMessage>> = _onlineMessages.asStateFlow()
+    private val _onlineSharedStories = MutableStateFlow<List<OnlineSharedStory>>(emptyList())
+    val onlineSharedStories: StateFlow<List<OnlineSharedStory>> = _onlineSharedStories.asStateFlow()
 
     fun getAvailableActions(): List<GameAction> {
         return when (_characterState.value.worldview) {
@@ -202,6 +233,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     fun setApiKey(value: String) = viewModelScope.launch { achievementPrefs.setSetting(AchievementPreferences.API_KEY, value) }
     fun setApiEndpoint(value: String) = viewModelScope.launch { achievementPrefs.setSetting(AchievementPreferences.API_ENDPOINT, value) }
     fun setApiModel(value: String) = viewModelScope.launch { achievementPrefs.setSetting(AchievementPreferences.API_MODEL, value) }
+    fun toggleOnline(enabled: Boolean) = viewModelScope.launch { achievementPrefs.setSetting(AchievementPreferences.ONLINE_ENABLED, enabled) }
+    fun setOnlineBaseUrl(value: String) = viewModelScope.launch { achievementPrefs.setSetting(AchievementPreferences.ONLINE_BASE_URL, value) }
+    fun setOnlinePlayerName(value: String) = viewModelScope.launch { achievementPrefs.setSetting(AchievementPreferences.ONLINE_PLAYER_NAME, value) }
 
     // ===== 存檔與讀檔邏輯 =====
     fun getSaveSlotData(slotId: Int): Flow<GameSaveData?> {
@@ -490,14 +524,49 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         rememberTriggeredEvent(event.id)
         appendLifeLog("${formatAge(_characterState.value.age)}，觸發事件「${event.title}」。")
         _miniGameState.value = if (event.eventType == "mini_game") {
-            MiniGameState(
+            createMiniGameState(event)
+        } else {
+            null
+        }
+    }
+
+    private fun createMiniGameState(event: Event): MiniGameState {
+        val text = "${event.title} ${event.description} ${event.choices?.joinToString(" ") { it.condition }}"
+        val type = when {
+            text.contains("記憶") || text.contains("符文") || text.contains("順序") || text.contains("劍式") -> "sequence"
+            text.contains("反應") || text.contains("閃避") || text.contains("協調") || text.contains("控制") || text.contains("節奏") -> "reaction"
+            else -> "guess"
+        }
+        return when (type) {
+            "sequence" -> {
+                val sequence = List(4) { (1..4).random() }
+                MiniGameState(
+                    eventId = event.id,
+                    gameType = "sequence",
+                    target = 0,
+                    attemptsRemaining = 2,
+                    message = "記住順序：${sequence.joinToString(" → ")}。請依序按出來，你有 2 次機會。",
+                    sequence = sequence
+                )
+            }
+            "reaction" -> {
+                val target = (1..3).random()
+                val labels = listOf("左", "中", "右")
+                MiniGameState(
+                    eventId = event.id,
+                    gameType = "reaction",
+                    target = target,
+                    attemptsRemaining = 1,
+                    message = "反應判定：選中「${labels[target - 1]}」就是成功。只有 1 次機會。"
+                )
+            }
+            else -> MiniGameState(
                 eventId = event.id,
+                gameType = "guess",
                 target = (1..10).random(),
                 attemptsRemaining = 3,
                 message = "猜一個 1 到 10 的數字。你有 3 次機會。"
             )
-        } else {
-            null
         }
     }
 
@@ -549,10 +618,21 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         _finalLifeStory.value = generateLocalLifeStory(char)
         viewModelScope.launch {
             if (apiEnabled.value && apiKey.value.isNotBlank()) {
-                val aiStory = runCatching { generateAiLifeStory(char) }.getOrNull()
-                if (!aiStory.isNullOrBlank()) {
-                    _finalLifeStory.value = aiStory
-                }
+                _apiStatus.value = "API 生成中..."
+                runCatching { generateAiLifeStory(char) }
+                    .onSuccess { aiStory ->
+                        if (aiStory.isNotBlank()) {
+                            _finalLifeStory.value = aiStory.trim()
+                            _apiStatus.value = "API 生成完成。"
+                        } else {
+                            _apiStatus.value = "API 回傳空內容，已使用本地總結。"
+                        }
+                    }
+                    .onFailure { error ->
+                        _apiStatus.value = "API 生成失敗：${error.message ?: "未知錯誤"}，已使用本地總結。"
+                    }
+            } else {
+                _apiStatus.value = "API 未啟用或缺少 API Key，使用本地總結。"
             }
         }
     }
@@ -579,23 +659,32 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private suspend fun generateAiLifeStory(char: Character): String = withContext(Dispatchers.IO) {
+        val endpoint = apiEndpoint.value.trim()
+        require(endpoint.startsWith("http://") || endpoint.startsWith("https://")) { "Endpoint 必須是 http 或 https URL" }
+
+        val importantLogs = _lifeLog.value
+            .filter { it.contains("觸發事件") || it.contains("結果：") }
+            .takeLast(20)
+
         val prompt = """
             請用繁體中文，把以下人生模擬紀錄改寫成有小說感的死亡或結局回顧。
-            不要列點，請像短篇傳記一樣寫，約 250 字，只保留關鍵事件。
+            不要列點，請像短篇傳記一樣寫，約 250 字，只保留關鍵事件，不要補不存在的事件。
             年齡：${formatAge(char.age)}
+            世界觀：${char.worldview}
             最終屬性：體力 ${char.health}, 財富 ${char.wealth}, 智力 ${char.intelligence}, 魅力 ${char.charisma}, 道德 ${char.morality}, 運氣 ${char.luck}
             事件紀錄：
-            ${_lifeLog.value.joinToString("\n")}
+            ${importantLogs.joinToString("\n").ifBlank { "沒有重大事件紀錄。" }}
         """.trimIndent()
         val body = mapOf(
-            "model" to apiModel.value,
+            "model" to apiModel.value.ifBlank { "gpt-4.1-mini" },
             "messages" to listOf(
                 mapOf("role" to "system", "content" to "你是遊戲結局傳記作家，擅長溫柔、具畫面感的繁體中文敘事。"),
                 mapOf("role" to "user", "content" to prompt)
             ),
-            "temperature" to 0.8
+            "temperature" to 0.8,
+            "max_tokens" to 600
         )
-        val connection = (URL(apiEndpoint.value).openConnection() as HttpURLConnection).apply {
+        val connection = (URL(endpoint).openConnection() as HttpURLConnection).apply {
             requestMethod = "POST"
             connectTimeout = 15000
             readTimeout = 30000
@@ -604,13 +693,197 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             setRequestProperty("Authorization", "Bearer ${apiKey.value}")
         }
         connection.outputStream.use { it.write(gson.toJson(body).toByteArray(Charsets.UTF_8)) }
-        val response = connection.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
+        val statusCode = connection.responseCode
+        val stream = if (statusCode in 200..299) connection.inputStream else connection.errorStream
+        val response = stream?.bufferedReader(Charsets.UTF_8)?.use { it.readText() }.orEmpty()
+        require(statusCode in 200..299) { "HTTP $statusCode ${response.take(160)}" }
         val json = gson.fromJson(response, Map::class.java)
         val choices = json["choices"] as? List<*> ?: return@withContext ""
         val first = choices.firstOrNull() as? Map<*, *> ?: return@withContext ""
         val message = first["message"] as? Map<*, *> ?: return@withContext ""
-        message["content"] as? String ?: ""
+        (message["content"] as? String).orEmpty()
     }
+
+    fun refreshOnlineMessages() {
+        viewModelScope.launch {
+            runCatching {
+                requireOnlineEnabled()
+                val rows = onlineGetList("/chat/messages")
+                rows.map { row ->
+                    OnlineChatMessage(
+                        id = row["id"]?.toString().orEmpty(),
+                        playerName = row["playerName"]?.toString() ?: "匿名玩家",
+                        message = row["message"]?.toString().orEmpty(),
+                        createdAt = row["createdAt"]?.toString().orEmpty()
+                    )
+                }
+            }.onSuccess {
+                _onlineMessages.value = it
+                _onlineStatus.value = "聊天板已更新。"
+            }.onFailure {
+                _onlineStatus.value = "聊天板更新失敗：${it.message ?: "未知錯誤"}"
+            }
+        }
+    }
+
+    fun checkOnlineHealth() {
+        viewModelScope.launch {
+            runCatching {
+                requireOnlineEnabled()
+                onlineGetMap("/health")
+            }.onSuccess { health ->
+                val ok = health["ok"]?.toString() ?: "unknown"
+                val env = health["env"]?.toString() ?: "unknown"
+                val mongo = health["mongo"]?.toString() ?: "unknown"
+                _onlineStatus.value = "健康檢查：ok=$ok，env=$env，mongo=$mongo"
+            }.onFailure {
+                _onlineStatus.value = "健康檢查失敗：${it.message ?: "未知錯誤"}"
+            }
+        }
+    }
+
+    fun sendOnlineMessage(message: String) {
+        val trimmed = message.trim()
+        if (trimmed.isBlank()) return
+        viewModelScope.launch {
+            runCatching {
+                requireOnlineEnabled()
+                onlinePost(
+                    "/chat/messages",
+                    mapOf(
+                        "playerName" to onlinePlayerName.value.ifBlank { "匿名玩家" },
+                        "message" to trimmed.take(500)
+                    )
+                )
+            }.onSuccess {
+                _onlineStatus.value = "訊息已送出。"
+                refreshOnlineMessages()
+            }.onFailure {
+                _onlineStatus.value = "訊息送出失敗：${it.message ?: "未知錯誤"}"
+            }
+        }
+    }
+
+    fun refreshOnlineSharedStories() {
+        viewModelScope.launch {
+            runCatching {
+                requireOnlineEnabled()
+                val rows = onlineGetList("/shares")
+                rows.map { row ->
+                    OnlineSharedStory(
+                        id = row["id"]?.toString().orEmpty(),
+                        playerName = row["playerName"]?.toString() ?: "匿名玩家",
+                        title = row["title"]?.toString() ?: "人生紀錄",
+                        worldview = row["worldview"]?.toString() ?: "urban",
+                        ageText = row["ageText"]?.toString().orEmpty(),
+                        story = row["story"]?.toString().orEmpty(),
+                        createdAt = row["createdAt"]?.toString().orEmpty()
+                    )
+                }
+            }.onSuccess {
+                _onlineSharedStories.value = it
+                _onlineStatus.value = "公開紀錄已更新。"
+            }.onFailure {
+                _onlineStatus.value = "公開紀錄更新失敗：${it.message ?: "未知錯誤"}"
+            }
+        }
+    }
+
+    fun shareCurrentLifeStory() {
+        viewModelScope.launch {
+            runCatching {
+                requireOnlineEnabled()
+                val char = _characterState.value
+                val story = _finalLifeStory.value.ifBlank { generateLocalLifeStory(char) }
+                onlinePost(
+                    "/shares",
+                    mapOf(
+                        "playerName" to onlinePlayerName.value.ifBlank { "匿名玩家" },
+                        "title" to "${formatAge(char.age)}的${worldviewLabel(char.worldview)}人生",
+                        "worldview" to char.worldview,
+                        "ageText" to formatAge(char.age),
+                        "story" to story.take(3000),
+                        "stats" to mapOf(
+                            "health" to char.health,
+                            "wealth" to char.wealth,
+                            "intelligence" to char.intelligence,
+                            "charisma" to char.charisma,
+                            "morality" to char.morality,
+                            "luck" to char.luck
+                        ),
+                        "lifeLog" to _lifeLog.value
+                    )
+                )
+            }.onSuccess {
+                _onlineStatus.value = "人生紀錄已分享。"
+                refreshOnlineSharedStories()
+            }.onFailure {
+                _onlineStatus.value = "分享失敗：${it.message ?: "未知錯誤"}"
+            }
+        }
+    }
+
+    private fun requireOnlineEnabled() {
+        require(onlineEnabled.value) { "請先在設定開啟聯網模式" }
+        require(onlineBaseUrl.value.isNotBlank()) { "請先在設定填入伺服器網址" }
+    }
+
+    private fun worldviewLabel(worldview: String): String = when (worldview) {
+        "cultivation" -> "修仙"
+        "superpower" -> "異能"
+        else -> "都市"
+    }
+
+    private fun onlineUrl(path: String): String {
+        val base = onlineBaseUrl.value.trim().trimEnd('/')
+        require(base.startsWith("http://") || base.startsWith("https://")) { "伺服器網址必須是 http 或 https URL" }
+        return "$base${if (path.startsWith("/")) path else "/$path"}"
+    }
+
+    private suspend fun onlineGetList(path: String): List<Map<*, *>> = withContext(Dispatchers.IO) {
+        val connection = (URL(onlineUrl(path)).openConnection() as HttpURLConnection).apply {
+            requestMethod = "GET"
+            connectTimeout = 10000
+            readTimeout = 20000
+            setRequestProperty("Accept", "application/json")
+        }
+        val response = readHttpResponse(connection)
+        val parsed = gson.fromJson(response, List::class.java)
+        parsed.filterIsInstance<Map<*, *>>()
+    }
+
+    private suspend fun onlineGetMap(path: String): Map<*, *> = withContext(Dispatchers.IO) {
+        val connection = (URL(onlineUrl(path)).openConnection() as HttpURLConnection).apply {
+            requestMethod = "GET"
+            connectTimeout = 10000
+            readTimeout = 20000
+            setRequestProperty("Accept", "application/json")
+        }
+        val response = readHttpResponse(connection)
+        gson.fromJson(response, Map::class.java) ?: emptyMap<String, Any>()
+    }
+
+    private suspend fun onlinePost(path: String, payload: Map<String, Any>) = withContext(Dispatchers.IO) {
+        val connection = (URL(onlineUrl(path)).openConnection() as HttpURLConnection).apply {
+            requestMethod = "POST"
+            connectTimeout = 10000
+            readTimeout = 20000
+            doOutput = true
+            setRequestProperty("Content-Type", "application/json")
+            setRequestProperty("Accept", "application/json")
+        }
+        connection.outputStream.use { it.write(gson.toJson(payload).toByteArray(Charsets.UTF_8)) }
+        readHttpResponse(connection)
+    }
+
+    private fun readHttpResponse(connection: HttpURLConnection): String {
+        val statusCode = connection.responseCode
+        val stream = if (statusCode in 200..299) connection.inputStream else connection.errorStream
+        val response = stream?.bufferedReader(Charsets.UTF_8)?.use { it.readText() }.orEmpty()
+        require(statusCode in 200..299) { "HTTP $statusCode ${response.take(160)}" }
+        return response
+    }
+
     fun makeChoice(choiceIndex: Int) {
         val event = _currentEvent.value ?: return
         val choices = event.choices ?: return
@@ -698,6 +971,57 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         } else {
             _miniGameState.value = null
             applyResolvedChoice(event, choice, isSuccess = false, prefix = "三次都沒猜中，正確數字是 ${state.target}。\n")
+        }
+    }
+
+    fun submitMiniGameReaction(option: Int) {
+        val state = _miniGameState.value ?: return
+        val event = _currentEvent.value ?: return
+        val choice = event.choices?.firstOrNull() ?: return
+        if (state.gameType != "reaction") return
+
+        _miniGameState.value = null
+        val labels = listOf("左", "中", "右")
+        val selected = labels.getOrNull(option - 1) ?: option.toString()
+        val target = labels.getOrNull(state.target - 1) ?: state.target.toString()
+        if (option == state.target) {
+            applyResolvedChoice(event, choice, isSuccess = true, prefix = "你選中了正確反應點「$selected」。\n")
+        } else {
+            applyResolvedChoice(event, choice, isSuccess = false, prefix = "你選了「$selected」，正確反應點是「$target」。\n")
+        }
+    }
+
+    fun submitMiniGameSequence(symbol: Int) {
+        val state = _miniGameState.value ?: return
+        val event = _currentEvent.value ?: return
+        val choice = event.choices?.firstOrNull() ?: return
+        if (state.gameType != "sequence") return
+
+        val nextInput = state.inputSequence + symbol
+        val expectedPrefix = state.sequence.take(nextInput.size)
+        if (nextInput != expectedPrefix) {
+            val attemptsLeft = state.attemptsRemaining - 1
+            if (attemptsLeft > 0) {
+                _miniGameState.value = state.copy(
+                    attemptsRemaining = attemptsLeft,
+                    inputSequence = emptyList(),
+                    message = "順序錯了，從頭再試一次。正確順序：${state.sequence.joinToString(" → ")}。還剩 $attemptsLeft 次機會。"
+                )
+            } else {
+                _miniGameState.value = null
+                applyResolvedChoice(event, choice, isSuccess = false, prefix = "記憶順序失敗，正確順序是 ${state.sequence.joinToString(" → ")}。\n")
+            }
+            return
+        }
+
+        if (nextInput.size == state.sequence.size) {
+            _miniGameState.value = null
+            applyResolvedChoice(event, choice, isSuccess = true, prefix = "你正確完成順序 ${state.sequence.joinToString(" → ")}。\n")
+        } else {
+            _miniGameState.value = state.copy(
+                inputSequence = nextInput,
+                message = "目前輸入：${nextInput.joinToString(" → ")}。繼續完成順序。"
+            )
         }
     }
 
