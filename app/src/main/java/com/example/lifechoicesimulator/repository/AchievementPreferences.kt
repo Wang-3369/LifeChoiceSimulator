@@ -43,6 +43,9 @@ class AchievementPreferences(private val context: Context) {
         val API_KEY = stringPreferencesKey("api_key")
         val API_ENDPOINT = stringPreferencesKey("api_endpoint")
         val API_MODEL = stringPreferencesKey("api_model")
+        val ONLINE_ENABLED = booleanPreferencesKey("online_enabled")
+        val ONLINE_BASE_URL = stringPreferencesKey("online_base_url")
+        val ONLINE_PLAYER_NAME = stringPreferencesKey("online_player_name")
     }
 
 
@@ -54,6 +57,9 @@ class AchievementPreferences(private val context: Context) {
     val apiKeyFlow: Flow<String> = context.dataStore.data.map { it[API_KEY] ?: "" }
     val apiEndpointFlow: Flow<String> = context.dataStore.data.map { it[API_ENDPOINT] ?: "https://api.openai.com/v1/chat/completions" }
     val apiModelFlow: Flow<String> = context.dataStore.data.map { it[API_MODEL] ?: "gpt-4.1-mini" }
+    val onlineEnabledFlow: Flow<Boolean> = context.dataStore.data.map { it[ONLINE_ENABLED] ?: false }
+    val onlineBaseUrlFlow: Flow<String> = context.dataStore.data.map { it[ONLINE_BASE_URL] ?: "https://lifechoicebackonline.onrender.com" }
+    val onlinePlayerNameFlow: Flow<String> = context.dataStore.data.map { it[ONLINE_PLAYER_NAME] ?: "匿名玩家" }
     suspend fun <T> setSetting(key: Preferences.Key<T>, value: T) {
         context.dataStore.edit { preferences ->
             preferences[key] = value
