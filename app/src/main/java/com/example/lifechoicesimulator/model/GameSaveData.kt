@@ -6,5 +6,8 @@ data class GameSaveData(
     val currentEvent: Event?,
     val eventResultText: String,
     val forcedNextEventId: String?,
+    val recentEventIds: List<String> = emptyList(),
+    val lifeLog: List<String> = emptyList(),
+    val finalLifeStory: String = "",
     val saveTime: Long = System.currentTimeMillis()
 )

@@ -39,6 +39,10 @@ class AchievementPreferences(private val context: Context) {
         val VIBRATION_ENABLED = booleanPreferencesKey("vibration_enabled")
         val BGM_VOLUME = floatPreferencesKey("bgm_volume")
         val SFX_VOLUME = floatPreferencesKey("sfx_volume")
+        val API_ENABLED = booleanPreferencesKey("api_enabled")
+        val API_KEY = stringPreferencesKey("api_key")
+        val API_ENDPOINT = stringPreferencesKey("api_endpoint")
+        val API_MODEL = stringPreferencesKey("api_model")
     }
 
 
@@ -46,6 +50,10 @@ class AchievementPreferences(private val context: Context) {
     val bgmEnabledFlow: Flow<Boolean> = context.dataStore.data.map { it[BGM_ENABLED] ?: true }
     val sfxEnabledFlow: Flow<Boolean> = context.dataStore.data.map { it[SFX_ENABLED] ?: true }
     val vibrationEnabledFlow: Flow<Boolean> = context.dataStore.data.map { it[VIBRATION_ENABLED] ?: true }
+    val apiEnabledFlow: Flow<Boolean> = context.dataStore.data.map { it[API_ENABLED] ?: false }
+    val apiKeyFlow: Flow<String> = context.dataStore.data.map { it[API_KEY] ?: "" }
+    val apiEndpointFlow: Flow<String> = context.dataStore.data.map { it[API_ENDPOINT] ?: "https://api.openai.com/v1/chat/completions" }
+    val apiModelFlow: Flow<String> = context.dataStore.data.map { it[API_MODEL] ?: "gpt-4.1-mini" }
     suspend fun <T> setSetting(key: Preferences.Key<T>, value: T) {
         context.dataStore.edit { preferences ->
             preferences[key] = value
