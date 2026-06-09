@@ -12,7 +12,7 @@ interface EventDao {
     suspend fun insertAll(events: List<Event>)
 
     @Query("DELETE FROM events")
-    suspend fun deleteAllEvents()
+    suspend fun deleteAllEvents(): Int
 
     @Query("SELECT COUNT(*) FROM events")
     suspend fun getEventCount(): Int
